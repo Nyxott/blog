@@ -1,0 +1,21 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Projects - Category - Nyxott&#39;s blog</title>
+        <link>https://nyxott.github.io/categories/projects/</link>
+        <description>Projects - Category - Nyxott&#39;s blog</description>
+        <generator>Hugo -- gohugo.io</generator><language>fr</language><lastBuildDate>Tue, 01 Sep 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://nyxott.github.io/categories/projects/" rel="self" type="application/rss+xml" /><item>
+    <title>Coffre-Fort Numérique Distant</title>
+    <link>https://nyxott.github.io/posts/coffre-fort-numerique-distant/</link>
+    <pubDate>Tue, 01 Sep 2020 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://nyxott.github.io/posts/coffre-fort-numerique-distant/</guid>
+    <description><![CDATA[<p>Cet article explique comment créer un coffre-fort numérique chiffré et accessible à distance.</p>]]></description>
+</item><item>
+    <title>Shellcode Polymorphique</title>
+    <link>https://nyxott.github.io/posts/shellcode-polymorphique/</link>
+    <pubDate>Wed, 01 Jul 2020 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://nyxott.github.io/posts/shellcode-polymorphique/</guid>
+    <description><![CDATA[<p>Cet article explique comment créer un shellcode polymorphique permettant d&rsquo;obtenir un reverse shell.</p>]]></description>
+</item></channel>
+</rss>

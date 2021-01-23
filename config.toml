@@ -1,0 +1,147 @@
+baseURL = "https://nyxott.github.io/"
+
+defaultContentLanguage = "en"
+languageCode = "fr"
+
+title = "Nyxott's blog"
+
+theme = "LoveIt"
+
+[params]
+  version = "0.2.X"
+  defaultTheme = "dark"
+  dateformat = "02-01-2006"
+  
+  [params.header]
+    desktopMode = "fixed"
+    mobileMode = "auto"
+    
+    [params.header.title]
+      pre = "<i class='fas fa-dollar-sign'></i>"
+      name = "Nyxott's blog"
+      typeit = true
+  
+  [params.footer]
+    enable = true
+    hugo = true
+    copyright = true
+  
+  [params.section]
+    paginate = 20
+    dateFormat = "02-01"
+  
+  [params.list]
+    paginate = 20
+    dateFormat = "02-01"
+  
+  [params.page]
+    hiddenFromHomePage = false
+    hiddenFromSearch = false
+    
+    [params.page.toc]
+      enable = true
+      keepStatic = false
+      auto = true
+    
+    [params.page.code]
+      copy = true
+      maxShownLines = 10
+    
+    [params.page.math]
+      enable = false
+    
+    [params.page.share]
+      enable = true
+      Twitter = true
+      Facebook = true
+      Linkedin = true
+      Whatsapp = false
+      Pinterest = false
+      Tumblr = false
+      HackerNews = true
+      Reddit = true
+      VK = false
+      Buffer = false
+      Xing = false
+      Line = false
+      Instapaper = false
+      Pocket = false
+      Digg = false
+      Stumbleupon = false
+      Flipboard = false
+      Weibo = false
+      Renren = false
+      Myspace = false
+      Blogger = false
+      Baidu = false
+      Odnoklassniki = false
+      Evernote = false
+      Skype = false
+      Trello = false
+      Mix = false
+    
+    [params.page.comment]
+      enable = false
+  
+  [params.typeit]
+    speed = 100
+    cursorSpeed = 1000
+    cursorChar = "|"
+    duration = -1
+
+  [params.analytics]
+    enable = false
+
+  [params.cookieconsent]
+    enable = false
+
+  [params.compatibility]
+    polyfill = false
+    objectFit = false
+
+[menu]
+  [[menu.main]]
+    identifier = "posts"
+    pre = "<i class='fas fa-file-alt'></i>"
+    name = "Posts"
+    url = "/posts/"
+    weight = 1
+  
+  [[menu.main]]
+    identifier = "categories"
+    pre = "<i class='fa fa-folder-open'></i>"
+    name = "Categories"
+    url = "/categories/"
+    weight = 2
+
+[markup]
+  [markup.highlight]
+    codeFences = true
+    guessSyntax = false
+    lineNos = true
+    lineNumbersInTable = false
+    noClasses = false
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      definitionList = true
+      footnote = true
+      linkify = true
+      strikethrough = true
+      table = true
+      taskList = true
+      typographer = true
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 6
+
+[author]
+  name = "Nyxott"
+  email = ""
+  link = ""
+
+[sitemap]
+  changefreq = "weekly"
+  filename = "sitemap.xml"
+  priority = 0.5

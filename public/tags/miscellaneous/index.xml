@@ -1,0 +1,28 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Miscellaneous - Tag - Nyxott&#39;s blog</title>
+        <link>https://nyxott.github.io/tags/miscellaneous/</link>
+        <description>Miscellaneous - Tag - Nyxott&#39;s blog</description>
+        <generator>Hugo -- gohugo.io</generator><language>fr</language><lastBuildDate>Fri, 01 Jan 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://nyxott.github.io/tags/miscellaneous/" rel="self" type="application/rss+xml" /><item>
+    <title>Hugo</title>
+    <link>https://nyxott.github.io/posts/hugo/</link>
+    <pubDate>Fri, 01 Jan 2021 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://nyxott.github.io/posts/hugo/</guid>
+    <description><![CDATA[<p>Cet article explique comment créer son blog avec Hugo et le publier via GitHub Pages.</p>]]></description>
+</item><item>
+    <title>Installation d&#39;Arch Linux</title>
+    <link>https://nyxott.github.io/posts/arch-linux-installation/</link>
+    <pubDate>Sun, 01 Nov 2020 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://nyxott.github.io/posts/arch-linux-installation/</guid>
+    <description><![CDATA[<p>Cet article explique comment installer Arch Linux.</p>]]></description>
+</item><item>
+    <title>L&#39;assembleur</title>
+    <link>https://nyxott.github.io/posts/asm/</link>
+    <pubDate>Fri, 01 May 2020 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://nyxott.github.io/posts/asm/</guid>
+    <description><![CDATA[<p>Cet article explique les bases du fonctionnement de la pile et du langage assembleur.</p>]]></description>
+</item></channel>
+</rss>

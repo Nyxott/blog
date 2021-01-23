@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Coffre-Fort Numérique Distant - Nyxott&#39;s blog</title><meta name="Description" content="Créer un coffre-fort numérique distant"><meta property="og:title" content="Coffre-Fort Numérique Distant" />
+<meta property="og:description" content="Créer un coffre-fort numérique distant" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://nyxott.github.io/posts/coffre-fort-numerique-distant/" />
+<meta property="og:image" content="https://nyxott.github.io/posts/coffre-fort-numerique-distant/featured-image.png"/>
+<meta property="article:published_time" content="2020-09-01T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-09-01T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://nyxott.github.io/posts/coffre-fort-numerique-distant/featured-image.png"/>
+<meta name="twitter:title" content="Coffre-Fort Numérique Distant"/>
+<meta name="twitter:description" content="Créer un coffre-fort numérique distant"/>
+<meta name="application-name" content="Nyxott&#39;s blog">
+<meta name="apple-mobile-web-app-title" content="Nyxott&#39;s blog"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://nyxott.github.io/posts/coffre-fort-numerique-distant/" /><link rel="prev" href="https://nyxott.github.io/posts/shellcode-polymorphique/" /><link rel="next" href="https://nyxott.github.io/posts/arch-linux-installation/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Coffre-Fort Numérique Distant",
+        "inLanguage": "fr",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/nyxott.github.io\/posts\/coffre-fort-numerique-distant\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/nyxott.github.io\/posts\/coffre-fort-numerique-distant\/featured-image.png",
+                            "width":  480 ,
+                            "height":  319 
+                        }],"genre": "posts","keywords": "Projects","wordcount":  2492 ,
+        "url": "https:\/\/nyxott.github.io\/posts\/coffre-fort-numerique-distant\/","datePublished": "2020-09-01T00:00:00+00:00","dateModified": "2020-09-01T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "Nyxott"},"author": {
+                "@type": "Person",
+                "name": "Nyxott"
+            },"description": "Créer un coffre-fort numérique distant"
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Nyxott&#39;s blog"><span class="header-title-pre"><i class='fas fa-dollar-sign'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"><i class='fas fa-file-alt'></i> Posts </a><a class="menu-item" href="/categories/"><i class='fa fa-folder-open'></i> Categories </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Nyxott&#39;s blog"><span class="header-title-pre"><i class='fas fa-dollar-sign'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title=""><i class='fas fa-file-alt'></i>Posts</a><a class="menu-item" href="/categories/" title=""><i class='fa fa-folder-open'></i>Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Coffre-Fort Numérique Distant</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Nyxott</a></span>&nbsp;<span class="post-category">included in <a href="/categories/projects/"><i class="far fa-folder fa-fw"></i>Projects</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="01-09-2020">01-09-2020</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;2492 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;12 minutes&nbsp;</div>
+        </div><div class="featured-image"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/posts/coffre-fort-numerique-distant/featured-image.png"
+        data-srcset="/posts/coffre-fort-numerique-distant/featured-image.png, /posts/coffre-fort-numerique-distant/featured-image.png 1.5x, /posts/coffre-fort-numerique-distant/featured-image.png 2x"
+        data-sizes="auto"
+        alt="/posts/coffre-fort-numerique-distant/featured-image.png"
+        title="Créer un coffre-fort numérique distant" /></div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#explications">Explications</a></li>
+    <li><a href="#projet">Projet</a>
+      <ul>
+        <li><a href="#prérequis">Prérequis</a></li>
+        <li><a href="#partitionnement">Partitionnement</a></li>
+        <li><a href="#paquets-à-installer">Paquets à installer</a></li>
+        <li><a href="#vérification-partitionnement">Vérification partitionnement</a></li>
+        <li><a href="#ssh">SSH</a></li>
+        <li><a href="#vérification-ssh">Vérification SSH</a></li>
+        <li><a href="#dropbear">Dropbear</a></li>
+        <li><a href="#vérification-dropbear">Vérification Dropbear</a></li>
+        <li><a href="#coffre">Coffre</a></li>
+        <li><a href="#vérification-coffre">Vérification coffre</a></li>
+        <li><a href="#automatisation-coffre">Automatisation coffre</a></li>
+        <li><a href="#sshfs">SSHFS</a></li>
+        <li><a href="#vérification-sshfs">Vérification SSHFS</a></li>
+        <li><a href="#automatisation-sshfs">Automatisation SSHFS</a></li>
+        <li><a href="#exposition-sur-internet">Exposition sur Internet</a></li>
+        <li><a href="#bonus">Bonus</a>
+          <ul>
+            <li><a href="#augmenter-la-taille-du-coffre">Augmenter la taille du coffre</a></li>
+            <li><a href="#vérification-de-laugmenation-de-la-taille-du-coffre">Vérification de l&rsquo;augmenation de la taille du coffre</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Cet article explique comment créer un coffre-fort numérique chiffré et accessible à distance.</p>
+<h2 id="explications">Explications</h2>
+<p>Lorsque nous avons besoin d&rsquo;installer ou de réinstaller une machine Linux pour une raison x ou y (machine personnelle, serveur Web, etc.), nous devons recommencer, la plupart du temps, les mêmes procédures et effectuer les mêmes configurations.</p>
+<p>Or, il arrive souvent d&rsquo;écrire un fichier de configuration complet et propre, mais de finir par le perdre. Il faut alors tout recommencer et prendre plusieurs heures afin de refaire ce qui aurait pu être un simple copier/coller d&rsquo;un fichier de configuration déjà fait (en effectuant peut être quelques légères modifications bien sûr).</p>
+<p>L&rsquo;idéal serait donc d&rsquo;avoir une sorte de coffre-fort chiffré présent sur une machine chez soit et accessible depuis n&rsquo;importe où de manière sécurisée. Ainsi, lorsqu&rsquo;un fichier de configuration est finis, il serait possible de le placer dans ledit coffre puis de le récupérer n&rsquo;importe quand.</p>
+<h2 id="projet">Projet</h2>
+<p>Nous allons donc voir comment mettre en place un tel coffre.</p>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Même si les actions les plus importantes sont décrites et expliquées, un minimum de connaissances en Linux est nécessaire afin de comprendre ce post.</div>
+        </div>
+    </div>
+<h3 id="prérequis">Prérequis</h3>
+<p>On utilise une image ISO <em>Debian Netinstall</em> disponible à l&rsquo;adresse suivante : <a href="https://www.debian.org/CD/netinst/" target="_blank" rel="noopener noreffer">https://www.debian.org/CD/netinst/</a> (image de CD d&rsquo;installation par le réseau (amd64))</p>
+<p>On crée une clé USB bootable avec cette image ISO :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>sudo fdisk -l <span class="o">(</span>pour repérer la clé USB<span class="o">)</span>  
+<span class="ln">2</span>sudo dd <span class="k">if</span><span class="o">=</span>/chemin/du/fichier/debian.iso <span class="nv">of</span><span class="o">=</span>/dev/sd&lt;X&gt; <span class="nv">bs</span><span class="o">=</span>1M <span class="nv">conv</span><span class="o">=</span>fdatasync <span class="o">(</span><span class="s2">&#34;X&#34;</span> correspond à la lettre attribuée au volume de la clé USB<span class="o">)</span>
+</code></pre></div><h3 id="partitionnement">Partitionnement</h3>
+<p>Nous allons effectuer une installation manuelle afin de chiffrer et partitionner notre disque :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>Manual
+</code></pre></div><p>On sélectionne le disque sur lequel on souhaite installer notre OS (sda par exemple).</p>
+<p>Nous avons le message <code>Create new empty partition table on this device</code> :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>Yes
+</code></pre></div><p>Nous sélectionnons alors la ligne indiquant <code>FREE SPACE</code>.</p>
+<p>Nous avons le message <code>How to use this free space</code> :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>Create a new partition
+</code></pre></div><p>Par défaut la taille de la partition sera automatiquement mise au maximum nous allons la réduire pour la partition de /boot :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>512M
+<span class="ln">2</span>Continue
+</code></pre></div><p>Nous avons le message <code>Type for the new partition</code> :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>Primary
+</code></pre></div><p>Nous avons le message <code>Location for the new partition</code> :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>Beginning
+</code></pre></div><p>Nous arrivons aux paramètres de la partition :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>Use as:          Ext4 journaling file system
+<span class="ln">2</span>Mount point:     /boot
+<span class="ln">3</span>Mount options:   defaults
+<span class="ln">4</span>Label:           BOOT
+<span class="ln">5</span>Reserved blocks: 5%
+<span class="ln">6</span>Typical usage:   standard
+<span class="ln">7</span>Bootable flag:   on
+<span class="ln">8</span>
+<span class="ln">9</span>Done setting up the partition
+</code></pre></div><p>Nous sélectionnons de nouveau la ligne indiquant <code>FREE SPACE</code>.</p>
+<p>Nous avons le message <code>How to use this free space</code> :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>Create a new partition
+</code></pre></div><p>Par défaut la taille de la partition sera automatiquement mise au maximum nous n&rsquo;y touchons donc pas :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>Continue
+</code></pre></div><p>Nous avons le message <code>Type for the new partition</code> :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>Primary
+</code></pre></div><p>Nous arrivons aux paramètres de la partition :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln"> 1</span>Use as:            physical volume <span class="k">for</span> encryption
+<span class="ln"> 2</span>Encryption method: Device-mapper <span class="o">(</span>dm-crypt<span class="o">)</span>
+<span class="ln"> 3</span>Encryption:        aes
+<span class="ln"> 4</span>Key size:          <span class="m">256</span>
+<span class="ln"> 5</span>IV algorithm:      xts-plain64
+<span class="ln"> 6</span>Encryption key:    Passphrase
+<span class="ln"> 7</span>Erase data:        no
+<span class="ln"> 8</span>Bootable flag      off
+<span class="ln"> 9</span>
+<span class="ln">10</span>Done setting up the partition
+</code></pre></div><p>Nous sélectionnons la ligne <code>Configure encrypted volumes</code>.</p>
+<p>Nous avons le message <code>Write the changes to disk and configure encrypted volumes</code> :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>Yes
+</code></pre></div><p>Nous avons le message <code>Encryption configuration actions</code> :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>Create encrypted volumes
+</code></pre></div><p>Nous avons le message <code>Devices to encrypt</code> :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>/dev/sdx2 <span class="o">(</span><span class="s2">&#34;x&#34;</span> représente la lettre du disque sélectionné au début <span class="o">(</span>par exemple <span class="s2">&#34;a&#34;</span><span class="o">))</span>
+<span class="ln">2</span>Continue
+</code></pre></div><p>Nous avons de nouveau le message <code>Encryption configuration actions</code> :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>Finish
+</code></pre></div><p>Nous choisissons une passphrase qui sera demandée pour déchiffrer le disque dur au démarrage de la machine.</p>
+<p>Nous sélectionnons la ligne <code>Configure the Logical Volume Manager</code>.</p>
+<p>Nous avons le message <code>Write the changes to disk and configure LVM</code> :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>Yes
+</code></pre></div><p>Nous avons le message <code>LVM configuration action</code> :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>Create volume group
+</code></pre></div><p>Nous entrons un nom (par exemple <code>VGCRYPT</code>).</p>
+<p>Nous avons le message <code>Devices for the new volume group</code> :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>/dev/mapper/sdx2_crypt <span class="o">(</span><span class="s2">&#34;x&#34;</span> représente la lettre du disque sélectionné au début <span class="o">(</span>par exemple <span class="s2">&#34;a&#34;</span><span class="o">))</span>
+<span class="ln">2</span>Continue
+</code></pre></div><div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Ici, j&rsquo;utilise un disque dur de 10Go, mais pour la taille des partitions à venir, vous pouvez répartir l&rsquo;espace comme bon vous semble.</div>
+        </div>
+    </div>
+<p>Nous avons le message <code>LVM Configuration details</code> :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>Create logical volume
+</code></pre></div><p>Nous avons le message <code>Volume group</code> :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>VGCRYPT
+</code></pre></div><p>Nous entrons un nom :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>lv_swap
+</code></pre></div><p>On définit une taille pour la partition <code>swap</code> :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>2G
+</code></pre></div><p>Nous avons de nouveau le message <code>LVM Configuration details</code> :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>Create logical volume
+</code></pre></div><p>Nous avons le message <code>Volume group</code> :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>VGCRYPT
+</code></pre></div><p>Nous entrons un nom :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>lv_tmp
+</code></pre></div><p>On définit une taille pour la partition <code>/tmp</code> :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>1G
+</code></pre></div><p>Nous avons de nouveau le message <code>LVM Configuration details</code> :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>Create logical volume
+</code></pre></div><p>Nous avons le message <code>Volume group</code> :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>VGCRYPT
+</code></pre></div><p>Nous entrons un nom :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>lv_home
+</code></pre></div><p>On définit une taille pour la partition <code>/home</code> :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>3G
+</code></pre></div><p>Nous avons de nouveau le message <code>LVM Configuration details</code> :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>Create logical volume
+</code></pre></div><p>Nous avons le message <code>Volume group</code> :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>VGCRYPT
+</code></pre></div><p>Nous entrons un nom :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>lv_root
+</code></pre></div><p>On définit une taille pour la partition <code>/</code> :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>3.5G
+</code></pre></div><div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Ici, il me reste 700Mb de disponible. Nous les utiliserons par la suite pour le coffre. Vous pouvez faire en sorte d&rsquo;avoir plus ou moins d&rsquo;espace disponible pour le coffre suivant vos préférences et surtout vos besoins.</div>
+        </div>
+    </div>
+<p>Nous avons de nouveau le message <code>LVM Configuration details</code> :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>Finish
+</code></pre></div><p>Nous sélectionnons la ligne en dessous de celle indiquant <code>LVM VG VGCRYPT, LV lv_swap</code>.</p>
+<p>Nous arrivons aux paramètres de la partition :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>Use as:	swap area
+<span class="ln">2</span>
+<span class="ln">3</span>Done setting up the partition
+</code></pre></div><p>Nous sélectionnons la ligne en dessous de celle indiquant <code>LVM VG VGCRYPT, LV lv_tmp</code>.</p>
+<p>Nous arrivons aux paramètres de la partition :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>Use as:          Ext4 journaling file system
+<span class="ln">2</span>Mount point:     /tmp
+<span class="ln">3</span>Mount options:   defaults
+<span class="ln">4</span>Label:           TMP
+<span class="ln">5</span>Reserved blocks: 5%
+<span class="ln">6</span>Typical usage:   standard
+<span class="ln">7</span>
+<span class="ln">8</span>Done setting up the partition
+</code></pre></div><p>Nous sélectionnons la ligne en dessous de celle indiquant <code>LVM VG VGCRYPT, LV lv_home</code>.</p>
+<p>Nous arrivons aux paramètres de la partition :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>Use as:        XFS journaling file system
+<span class="ln">2</span>Mount point:   /home
+<span class="ln">3</span>Mount options: defaults
+<span class="ln">4</span>Label:         HOME
+<span class="ln">5</span>
+<span class="ln">6</span>Done setting up the partition
+</code></pre></div><p>Nous sélectionnons la ligne en dessous de celle indiquant <code>LVM VG VGCRYPT, LV lv_root</code>.</p>
+<p>Nous arrivons aux paramètres de la partition :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>Use as:          Ext4 journaling file system
+<span class="ln">2</span>Mount point:     /
+<span class="ln">3</span>Mount options:   defaults
+<span class="ln">4</span>Label:           RACINE
+<span class="ln">5</span>Reserved blocks: 5%
+<span class="ln">6</span>Typical usage:   standard
+<span class="ln">7</span>
+<span class="ln">8</span>Done setting up the partition
+</code></pre></div><p>Nous sélectionnons la ligne indiquant <code>Finish paritioning and write changes to disk</code>.</p>
+<p>Nous avons le message <code>Write the changes to disks</code> :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>Yes
+</code></pre></div><h3 id="paquets-à-installer">Paquets à installer</h3>
+<p>Lorsque nous avons le message <code>Choose software to install</code>, nous installons <code>SSH server</code> et <code>standard system utilities</code>.</p>
+<h3 id="vérification-partitionnement">Vérification partitionnement</h3>
+<p>A partir de là, nous pouvons nous connecter en <code>root</code>. Si nous faisons un <code>lsblk -f</code> nous devrions avoir la sortie suivante (ou quelque chose de similaire) :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>sda
+<span class="ln">2</span><span class="p">|</span>-sda1                ext4 BOOT
+<span class="ln">3</span><span class="p">|</span>-sda2                crypto
+<span class="ln">4</span>  <span class="p">|</span>-sda2_crypt        LVM2_m
+<span class="ln">5</span>    <span class="p">|</span>-VGCRYPT-lv_tmp  ext4 TMP
+<span class="ln">6</span>    <span class="p">|</span>-VGCRYPT-lv_swap swap
+<span class="ln">7</span>    <span class="p">|</span>-VGCRYPT-lv_home xfs  HOME
+<span class="ln">8</span>    <span class="p">|</span>-VGCRYPT-lv_root ext4 RACINE
+</code></pre></div><h3 id="ssh">SSH</h3>
+<p>Nous devons désormais configurer le serveur SSH de manière à ce que nous puissions nous connecter dessus par la suite.</p>
+<p>Nous souhaitons nous connecter à notre serveur uniquement par clef SSH et non pas par mot de passe.</p>
+<p>Afin de mettre cela en place (en plus d&rsquo;un léger hardening) il faut modifier le fichier <code>/etc/ssh/sshd_config</code> :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>rm /etc/ssh/sshd_config
+<span class="ln">2</span><span class="nb">cd</span> /etc/ssh/
+<span class="ln">3</span>wget https://raw.githubusercontent.com/Nyxott/CoffreDistantChiffre/master/sshd_config
+<span class="ln">4</span>systemctl restart sshd.service
+</code></pre></div><p>Les contenus des fichiers <code>/etc/issue</code> et <code>/etc/issue.net</code> doivent également être modifiés :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>rm /etc/issue*
+<span class="ln">2</span><span class="nb">cd</span> /etc/
+<span class="ln">3</span>wget https://raw.githubusercontent.com/Nyxott/CoffreDistantChiffre/master/banner -O issue
+<span class="ln">4</span>cp issue issue.net
+</code></pre></div><p>Le fichier ci-dessus sera affiché à un utilisateur avant qu&rsquo;il se connecte.</p>
+<p>On va supprimer le contenu du fichier <code>/etc/motd</code> :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>rm /etc/motd
+<span class="ln">2</span>touch /etc/motd
+</code></pre></div><p>On va supprimer le fichier <code>/etc/update-mot.d/10-uname</code> :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>rm /etc/update-mot.d/10-uname
+</code></pre></div><p>On va créer le fichier <code>/etc/update-mot.d/00-infosys</code> :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span><span class="nb">cd</span> /etc/update-mot.d/
+<span class="ln">2</span>wget https://raw.githubusercontent.com/Nyxott/CoffreDistantChiffre/master/00-infosys
+<span class="ln">3</span>chmod +x /etc/update-mot.d/00-infosys
+</code></pre></div><p>Ce script sera exécuté lorsque nous nous connecterons à la machine et nous permettra d&rsquo;avoir rapidemment quelques informations utiles concernant cette dernière.</p>
+<p>Sur le client (la machine avec laquelle nous souhaitons nous connecter au serveur en SSH), nous allons générer une clef SSH :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>ssh-keygen -t ed25519 <span class="o">(</span>il ne faut pas mettre de passphrase<span class="o">)</span>
+</code></pre></div><p>Nous devons ensuite copier le contenu du fichier <code>/home/&lt;CLIENT_USER&gt;/.ssh/id_ed25519.pub</code> de notre client dans le fichier <code>/etc/ssh/keys/&lt;SERVER_USER&gt;/authorized_keys</code> de notre serveur.</p>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Le dossier <code>/etc/ssh/keys</code> n&rsquo;existe pas par défaut et devra donc être créé (<code>mkdir /etc/ssh/keys</code>). Le dossier <code>&lt;SERVER_USER&gt;</code> correspond au nom d&rsquo;utilisateur avec lequel on se connectera sur le serveur (<code>ssh &lt;SERVER_USER&gt;@IP</code>).</div>
+        </div>
+    </div>
+<h3 id="vérification-ssh">Vérification SSH</h3>
+<p>A partir de là, nous devrions être capable de nous connecter en SSH de notre client vers notre serveur.</p>
+<p>Afin de vérifier cela, nous allons créer le fichier <code>/home/&lt;CLIENT_USER&gt;/.ssh/config</code> sur notre client :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>Host &lt;THE_NAME_YOU_WANT&gt;
+<span class="ln">2</span>    HostName &lt;SERVER_IP&gt;
+<span class="ln">3</span>    User &lt;USER_SERVER&gt;
+<span class="ln">4</span>    Port &lt;SERVER_SSH_PORT&gt;
+<span class="ln">5</span>    IdentityFile &lt;PATH_TO_PRIVATE_KEY&gt;
+</code></pre></div><p>Puis nous pouvons nous connecté :</p>
+<pre><code>ssh &lt;THE_NAME_YOU_WANT&gt;
+</code></pre><p>Si tout fonctionne correctement nous devrions avoir le contenu du fichier <code>/etc/issue.net</code> qui s&rsquo;affiche, suivi de la demande de saisie de la passphrase. Une fois la passphrase validée nous devrion voir le script contenu dans <code>/etc/update-mot.d/00-infosys</code> s&rsquo;exécuter et nous devrions être connecté avec l&rsquo;utilisateur présent sur le serveur.</p>
+<h3 id="dropbear">Dropbear</h3>
+<p>Nous avons un disque chiffré et nous pouvons nous connecter en SSH à notre serveur. Mais, si nous devons redémarrer le serveur a distance pour une raison x ou y, nous ne pouvons pas entrer le mot de passe demandé au démarrage afin de déchiffrer le disque dur. C&rsquo;est pourquoi nous allons mettre en place l&rsquo;outil Dropbear. Dropbear est un équivalent de OpenSSH, mais est beaucoup plus léger.</p>
+<p>Nous installons donc Dropbear sur notre serveur :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>apt install dropbear busybox
+</code></pre></div><p>Dans le fichier <code>/etc/initramfs-tools/initramfs.conf</code> :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span><span class="nv">BUSYBOX</span><span class="o">=</span>y <span class="o">(</span>remplace <span class="s2">&#34;BUSYBOX=auto&#34;</span><span class="o">)</span>
+<span class="ln">2</span><span class="nv">DROPBEAR</span><span class="o">=</span>y <span class="o">(</span>à ajouter<span class="o">)</span>
+</code></pre></div><p>Nous nous rendons dans le dossier <code>/etc/dropbear-initramfs/</code> :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span><span class="nb">cd</span> /etc/dropbear-initramfs/
+</code></pre></div><p>Nous effectuons les commandes suivantes :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>/usr/lib/dropbear/dropbearconvert dropbear openssh dropbear_rsa_host_key id_rsa
+<span class="ln">2</span>dropbearkey -y -f dropbear_rsa_host_key <span class="p">|</span> grep <span class="s2">&#34;^ssh-rsa&#34;</span> &gt; id_rsa.pub
+</code></pre></div><p>Sur le client nous créons une nouvelle clef SSH :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>ssh-keygen -t rsa -b <span class="m">4096</span>
+</code></pre></div><p>Nous copions ensuite le contenu du fichier <code>/home/&lt;CLIENT_USER&gt;/.ssh/id_rsa.pub</code> de notre client dans le fichier <code>/etc/dropbear-initramfs/authorized_keys</code> de notre serveur.</p>
+<div class="details admonition warning open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-exclamation-triangle fa-fw"></i>Warning<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Attention, seul les toutes dernières version de Dropbear supportent des clefs ed25519 il est donc préférable pour le moment d&rsquo;utiliser des clefs RSA.</div>
+        </div>
+    </div>
+<p>Dans le fichier <code>/etc/default/dropbear</code> :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span><span class="nv">NO_START</span><span class="o">=</span><span class="m">0</span> <span class="o">(</span>remplace <span class="s2">&#34;NO_START=1&#34;</span><span class="o">)</span>
+<span class="ln">2</span><span class="nv">DROPBEAR_PORT</span><span class="o">=</span>lePortQueVousSouhaitezAutreQueLePortSSH <span class="o">(</span>à ajouter<span class="o">)</span>
+</code></pre></div><p>Dans le fichier <code>/etc/dropbear-initramfs/config</code> :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span><span class="nv">DROPBEAR_OPTIONS</span><span class="o">=</span><span class="s2">&#34;-p leMeMePortQueDansLeFichierPrecedent&#34;</span> <span class="o">(</span>à décommenter et compléter<span class="o">)</span>
+</code></pre></div><p>Nous nous rendons dans le dossier <code>/etc/initramfs-tools/hooks/</code> :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span><span class="nb">cd</span> /etc/initramfs-tools/hooks/
+</code></pre></div><p>Nous effectuons les commandes suivantes :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>wget https://gist.githubusercontent.com/gusennan/712d6e81f5cf9489bd9f/raw/fda73649d904ee0437fe3842227ad8ac8ca487d1/crypt_unlock.sh
+<span class="ln">2</span>chmod +x crypt_unlock.sh
+<span class="ln">3</span>update-initramfs -u
+<span class="ln">4</span>systemctl disable dropbear
+</code></pre></div><p>Dans le fichier <code>/etc/default/grub</code> :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span><span class="nv">GRUB_CMDLINE_LINUX_DEFAULT</span><span class="o">=</span><span class="s2">&#34;&#34;</span> <span class="o">(</span>remplace <span class="nv">GRUB_CMDLINE_LINUX_DEFAULT</span><span class="o">=</span><span class="s2">&#34;quiet&#34;</span><span class="o">)</span>
+</code></pre></div><p>Nous effectuons la commande suivante :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>update-grub
+</code></pre></div><h3 id="vérification-dropbear">Vérification Dropbear</h3>
+<p>A partir de là, nous devrions être capable de déchiffrer notre serveur depuis notre client.</p>
+<p>Nous redémarrons le serveur et le boot se bloque avec le message <code>Begin: Starting dropbear ...</code>.</p>
+<p>Nous ajoutons à notre fichier <code>/home/&lt;CLIENT_USER&gt;/.ssh/config</code> présents sur notre client, les lignes suivantes :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>Host &lt;THE_NAME_YOU_WANT&gt;
+<span class="ln">2</span>    HostName &lt;SERVER_IP&gt;
+<span class="ln">3</span>    User root
+<span class="ln">4</span>    Port &lt;SERVER_DROPBEAR_PORT&gt;
+<span class="ln">5</span>    IdentityFile &lt;PATH_TO_PRIVATE_KEY&gt;
+</code></pre></div><p>Sur le client nous effectuons les commandes suivantes :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>ssh &lt;THE_NAME_YOU_WANT&gt;
+<span class="ln">2</span>unlock
+</code></pre></div><p>Nous pouvons alors saisir le mot de passe permettant de déchiffrer le disque dur et le serveur démarre.</p>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw"></i>Tip<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Si vous êtes directement sur le serveur et non pas en SSH vous pouvez taper sur la touche &ldquo;Entrée&rdquo; pour passer dropbear et directement entrer le mot de passe de déchiffrement.</div>
+        </div>
+    </div>
+<h3 id="coffre">Coffre</h3>
+<p>Nous pouvons désormais créer notre coffre chiffré via les commandes suivantes :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>lvcreate -l 100%FREE -n lv_coffre_chiffre VGCRYPT <span class="o">(</span>on crée <span class="s2">&#34;lv_coffre_chiffre&#34;</span> dans le volume VGCRYPT en utilisant tout l<span class="err">&#39;</span>espace disponible<span class="o">)</span>
+<span class="ln">2</span>cryptsetup luksFormat /dev/mapper/VGCRYPT-lv_coffre_chiffre
+<span class="ln">3</span>cryptsetup luksOpen /dev/mapper/VGCRYPT-lv_coffre_chiffre coffre_chiffre
+<span class="ln">4</span>mkfs.xfs /dev/mapper/coffre_chiffre
+</code></pre></div><p>Dans le fichier <code>/etc/fstab</code> nous ajoutons la ligne suivante :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>/dev/mapper/coffre_chiffre	/home/&lt;SERVER_USER&gt;/COFFRE	xfs	defaults,noauto,user	0	<span class="m">2</span>
+</code></pre></div><p>On installe <code>sudo</code> :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>apt install sudo
+</code></pre></div><p>On ouvre le fichier <code>/etc/sudoers</code> :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>visudo
+</code></pre></div><p>On y ajoute les lignes suivantes :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>&lt;SERVER_USER&gt;	<span class="nv">ALL</span><span class="o">=(</span>ALL<span class="o">)</span> 		/usr/sbin/cryptsetup luksOpen /dev/VGCRYPT/lv_coffre_chiffre coffre_chiffre
+<span class="ln">2</span>&lt;SERVER_USER&gt;	<span class="nv">ALL</span><span class="o">=(</span>ALL<span class="o">)</span> NOPASSWD:	/usr/sbin/cryptsetup luksClose /dev/mapper/coffre_chiffre
+</code></pre></div><h3 id="vérification-coffre">Vérification coffre</h3>
+<p>En tant que simple utilisateur nous devons pouvoir ouvrir, monter, démonter et fermer le coffre dans notre répertoire courant.</p>
+<p>Pour ouvrir et monter le coffre :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>mkdir /home/&lt;SERVER_USER&gt;/COFFRE
+<span class="ln">2</span>sudo /usr/sbin/cryptsetup luksOpen /dev/VGCRYPT/lv_coffre_chiffre coffre_chiffre
+<span class="ln">3</span>mount /home/&lt;SERVER_USER&gt;/COFFRE
+</code></pre></div><p>Le coffre étant monté via sudo, il a les droits de root. Nous devons donc indiquer, en tant que root, que le coffre appartient à notre utilisateur :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>chown &lt;SERVER_USER&gt;:&lt;SERVER_USER&gt; /home/&lt;SERVER_USER&gt;/COFFRE
+</code></pre></div><div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Il suffit de le faire la première fois seulement.</div>
+        </div>
+    </div>
+<p>Pour démonter et fermer le coffre :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>umount /home/&lt;SERVER_USER&gt;/COFFRE
+<span class="ln">2</span>sudo /usr/sbin/cryptsetup luksClose /dev/mapper/coffre_chiffre
+<span class="ln">3</span>rm -r /home/&lt;SERVER_USER&gt;/COFFRE
+</code></pre></div><h3 id="automatisation-coffre">Automatisation coffre</h3>
+<p>Afin d&rsquo;automatiser l&rsquo;ouverture et le montage du coffre ainsi que son démontage et sa fermeture nous allons mettre en place deux scripts.</p>
+<p>Nous pouvons créer ces scripts dans le répertoire courant de l&rsquo;utilisateur du serveur :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span><span class="nb">cd</span>
+<span class="ln">2</span>wget https://raw.githubusercontent.com/Nyxott/CoffreDistantChiffre/master/openVault.sh
+<span class="ln">3</span>wget https://raw.githubusercontent.com/Nyxott/CoffreDistantChiffre/master/closeVault.sh
+<span class="ln">4</span>chmod +x openVault.sh
+<span class="ln">5</span>chmod +x closeVault.sh
+</code></pre></div><h3 id="sshfs">SSHFS</h3>
+<p>Nous pouvons désormais installer SSHFS sur notre client afin de pouvoir monter le coffre dessus :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>apt install sshfs
+</code></pre></div><h3 id="vérification-sshfs">Vérification SSHFS</h3>
+<p>Pour monter le coffre depuis notre client et sur ce dernier :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>ssh -t &lt;THE_NAME_YOU_HAD_PREVIOUSLY_INDICATE&gt; <span class="s1">&#39;/home/&lt;SERVER_USER&gt;/openVault.sh&#39;</span>
+<span class="ln">2</span>mkdir /home/&lt;CLIENT_USER&gt;/COFFRE
+<span class="ln">3</span>sshfs -o <span class="nv">port</span><span class="o">=</span>&lt;SERVER_SSH_PORT_YOU_HAD_PREVIOUSLY_INDICATE&gt;,IdentityFile<span class="o">=</span>/home/&lt;CLIENT_USER&gt;/.ssh/id_ed25519 &lt;SERVER_USER&gt;@&lt;SERVER_IP&gt;:/home/&lt;SERVER_USER&gt;/COFFRE /home/&lt;CLIENT_USER&gt;/COFFRE
+</code></pre></div><p>Pour démonter le coffre sur notre client et depuis ce dernier :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>fusermount -u /home/&lt;CLIENT_USER&gt;/COFFRE
+<span class="ln">2</span>rm -r /home/&lt;CLIENT_USER&gt;/COFFRE
+<span class="ln">3</span>ssh &lt;THE_NAME_YOU_HAD_PREVIOUSLY_INDICATE&gt; <span class="s1">&#39;/home/&lt;SERVER_USER&gt;/closeVault.sh&#39;</span>
+</code></pre></div><h3 id="automatisation-sshfs">Automatisation SSHFS</h3>
+<p>Afin d&rsquo;automatiser l&rsquo;ouverture et le montage du coffre ainsi que son démontage et sa fermeture, le tout à distance, nous allons mettre en place deux scripts.</p>
+<p>Nous pouvons créer ces scripts dans le répertoire courant de l&rsquo;utilisateur du client :</p>
+<p>Script de montage distant :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span><span class="nb">cd</span>
+<span class="ln">2</span>wget https://raw.githubusercontent.com/Nyxott/CoffreDistantChiffre/master/distantOpenVault.sh
+<span class="ln">3</span>wget https://raw.githubusercontent.com/Nyxott/CoffreDistantChiffre/master/distantCloseVault.sh
+<span class="ln">4</span>chmod +x distant*
+</code></pre></div><h3 id="exposition-sur-internet">Exposition sur Internet</h3>
+<p>Maintenant que tout fonctionne entre le client et le serveur, il faut configurer le NAT/PAT sur la box.</p>
+<p>L&rsquo;interface de configuration change suivant les box, mais le principe reste le même.</p>
+<p>Il faut choisir un port pour Dropbear et un autre pour SSH. Ces ports peuvent être les mêmes que ceux déjà choisi ou être différent.</p>
+<p>Ainsi, si nous choisissons le port 7000 pour SSH nous devrons ouvrir vers l&rsquo;extérieur le port 7000 de notre box et l&rsquo;associé à l&rsquo;IP de notre serveur ainsi qu&rsquo;au port SSH de celui-ci qui sera le port que vous aviez indiqué dans le fichier <code>/etc/ssh/sshd_config</code>.
+De même, si nous choisissons le port 7001 pour Dropbear nous devrons ouvrir vers l&rsquo;extérieur le port 7001 de notre box et l&rsquo;associé à l&rsquo;IP de notre serveur ainsi qu&rsquo;au port Dropbear de celui-ci qui sera le port que vous aviez indiqué dans le fichier <code>/etc/default/dropbear</code>.</p>
+<p>Comme indiqué précédemment, si dans le fichier <code>/etc/ssh/sshd_config</code> vous aviez indiqué le port 5555 et dans le fichier <code>/etc/default/dropbear</code> le port 6666, vous pouvez également ouvrir ces mêmes ports sur votre box vers l&rsquo;extérieur.</p>
+<p>Enfin, vous devrez simplement modifier le fichier <code>~/.ssh/config</code> sur votre client pour indiquer l&rsquo;adresse IP de votre box au lieu de celle du serveur et modifier les ports pour indiquer ceux que vous avez ouvert sur votre serveur.</p>
+<h3 id="bonus">Bonus</h3>
+<h4 id="augmenter-la-taille-du-coffre">Augmenter la taille du coffre</h4>
+<p>Si a un certain moment vous n&rsquo;avez plus de place dans votre coffre, vous pouvez passer root et l&rsquo;agrandir en diminuant la taille de la swap :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>swapoff -a
+<span class="ln">2</span>lvreduce -L -500M /dev/VGCRYPT/lv_swap <span class="o">(</span>réduis la swap de 500Mb<span class="o">)</span>
+<span class="ln">3</span>mkswap /dev/mapper/VGCRYPT-lv_swap
+<span class="ln">4</span>swapon -a
+<span class="ln">5</span>
+<span class="ln">6</span>lvextend -L +500M /dev/VGCRYPT/lv_coffre_chiffre
+<span class="ln">7</span>/home/&lt;SERVER_USER&gt;/COFFRE
+<span class="ln">8</span>xfs_growfs /home/&lt;SERVER_USER&gt;/COFFRE
+</code></pre></div><h4 id="vérification-de-laugmenation-de-la-taille-du-coffre">Vérification de l&rsquo;augmenation de la taille du coffre</h4>
+<p>Nous pouvons effectuer la commande suivante pour constater la nouvelle taille du coffre :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>df -h
+</code></pre></div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 01-09-2020</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://nyxott.github.io/posts/coffre-fort-numerique-distant/" data-title="Coffre-Fort Numérique Distant" data-hashtags="Projects"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://nyxott.github.io/posts/coffre-fort-numerique-distant/" data-hashtag="Projects"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on Linkedin" data-sharer="linkedin" data-url="https://nyxott.github.io/posts/coffre-fort-numerique-distant/"><i class="fab fa-linkedin fa-fw"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://nyxott.github.io/posts/coffre-fort-numerique-distant/" data-title="Coffre-Fort Numérique Distant"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="Share on Reddit" data-sharer="reddit" data-url="https://nyxott.github.io/posts/coffre-fort-numerique-distant/"><i class="fab fa-reddit fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/projects/">Projects</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/shellcode-polymorphique/" class="prev" rel="prev" title="Shellcode Polymorphique"><i class="fas fa-angle-left fa-fw"></i>Shellcode Polymorphique</a>
+            <a href="/posts/arch-linux-installation/" class="next" rel="next" title="Installation d&#39;Arch Linux">Installation d&#39;Arch Linux<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Nyxott</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"data":{"id-1":"Nyxott's blog","id-2":"Nyxott's blog"},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

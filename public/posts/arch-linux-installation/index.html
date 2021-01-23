@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Installation d&#39;Arch Linux - Nyxott&#39;s blog</title><meta name="Description" content="Installer Arch Linux"><meta property="og:title" content="Installation d&#39;Arch Linux" />
+<meta property="og:description" content="Installer Arch Linux" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://nyxott.github.io/posts/arch-linux-installation/" />
+<meta property="og:image" content="https://nyxott.github.io/posts/arch-linux-installation/featured-image.png"/>
+<meta property="article:published_time" content="2020-11-01T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-11-01T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://nyxott.github.io/posts/arch-linux-installation/featured-image.png"/>
+<meta name="twitter:title" content="Installation d&#39;Arch Linux"/>
+<meta name="twitter:description" content="Installer Arch Linux"/>
+<meta name="application-name" content="Nyxott&#39;s blog">
+<meta name="apple-mobile-web-app-title" content="Nyxott&#39;s blog"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://nyxott.github.io/posts/arch-linux-installation/" /><link rel="prev" href="https://nyxott.github.io/posts/coffre-fort-numerique-distant/" /><link rel="next" href="https://nyxott.github.io/posts/hugo/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Installation d'Arch Linux",
+        "inLanguage": "fr",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/nyxott.github.io\/posts\/arch-linux-installation\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/nyxott.github.io\/posts\/arch-linux-installation\/featured-image.png",
+                            "width":  1920 ,
+                            "height":  936 
+                        }],"genre": "posts","keywords": "Miscellaneous","wordcount":  1524 ,
+        "url": "https:\/\/nyxott.github.io\/posts\/arch-linux-installation\/","datePublished": "2020-11-01T00:00:00+00:00","dateModified": "2020-11-01T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "Nyxott"},"author": {
+                "@type": "Person",
+                "name": "Nyxott"
+            },"description": "Installer Arch Linux"
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Nyxott&#39;s blog"><span class="header-title-pre"><i class='fas fa-dollar-sign'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"><i class='fas fa-file-alt'></i> Posts </a><a class="menu-item" href="/categories/"><i class='fa fa-folder-open'></i> Categories </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Nyxott&#39;s blog"><span class="header-title-pre"><i class='fas fa-dollar-sign'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title=""><i class='fas fa-file-alt'></i>Posts</a><a class="menu-item" href="/categories/" title=""><i class='fa fa-folder-open'></i>Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Installation d&#39;Arch Linux</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Nyxott</a></span>&nbsp;<span class="post-category">included in <a href="/categories/miscellaneous/"><i class="far fa-folder fa-fw"></i>Miscellaneous</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="01-11-2020">01-11-2020</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1524 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;8 minutes&nbsp;</div>
+        </div><div class="featured-image"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/posts/arch-linux-installation/featured-image.png"
+        data-srcset="/posts/arch-linux-installation/featured-image.png, /posts/arch-linux-installation/featured-image.png 1.5x, /posts/arch-linux-installation/featured-image.png 2x"
+        data-sizes="auto"
+        alt="/posts/arch-linux-installation/featured-image.png"
+        title="Installer Arch Linux" /></div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#installation">Installation</a>
+      <ul>
+        <li><a href="#prérequis">Prérequis</a></li>
+        <li><a href="#disposition-du-clavier">Disposition du clavier</a></li>
+        <li><a href="#connectivité-du-système">Connectivité du système</a></li>
+        <li><a href="#mise-à-jour-de-lheure-système">Mise à jour de l&rsquo;heure système</a></li>
+        <li><a href="#partitionnement-du-disque">Partitionnement du disque</a></li>
+        <li><a href="#chiffrement-de-la-partition-principale">Chiffrement de la partition principale</a></li>
+        <li><a href="#gestion-par-volumes-logiques">Gestion par volumes logiques</a></li>
+        <li><a href="#formatage-des-partitions">Formatage des partitions</a></li>
+        <li><a href="#montage-des-partitions">Montage des partitions</a></li>
+        <li><a href="#sélection-des-mirroirs">Sélection des mirroirs</a></li>
+        <li><a href="#installation-1">Installation</a></li>
+        <li><a href="#génération-du-fichier-fstab">Génération du fichier fstab</a></li>
+        <li><a href="#optimisation-ssd">Optimisation SSD</a></li>
+        <li><a href="#arch-chroot">arch-chroot</a></li>
+        <li><a href="#paramètres-réseaux">Paramètres réseaux</a></li>
+        <li><a href="#configuration-de-lhorloge">Configuration de l&rsquo;horloge</a></li>
+        <li><a href="#paramètres-locaux">Paramètres locaux</a></li>
+        <li><a href="#mot-de-passe-root">Mot de passe root</a></li>
+        <li><a href="#bootloader">Bootloader</a></li>
+        <li><a href="#redémarrage">Redémarrage</a></li>
+      </ul>
+    </li>
+    <li><a href="#post-installation">Post-installation</a>
+      <ul>
+        <li><a href="#mise-à-jour">Mise à jour</a></li>
+        <li><a href="#utilisateur">Utilisateur</a></li>
+        <li><a href="#sudo">Sudo</a></li>
+        <li><a href="#interface-graphique">Interface graphique</a></li>
+        <li><a href="#configuration-de-i3">Configuration de i3</a></li>
+        <li><a href="#aur">AUR</a></li>
+        <li><a href="#installation-du-terminal">Installation du terminal</a></li>
+        <li><a href="#installation-du-shell">Installation du shell</a></li>
+        <li><a href="#installation-des-utilitaires-de-son">Installation des utilitaires de son</a></li>
+        <li><a href="#installation-des-utilitaires-de-luminosité">Installation des utilitaires de luminosité</a></li>
+        <li><a href="#installation-des-nerd-fonts">Installation des Nerd Fonts</a></li>
+        <li><a href="#installation-de-polybar">Installation de Polybar</a></li>
+        <li><a href="#installation-de-rofi">Installation de Rofi</a></li>
+        <li><a href="#installation-de-dunst">Installation de Dunst</a></li>
+        <li><a href="#wallpapers">Wallpapers</a></li>
+        <li><a href="#installation-betterlockscreen">Installation Betterlockscreen</a></li>
+        <li><a href="#installation-du-thème-lightdm-">Installation du thème lightdm :</a></li>
+        <li><a href="#installation-du-thème-grub-">Installation du thème GRUB :</a></li>
+        <li><a href="#redémarrage-1">Redémarrage</a></li>
+        <li><a href="#paquets">Paquets</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Cet article explique comment installer Arch Linux.</p>
+<h2 id="installation">Installation</h2>
+<h3 id="prérequis">Prérequis</h3>
+<p>On utilise une image ISO disponible à l&rsquo;adresse suivante : <a href="http://mir.archlinux.fr/iso/latest/" target="_blank" rel="noopener noreffer">http://mir.archlinux.fr/iso/latest/</a> (archlinux-YY.MM.DD-x86_64.iso)</p>
+<p>On crée une clé USB bootable avec cette image ISO :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>sudo fdisk -l <span class="o">(</span>pour repérer la clé USB<span class="o">)</span>
+<span class="ln">2</span>sudo dd <span class="k">if</span><span class="o">=</span>/chemin/du/fichier/archlinux.iso <span class="nv">of</span><span class="o">=</span>/dev/sd&lt;X&gt; <span class="nv">bs</span><span class="o">=</span>1M <span class="nv">status</span><span class="o">=</span>progress <span class="nv">oflag</span><span class="o">=</span>sync <span class="o">(</span><span class="s2">&#34;&lt;X&gt;&#34;</span> correspond à la lettre attribuée au volume de la clé USB<span class="o">)</span>
+</code></pre></div><h3 id="disposition-du-clavier">Disposition du clavier</h3>
+<p>Une fois le boot effectué sur l&rsquo;image ISO, nous obtenons un shell en tant que root.</p>
+<p>Nous modifions le clavier afin qu&rsquo;il soit en azerty :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>loadkeys fr-pc <span class="o">(</span>attention le clavier est en <span class="s2">&#34;qwerty&#34;</span> il faut donc taper <span class="s2">&#34;loqdkeys fr)pc&#34;</span><span class="o">)</span>
+</code></pre></div><h3 id="connectivité-du-système">Connectivité du système</h3>
+<p>Avant de poursuivre l&rsquo;installation nous devons vérifier si nous avons Internet, car l&rsquo;installation va nécessiter de télécharger certaines choses :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>ping -c <span class="m">4</span> 1.1.1.1
+</code></pre></div><h3 id="mise-à-jour-de-lheure-système">Mise à jour de l&rsquo;heure système</h3>
+<p>Afin que pacman puisse vérifier la validité des paquets téléchargés, il est nécessaire que l&rsquo;heure soit correcte.</p>
+<p>Nous allons donc préciser notre timezone :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>timedatectl set-timezone Europe/Paris
+<span class="ln">2</span>timedatectl set-ntp <span class="nb">true</span>
+</code></pre></div><h3 id="partitionnement-du-disque">Partitionnement du disque</h3>
+<p>La méthode de partitionnement dépendra de si l&rsquo;ordinateur utilise UEFI (GPT) ou BIOS (MBR). Ici, je ne montre que l&rsquo;UEFI (GPT).</p>
+<p>On crée la GPT :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>parted /dev/sda -- mklabel gpt
+</code></pre></div><p>On crée la partition EFI :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>parted /dev/sda -- mkpart primary fat32 1MiB 101MiB
+<span class="ln">2</span>parted /dev/sda -- <span class="nb">set</span> <span class="m">1</span> esp on
+</code></pre></div><p>On crée la partition boot :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>parted /dev/sda -- mkpart primary ext4 101MiB 361MiB
+<span class="ln">2</span>parted /dev/sda -- <span class="nb">set</span> <span class="m">2</span> boot on
+</code></pre></div><p>On définit la partition principale que nous allons chiffrer par la suite :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>parted /dev/sda -- mkpart primary btrfs 361MiB 100%
+</code></pre></div><h3 id="chiffrement-de-la-partition-principale">Chiffrement de la partition principale</h3>
+<p>On chiffre la partition principale :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>cryptsetup -i <span class="m">5000</span> -y luksFormat /dev/sda3
+<span class="ln">2</span>cryptsetup open /dev/sda3 archlinux-root
+</code></pre></div><h3 id="gestion-par-volumes-logiques">Gestion par volumes logiques</h3>
+<p>On découpe notre partition principale en 2 sous-partitions.</p>
+<p>Ici, &ldquo;8G&rdquo; corresponds à la taille que l&rsquo;on souhaitera réserver à la swap (à adapter en fonction de la RAM) :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>pvcreate /dev/mapper/archlinux-root
+<span class="ln">2</span>vgcreate VG_CRYPT /dev/mapper/archlinux-root
+<span class="ln">3</span>lvcreate --size 8G VG_CRYPT --name lv_swap
+<span class="ln">4</span>lvcreate -l +100%FREE VG_CRYPT --name lv_root
+</code></pre></div><h3 id="formatage-des-partitions">Formatage des partitions</h3>
+<p>On formate la partition EFI :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>mkfs.fat -n EFI -F32 /dev/sda1
+</code></pre></div><p>On formate la partition boot :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>mkfs.ext4 -L BOOT /dev/sda2
+</code></pre></div><p>On formate la swap :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>mkswap -L SWAP /dev/mapper/VG_CRYPT-lv_swap
+</code></pre></div><p>On formate la partition principale :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>mkfs.btrfs -L ARCHLINUXROOT /dev/mapper/VG_CRYPT-lv_root
+</code></pre></div><h3 id="montage-des-partitions">Montage des partitions</h3>
+<p>On monte la partition principale :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>mount /dev/mapper/VG_CRYPT-lv_root /mnt
+</code></pre></div><p>On monte la partition boot :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>mkdir /mnt/boot
+<span class="ln">2</span>mount /dev/sda2 /mnt/boot
+</code></pre></div><p>On monte la partition EFI :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>mkdir /mnt/boot/EFI
+<span class="ln">2</span>mount /dev/sda1 /mnt/boot/EFI
+</code></pre></div><p>On active la swap :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>swapon /dev/mapper/VG_CRYPT-lv_swap
+</code></pre></div><h3 id="sélection-des-mirroirs">Sélection des mirroirs</h3>
+<p>On sélectionne les mirroirs qui ont les meilleurs délais de réponses en fonction de notre zone géographique :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>pacman -Sy
+<span class="ln">2</span>pacman -S reflector
+<span class="ln">3</span>cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
+<span class="ln">4</span>reflector -c <span class="s2">&#34;FR&#34;</span> -f <span class="m">12</span> -l <span class="m">10</span> -n <span class="m">12</span> --save /etc/pacman.d/mirrorlist
+</code></pre></div><h3 id="installation-1">Installation</h3>
+<p>On installe les paquets de base :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>pacstrap /mnt base base-devel btrfs-progs linux linux-firmware lvm2 man-db man-pages networkmanager vim
+</code></pre></div><h3 id="génération-du-fichier-fstab">Génération du fichier fstab</h3>
+<p>Nous générons le fichier indiquant les points de montage de nos paritions :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>genfstab -U /mnt &gt;&gt; /mnt/etc/fstab
+</code></pre></div><h3 id="optimisation-ssd">Optimisation SSD</h3>
+<p>Pour les ordinateurs possédant un disque SSD, il est possible d&rsquo;obtenir de meilleures performances en éditant le fichier <code>/mnt/etc/fstab</code> pour modifier le <code>relatime</code> en <code>noatime</code> sur la ligne concernant la partition <code>/dev/mapper/VG_CRYPT-lv_root LABEL=ARCHLINUXROOT</code>.</p>
+<h3 id="arch-chroot">arch-chroot</h3>
+<p>Nous entrons à présent dans le Arch Linux installé sur notre disque afin de finir quelques réglages :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>arch-chroot /mnt
+</code></pre></div><h3 id="paramètres-réseaux">Paramètres réseaux</h3>
+<p>On ajoute un nom d&rsquo;hôte à notre PC :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span><span class="nb">echo</span> ArchLinux &gt; /etc/hostname
+</code></pre></div><p>On crée le fichier <code>/etc/hosts</code> :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>touch /etc/hosts
+</code></pre></div><p>On édite ce fichier afin d&rsquo;y ajouter les lignes suivantes (<code>ArchLinux</code> corresponds au nom d&rsquo;hôte attribué plus haut) :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>127.0.0.1    localhost
+<span class="ln">2</span>::1          localhost
+<span class="ln">3</span>127.0.1.1    ArchLinux.localdomain ArchLinux
+</code></pre></div><p>On active NetworkManager au démarrage :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>systemctl <span class="nb">enable</span> NetworkManager.service
+</code></pre></div><h3 id="configuration-de-lhorloge">Configuration de l&rsquo;horloge</h3>
+<p>On configure l&rsquo;horloge du système afin d&rsquo;éviter des problèmes liés au protocol NTP lors des vérifications de paquets :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>ln -sf /usr/share/zoneinfo/Europe/Paris /etc/localtime
+<span class="ln">2</span>hwclock --systohc
+</code></pre></div><h3 id="paramètres-locaux">Paramètres locaux</h3>
+<p>shell
+Nous définissons le système en anglais :</p>
+<pre><code>sed -i &quot;s/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g&quot; /etc/locale.gen
+locale-gen
+echo LANG=&quot;en_US.UTF-8&quot; &gt; /etc/locale.conf
+export LANG=en_US.UTF-8
+</code></pre><p>Nous définissons le clavier en azerty :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span><span class="nb">echo</span> <span class="nv">KEYMAP</span><span class="o">=</span>fr &gt; /etc/vconsole.conf
+</code></pre></div><h3 id="mot-de-passe-root">Mot de passe root</h3>
+<p>On définit un mot de passe pour l&rsquo;utilisateur root :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>passwd
+</code></pre></div><h3 id="bootloader">Bootloader</h3>
+<p>On installe GRUB ainsi qu&rsquo;un paquet qui permettra de gérer l&rsquo;UEFI :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>pacman -S efibootmgr grub
+</code></pre></div><p>On cherche l&rsquo;UUID de <code>/dev/sda3</code> :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>lsblk -f <span class="p">|</span> grep <span class="s2">&#34;sda3&#34;</span>
+</code></pre></div><p>On édite le fichier <code>/etc/default/grub</code> afin de remplacer la ligne <code>GRUB_CMDLINE_LINUX=&quot;&quot;</code> par la ligne suivante (<code>&lt;UUID&gt;</code> doit être remplacé par l&rsquo;UUID de votre partition <code>sda3</code>) :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span><span class="nv">GRUB_CMDLINE_LINUX</span><span class="o">=</span><span class="s2">&#34;cryptdevice=UUID=&lt;UUID&gt;:archlinux-root:allow-discards
+</span></code></pre></div><p>On cherche l&rsquo;UUID de la swap :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>lsblk -f <span class="p">|</span> grep <span class="s2">&#34;SWAP&#34;</span>
+</code></pre></div><p>Toujours dans le fichier <code>/etc/default/grub</code> nous remplaçons la ligne <code>GRUB_CMDLINE_LINUX_DEFAULT=&quot;loglevel=3 quiet&quot;</code> par la ligne suivante (<code>&lt;UUID&gt;</code> doit être remplacé par l&rsquo;UUID de votre SWAP) :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span><span class="nv">GRUB_CMDLINE_LINUX_DEFAULT</span><span class="o">=</span><span class="s2">&#34;loglevel=3 quiet resume=UUID=&lt;UUID&gt;&#34;</span>
+</code></pre></div><p>Toujours dans le fichier <code>/etc/default/grub</code> nous décommentons la ligne :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span><span class="s2">&#34;GRUB_ENABLE_CRYPTODISK=y&#34;</span>
+</code></pre></div><p>On édite le fichier <code>/etc/mkinitcpio.conf</code> afin de remplacer la ligne <code>HOOKS=(base udev autodetect mdconf block filesystems keyboard fsck)</code> par la ligne suivante :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span><span class="nv">HOOKS</span><span class="o">=(</span>base udev autodetect keyboard keymap modconf block encrypt lvm2 btrfs resume filesystems fsck<span class="o">)</span>
+</code></pre></div><p>On génère notre nouvelle image :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>mkinitcpio -p linux
+</code></pre></div><p>On installe GRUB :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>grub-install --target<span class="o">=</span>x86_64-efi --boot-directory<span class="o">=</span>/boot --efi-directory<span class="o">=</span>/boot/EFI --bootloader-id<span class="o">=</span>GRUB --removable
+<span class="ln">2</span>grub-mkconfig -o /boot/grub/grub.cfg
+</code></pre></div><h3 id="redémarrage">Redémarrage</h3>
+<p>On sort du arch-chroot et on éteint la machine :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span><span class="nb">exit</span>
+<span class="ln">2</span>umount /mnt/boot/EFI
+<span class="ln">3</span>umount /mnt/boot
+<span class="ln">4</span>umount /mnt
+<span class="ln">5</span>swapoff /dev/mapper/VG_CRYPT-lv_swap
+<span class="ln">6</span>cryptsetup close /dev/mapper/VG_CRYPT-lv_swap
+<span class="ln">7</span>cryptsetup close /dev/mapper/VG_CRYPT-lv_root
+<span class="ln">8</span>cryptsetup close /dev/mapper/archlinux-root
+<span class="ln">9</span>poweroff
+</code></pre></div><p>Puis l&rsquo;on redémarre la machine en prenant soin, au préalable, de retirer la clef USB contenant l&rsquo;ISO.</p>
+<h2 id="post-installation">Post-installation</h2>
+<h3 id="mise-à-jour">Mise à jour</h3>
+<p>On commence avant tout par mettre à jour le système et la base de données de pacman :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>pacman -Syu
+</code></pre></div><h3 id="utilisateur">Utilisateur</h3>
+<p>On ajoute un nouvel utilisateur (ici, il faut remplacer <code>nyxott</code> par votre utilisateur) :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>useradd -m -G users,wheel nyxott 
+<span class="ln">2</span>passwd nyxott
+</code></pre></div><h3 id="sudo">Sudo</h3>
+<p>On modifie le fichier <code>/etc/sudoers</code> pour sauvegarder durant une heure le mot de passe à chaque fois qu&rsquo;on le tape :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>pacman -S vi
+<span class="ln">2</span>visudo
+</code></pre></div><p>On ajoute la ligne suivante :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>Defaults	<span class="nv">timestamp_timeout</span><span class="o">=</span><span class="m">60</span>
+</code></pre></div><p>Puis, l&rsquo;on décommente la ligne suivante :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>%wheel <span class="nv">ALL</span><span class="o">=(</span>ALL<span class="o">)</span> ALL
+</code></pre></div><h3 id="interface-graphique">Interface graphique</h3>
+<p>On installe les composants nécessaires pour notre interface graphique :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>pacman -S i3-gaps lightdm lightdm-gtk-greeter xorg xorg-xinit xterm
+</code></pre></div><p>On édite le fichier <code>/etc/X11/xinit/xinitrc</code>, on commente toutes les lignes à partir de <code>twm &amp;</code>, puis, l&rsquo;on ajoute la ligne suivante :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span><span class="nb">exec</span> i3
+</code></pre></div><p>On configure notre clavier pour lightdm :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>sudo pacman -S wget
+<span class="ln">2</span>wget https://raw.githubusercontent.com/Nyxott/ArchLinuxConfiguration/main/10-keyboard.conf -O /etc/X11/xorg.conf.d/10-keyboard.conf
+</code></pre></div><p>On active lightdm au démarrage :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>systemctl <span class="nb">enable</span> lightdm.service
+</code></pre></div><p>On redémarre :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>reboot
+</code></pre></div><p>A partir de là, nous nous connecterons uniquement via notre utilisateur.</p>
+<h3 id="configuration-de-i3">Configuration de i3</h3>
+<p>On configure i3 :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>wget https://raw.githubusercontent.com/Nyxott/ArchLinuxConfiguration/main/i3.conf -O ~/.config/i3/config
+</code></pre></div><p>On crée le répertoire permettant de stocker les captures d&rsquo;écrans :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>mkdir -p ~/Pictures/Screenshots
+</code></pre></div><p>Dans le fichier <code>~/.config/i3/config</code> , il faut penser à modifier la ligne <code>bindsym Print exec flameshot full -c -p &quot;/home/nyxott/Pictures/Screenshots/&quot;</code> en remplaçant <code>nyxott</code> par votre utilisateur.</p>
+<h3 id="aur">AUR</h3>
+<p>On installe yay afin de pouvoir installer, par la suite, des paquets présents au sein de l&rsquo;AUR :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>sudo pacman -S git
+<span class="ln">2</span><span class="nb">cd</span> /tmp
+<span class="ln">3</span>git clone https://aur.archlinux.org/yay.git
+<span class="ln">4</span><span class="nb">cd</span> yay
+<span class="ln">5</span>makepkg -si
+</code></pre></div><h3 id="installation-du-terminal">Installation du terminal</h3>
+<p>On installe le terminal kitty :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>sudo pacman -S kitty
+<span class="ln">2</span>wget <span class="s2">&#34;https://raw.githubusercontent.com/dexpota/kitty-themes/master/themes/Monokai_Pro_(Filter_Spectrum).conf&#34;</span> -P ~/.config/kitty/kitty-themes/themes
+<span class="ln">3</span>ln -s ~/.config/kitty/kitty-themes/themes/Monokai_Pro_<span class="o">(</span>Filter_Spectrum<span class="o">)</span>.conf ~/.config/kitty/theme.conf
+<span class="ln">4</span>wget https://raw.githubusercontent.com/Nyxott/ArchLinuxConfiguration/main/kitty.conf -O ~/.config/kitty/kitty.conf
+</code></pre></div><h3 id="installation-du-shell">Installation du shell</h3>
+<p>On installe le shell zsh :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>sudo pacman -S zsh
+<span class="ln">2</span>chsh -s /usr/bin/zsh
+<span class="ln">3</span>wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - <span class="p">|</span> zsh
+<span class="ln">4</span>git clone https://github.com/zsh-users/zsh-autosuggestions.git ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+<span class="ln">5</span>git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+</code></pre></div><p>On configure notre thème :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>wget https://raw.githubusercontent.com/Nyxott/ArchLinuxConfiguration/main/nyxott.zsh-theme -O ~/.oh-my-zsh/themes/nyxott.zsh-theme
+</code></pre></div><p>On configure zsh :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>wget https://raw.githubusercontent.com/Nyxott/ArchLinuxConfiguration/main/zsh.conf -O ~/.zshrc
+</code></pre></div><h3 id="installation-des-utilitaires-de-son">Installation des utilitaires de son</h3>
+<p>On installe ce dont on a besoin pour gérer le son :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>sudo pacman -S pavucontrol pulseaudio
+</code></pre></div><h3 id="installation-des-utilitaires-de-luminosité">Installation des utilitaires de luminosité</h3>
+<p>On installe ce dont on a besoin pour gérer la luminosité :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>sudo pacman -S xf86-video-intel xorg-xbacklight
+</code></pre></div><h3 id="installation-des-nerd-fonts">Installation des Nerd Fonts</h3>
+<p>On installe les Nerd Fonts :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>yay -S nerd-fonts-complete
+</code></pre></div><h3 id="installation-de-polybar">Installation de Polybar</h3>
+<p>On installe polybar :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>yay -S polybar
+</code></pre></div><p>On crée le dossier <code>~/.config/polybar</code> :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>mkdir ~/.config/polybar
+</code></pre></div><p>On crée le fichier <code>~/.config/polybar/launch.sh</code> :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>wget https://raw.githubusercontent.com/Nyxott/ArchLinuxConfiguration/main/launch.sh -O ~/.config/polybar/launch.sh
+<span class="ln">2</span>chmod +x ~/.config/polybar/launch.sh
+</code></pre></div><p>On configure polybar :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>wget https://raw.githubusercontent.com/Nyxott/ArchLinuxConfiguration/main/polybar.conf -O ~/.config/polybar/config
+</code></pre></div><h3 id="installation-de-rofi">Installation de Rofi</h3>
+<p>On installe rofi :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>sudo pacman -S rofi
+</code></pre></div><p>On crée le dossier <code>~/.config/rofi</code> :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>mkdir ~/.config/rofi
+</code></pre></div><p>On configure rofi :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>wget https://raw.githubusercontent.com/Nyxott/ArchLinuxConfiguration/main/rofi.conf -O ~/.config/rofi/config.rasi
+</code></pre></div><h3 id="installation-de-dunst">Installation de Dunst</h3>
+<p>On installe dunst :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>sudo pacman -S dunst
+</code></pre></div><p>On crée le répertoire <code>~/.config/dunst</code> :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>mkdir ~/.config/dunst
+</code></pre></div><p>On configure dunst :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>wget https://raw.githubusercontent.com/Nyxott/ArchLinuxConfiguration/main/dunst.conf -O ~/.config/dunst/dunstrc
+</code></pre></div><h3 id="wallpapers">Wallpapers</h3>
+<p>On crée un dossier qui contiendra nos wallpapers :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>mkdir ~/.wallpapers/
+</code></pre></div><p>On installe un navigateur pour pouvoir télécharger nos fonds d&rsquo;écran :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>yay -S brave-bin
+</code></pre></div><p>L&rsquo;image que l&rsquo;on veut comme fond d&rsquo;écran doit être enregistrée comme <code>~/.wallpapers/wallpaper.jpg</code>.<br>
+L&rsquo;image que l&rsquo;on veut comme fond d&rsquo;écran de verrouillage doit être enregistrée comme <code>~/.wallpapers/wallpaperLock.png</code>.</p>
+<h3 id="installation-betterlockscreen">Installation Betterlockscreen</h3>
+<p>On installe betterlock :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>sudo pacman -S feh imagemagick
+<span class="ln">2</span>yay -S betterlockscreen
+<span class="ln">3</span>betterlockscreen -u ~/.wallpapers/wallpaperLock.png
+</code></pre></div><h3 id="installation-du-thème-lightdm-">Installation du thème lightdm :</h3>
+<p>On installe le thème lightdm :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>yay -S lightdm-webkit-theme-aether
+</code></pre></div><h3 id="installation-du-thème-grub-">Installation du thème GRUB :</h3>
+<p>On installe le thème GRUB :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>git clone https://github.com/vinceliuice/grub2-themes.git /tmp/grub2-themes.git
+<span class="ln">2</span>sudo /tmp/grub2-themes.git/install.sh -b -v
+</code></pre></div><h3 id="redémarrage-1">Redémarrage</h3>
+<p>Nous pouvons désormais redémarrer la machine et constater que tout fonctionne correctement :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>sudo reboot
+</code></pre></div><h3 id="paquets">Paquets</h3>
+<p>On installe tous les paquets utiles :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>sudo pacman -Sy
+<span class="ln">2</span>sudo pacman -S curl discord flameshot htop libreoffice-still unzip zip
+<span class="ln">3</span>yay -Sua
+<span class="ln">4</span>yay -S spotify visual-studio-code-bin
+</code></pre></div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 01-11-2020</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://nyxott.github.io/posts/arch-linux-installation/" data-title="Installation d&#39;Arch Linux" data-hashtags="Miscellaneous"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://nyxott.github.io/posts/arch-linux-installation/" data-hashtag="Miscellaneous"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on Linkedin" data-sharer="linkedin" data-url="https://nyxott.github.io/posts/arch-linux-installation/"><i class="fab fa-linkedin fa-fw"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://nyxott.github.io/posts/arch-linux-installation/" data-title="Installation d&#39;Arch Linux"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="Share on Reddit" data-sharer="reddit" data-url="https://nyxott.github.io/posts/arch-linux-installation/"><i class="fab fa-reddit fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/miscellaneous/">Miscellaneous</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/coffre-fort-numerique-distant/" class="prev" rel="prev" title="Coffre-Fort Numérique Distant"><i class="fas fa-angle-left fa-fw"></i>Coffre-Fort Numérique Distant</a>
+            <a href="/posts/hugo/" class="next" rel="next" title="Hugo">Hugo<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Nyxott</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"data":{"id-1":"Nyxott's blog","id-2":"Nyxott's blog"},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

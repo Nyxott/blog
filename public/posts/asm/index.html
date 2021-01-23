@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>L&#39;assembleur - Nyxott&#39;s blog</title><meta name="Description" content="Les bases du fonctionnement de la pile et du langage assembleur"><meta property="og:title" content="L&#39;assembleur" />
+<meta property="og:description" content="Les bases du fonctionnement de la pile et du langage assembleur" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://nyxott.github.io/posts/asm/" />
+<meta property="og:image" content="https://nyxott.github.io/posts/asm/featured-image.png"/>
+<meta property="article:published_time" content="2020-05-01T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-05-01T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://nyxott.github.io/posts/asm/featured-image.png"/>
+<meta name="twitter:title" content="L&#39;assembleur"/>
+<meta name="twitter:description" content="Les bases du fonctionnement de la pile et du langage assembleur"/>
+<meta name="application-name" content="Nyxott&#39;s blog">
+<meta name="apple-mobile-web-app-title" content="Nyxott&#39;s blog"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://nyxott.github.io/posts/asm/" /><link rel="next" href="https://nyxott.github.io/posts/shellcode-polymorphique/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "L'assembleur",
+        "inLanguage": "fr",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/nyxott.github.io\/posts\/asm\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/nyxott.github.io\/posts\/asm\/featured-image.png",
+                            "width":  905 ,
+                            "height":  390 
+                        }],"genre": "posts","keywords": "Miscellaneous","wordcount":  2980 ,
+        "url": "https:\/\/nyxott.github.io\/posts\/asm\/","datePublished": "2020-05-01T00:00:00+00:00","dateModified": "2020-05-01T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "Nyxott"},"author": {
+                "@type": "Person",
+                "name": "Nyxott"
+            },"description": "Les bases du fonctionnement de la pile et du langage assembleur"
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Nyxott&#39;s blog"><span class="header-title-pre"><i class='fas fa-dollar-sign'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"><i class='fas fa-file-alt'></i> Posts </a><a class="menu-item" href="/categories/"><i class='fa fa-folder-open'></i> Categories </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Nyxott&#39;s blog"><span class="header-title-pre"><i class='fas fa-dollar-sign'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title=""><i class='fas fa-file-alt'></i>Posts</a><a class="menu-item" href="/categories/" title=""><i class='fa fa-folder-open'></i>Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">L&#39;assembleur</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Nyxott</a></span>&nbsp;<span class="post-category">included in <a href="/categories/miscellaneous/"><i class="far fa-folder fa-fw"></i>Miscellaneous</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="01-05-2020">01-05-2020</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;2980 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;14 minutes&nbsp;</div>
+        </div><div class="featured-image"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/posts/asm/featured-image.png"
+        data-srcset="/posts/asm/featured-image.png, /posts/asm/featured-image.png 1.5x, /posts/asm/featured-image.png 2x"
+        data-sizes="auto"
+        alt="/posts/asm/featured-image.png"
+        title="Les bases du fonctionnement de la pile et du langage assembleur" /></div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#la-base">La base</a></li>
+    <li><a href="#les-registres">Les registres</a></li>
+    <li><a href="#les-flags">Les flags</a></li>
+    <li><a href="#la-stack">La stack</a></li>
+    <li><a href="#les-instructions-assembleur">Les instructions assembleur</a></li>
+    <li><a href="#les-syscalls">Les syscalls</a></li>
+    <li><a href="#les-termes-little-endian-et-big-endian">Les termes little-endian et big-endian</a></li>
+    <li><a href="#les-sections-dun-programme-assembleur">Les sections d&rsquo;un programme assembleur</a></li>
+    <li><a href="#hello-world">Hello world!</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Cet article explique les bases du fonctionnement de la pile et du langage assembleur.</p>
+<h2 id="la-base">La base</h2>
+<p>Avant tout, il faut savoir que lorsqu&rsquo;un programme est exécuté par nos ordinateurs, le code final sera toujours retranscrit en assembleur. Ainsi, un programme en C ou en Python, par exemple, finira par devenir de l&rsquo;assembleur. La raison est que les processeurs ne peuvent interpréter que des instructions assembleurs (transformées en binaire bien sûr).</p>
+<p>De plus, il existe différents types de processeurs et les uns ne peuvent pas interpréter les mêmes instructions que les autres. C&rsquo;est pourquoi il existe une multitude de langage assembleur (<a href="https://flatassembler.net/" target="_blank" rel="noopener noreffer">FASM</a>, <a href="https://sourceware.org/binutils/docs/as/" target="_blank" rel="noopener noreffer">GASM</a>, <a href="https://docs.microsoft.com/fr-fr/cpp/assembler/masm/microsoft-macro-assembler-reference?view=vs-2019" target="_blank" rel="noopener noreffer">MASM</a>, <a href="https://www.nasm.us/" target="_blank" rel="noopener noreffer">NASM</a>, etc.). Ici, nous utiliserons le NASM.</p>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Il est à noter qu&rsquo;entre un code assembleur en 32 bits et en 64 bits, quelques changements ont lieu. Ici, seul l&rsquo;assembleur 64 bits sera abordé.</div>
+        </div>
+    </div>
+<h2 id="les-registres">Les registres</h2>
+<p>De la même manière que nous utilisons des variables pour programmer en C ou en Python, par exemple, nous utilisons les registres des processeurs afin d&rsquo;y stocker des informations. En effet, les instructions assembleurs, que nous verrons plus loin, manipulent directement les regitres. De plus, ces derniers sont un peu plus rapides d&rsquo;accès que les caches et surtout beaucoup plus rapides d&rsquo;accès que la RAM et c&rsquo;est pourquoi nous devons les utiliser au maximum.</p>
+<p>Un registre a au moins trois tailles différentes. A savoir, 8 bits (1 octet/byte), 16 bits (2 octets/word) et 32 bits (4 octets/double word).<br>
+Les architectures 64 bits ont une taille de registre supplémentaire de 64 bits (8 octets/quad word).</p>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Je ne tiens pas compte des sous-ensembles tels que le x87 dédié au nombre à virgule flottante par exemple.</div>
+        </div>
+    </div>
+<p>Les registres sont imbriqués les uns dans les autres excepté les deux plus petits qui sont distincts.</p>
+<p>Pour comprendre cela, nous pouvons représenter le registre <code>rax</code> (64 bits) contenant le registre <code>eax</code> (32 bits) contenant le registre <code>ax</code> (16 bits) contenant le registre <code>ah</code> (8 bits) et <code>al</code> (8bits) de la manière suivante :</p>
+<pre><code>                  rax
+ → → → → → → → → → → → → → → → → → → → 
+↑                                     ↓ 
+↑                  eax                ↓
+↑      → → → → → → → → → → → → → →    ↓
+↑     ↑                            ↓  ↓
+↑     ↑              ax            ↓  ↓
+↑     ↑      → → → → → → → → → →   ↓  ↓
+↑     ↑     ↑                   ↓  ↓  ↓
+↑     ↑     ↑     ah     al     ↓  ↓  ↓
+↑     ↑     ↑     → →    → →    ↓  ↓  ↓
+↑     ↑     ↑    ↑    ↓ ↑    ↑  ↓  ↓  ↓
+[ rax [ eax [ ax [ ah ] [ al ]  ]  ]  ]
+</code></pre><p>Donc, si nous devons stocker une information ayant besoin de 8 bits nous pouvons et nous devons utiliser le registre <code>ah</code> ou <code>al</code>. Par convention, nous privilégierons les 8 bits dit les plus faibles. C&rsquo;est-à-dire le registre <code>al</code>.</p>
+<div class="details admonition warning open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-exclamation-triangle fa-fw"></i>Warning<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Ici, il est conseillé d&rsquo;enregistrer notre information de 8 bits dans le registre <code>ah</code> ou <code>al</code> puisque ces derniers font justement une taille de 8 bits. Néanmoins, il est également possible de stocker notre information dans le registre <code>rax</code> qui lui fait 64 bits. Seulement, les 56 bits restant seront inutilisés et par conséquent seront remplis par des null bytes. Il est également à noter que l&rsquo;inverse n&rsquo;est pas vrai. A savoir que si l&rsquo;on a besoin de stocker 64 bits il faudra forcément utiliser <code>rax</code>, dans cet exemple, puisque 64 bits d&rsquo;informations ne peuvent pas être contenus dans seulement 8 bits (ni même 16 ou 32).</div>
+        </div>
+    </div>
+<p>Il est à noter ici que le fait que les registres soient imbriqués les uns dans les autres n&rsquo;est pas sans conséquences. En effet, le contenu de <code>al</code>, par exemple, aura des repercussions sur <code>rax</code>, <code>eax</code> et <code>ax</code>, de même que le contenu de <code>eax</code>, par exemple, aura des répercussions sur <code>rax</code>, <code>ax</code>, <code>ah</code> et <code>al</code>.</p>
+<p>Seul <code>ah</code> et <code>al</code> n&rsquo;ont aucun impact l&rsquo;un sur l&rsquo;autre.</p>
+<p>Voici la liste de tous les registres existants :</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Registre 64 bits</th>
+<th style="text-align:center">Registre 32 bits</th>
+<th style="text-align:center">Registre 16 bits</th>
+<th style="text-align:center">Registre 8 bits (high)</th>
+<th style="text-align:center">Registre 8 bits (low)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">rax<br>(Re-extented Accumulator eXtended)</td>
+<td style="text-align:center">eax<br>(Extended Accumulator eXtended)</td>
+<td style="text-align:center">ax<br>(Accumulator eXtended)</td>
+<td style="text-align:center">ah<br>(Accumulator High)</td>
+<td style="text-align:center">al<br>(Accumulator Low)</td>
+</tr>
+<tr>
+<td style="text-align:center">rbx<br>(Re-extented Base eXtended)</td>
+<td style="text-align:center">ebx<br>(Extended Base eXtended)</td>
+<td style="text-align:center">bx<br>(Base eXtended)</td>
+<td style="text-align:center">bh<br>(Base High)</td>
+<td style="text-align:center">bl<br>(Base Low)</td>
+</tr>
+<tr>
+<td style="text-align:center">rcx<br>(Re-extented Counter eXtended)</td>
+<td style="text-align:center">ecx<br>(Extended Counter eXtended)</td>
+<td style="text-align:center">cx<br>(Counter eXtended)</td>
+<td style="text-align:center">ch<br>(Counter High)</td>
+<td style="text-align:center">cl<br>(Counter Low)</td>
+</tr>
+<tr>
+<td style="text-align:center">rdx<br>(Re-extented Data eXtended)</td>
+<td style="text-align:center">edx<br>(Extended Data eXtended)</td>
+<td style="text-align:center">dx<br>(Data eXtended)</td>
+<td style="text-align:center">dh<br>(Data High)</td>
+<td style="text-align:center">dl<br>(Data Low)</td>
+</tr>
+<tr>
+<td style="text-align:center">rdi<br>(Re-extented Destination Index)</td>
+<td style="text-align:center">edi<br>(Extended Destination Index)</td>
+<td style="text-align:center">di<br>(Destination Index)</td>
+<td style="text-align:center">∅</td>
+<td style="text-align:center">dil<br>(Destination Index Low)</td>
+</tr>
+<tr>
+<td style="text-align:center">rsi<br>(Re-extented Source Index)</td>
+<td style="text-align:center">esi<br>(Extended Source Index)</td>
+<td style="text-align:center">si<br>(Source Index)</td>
+<td style="text-align:center">∅</td>
+<td style="text-align:center">sil<br>(Source Index Low)</td>
+</tr>
+<tr>
+<td style="text-align:center">rbp<br>(Re-extented Base Pointer)</td>
+<td style="text-align:center">ebp<br>(Extended Base Pointer)</td>
+<td style="text-align:center">bp<br>(Base Pointer)</td>
+<td style="text-align:center">∅</td>
+<td style="text-align:center">bpl<br>(Base Pointer Low)</td>
+</tr>
+<tr>
+<td style="text-align:center">rsp<br>(Re-extented Stack Pointer)</td>
+<td style="text-align:center">esp<br>(Extended Stack Pointer)</td>
+<td style="text-align:center">sp<br>(Stack Pointer)</td>
+<td style="text-align:center">∅</td>
+<td style="text-align:center">spl<br>(Stack Pointer Low)</td>
+</tr>
+<tr>
+<td style="text-align:center">r8<br>(Register 8)</td>
+<td style="text-align:center">r8d<br>(Register 8 Double word)</td>
+<td style="text-align:center">r8w<br>(Register 8 Word)</td>
+<td style="text-align:center">∅</td>
+<td style="text-align:center">r8<br>(Register 8 Byte)</td>
+</tr>
+<tr>
+<td style="text-align:center">r9<br>(Register 9)</td>
+<td style="text-align:center">r9d<br>(Register 9 Double word)</td>
+<td style="text-align:center">r9w<br>(Register 9 Word)</td>
+<td style="text-align:center">∅</td>
+<td style="text-align:center">r9<br>(Register 9 Byte)</td>
+</tr>
+<tr>
+<td style="text-align:center">r10<br>(Register 10)</td>
+<td style="text-align:center">r10d<br>(Register 10 Double word)</td>
+<td style="text-align:center">r10w<br>(Register 10 Word)</td>
+<td style="text-align:center">∅</td>
+<td style="text-align:center">r10b<br>(Register 10 Byte)</td>
+</tr>
+<tr>
+<td style="text-align:center">r11<br>(Register 11)</td>
+<td style="text-align:center">r11d<br>(Register 11 Double word)</td>
+<td style="text-align:center">r11w<br>(Register 11 Word)</td>
+<td style="text-align:center">∅</td>
+<td style="text-align:center">r11b<br>(Register 11 Byte)</td>
+</tr>
+<tr>
+<td style="text-align:center">r12<br>(Register 12)</td>
+<td style="text-align:center">r12d<br>(Register 12 Double word)</td>
+<td style="text-align:center">r12w<br>(Register 12 Word)</td>
+<td style="text-align:center">∅</td>
+<td style="text-align:center">r12b<br>(Register 12 Byte)</td>
+</tr>
+<tr>
+<td style="text-align:center">r13<br>(Register 13)</td>
+<td style="text-align:center">r13d<br>(Register 13 Double word)</td>
+<td style="text-align:center">r13w<br>(Register 13 Word)</td>
+<td style="text-align:center">∅</td>
+<td style="text-align:center">r13b<br>(Register 13 Byte)</td>
+</tr>
+<tr>
+<td style="text-align:center">r14<br>(Register 14)</td>
+<td style="text-align:center">r14d<br>(Register 14 Double word)</td>
+<td style="text-align:center">r14w<br>(Register 14 Word)</td>
+<td style="text-align:center">∅</td>
+<td style="text-align:center">r14b<br>(Register 14 Byte)</td>
+</tr>
+<tr>
+<td style="text-align:center">r15<br>(Register 15)</td>
+<td style="text-align:center">r15d<br>(Register 15 Double word)</td>
+<td style="text-align:center">r15w<br>(Register 15 Word)</td>
+<td style="text-align:center">∅</td>
+<td style="text-align:center">r15b<br>(Register 15 Byte)</td>
+</tr>
+</tbody>
+</table>
+<div class="details admonition warning open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-exclamation-triangle fa-fw"></i>Warning<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Seuls les registres <code>rax</code>, <code>rbx</code>, <code>rcx</code> et <code>rdx</code> possèdent deux registres de 8 bits. Tous les autres n&rsquo;en possède qu&rsquo;un.</div>
+        </div>
+    </div>
+<p>Néanmoins, cela ne change pratiquement rien à notre schéma de <code>rax</code> si nous l&rsquo;adaptons pour <code>rdi</code> par exemple :</p>
+<pre><code>               rdi
+ → → → → → → → → → → → → → → → → 
+↑                               ↓ 
+↑                edi            ↓
+↑      → → → → → → → → → → →    ↓
+↑     ↑                      ↓  ↓
+↑     ↑            di        ↓  ↓
+↑     ↑      → → → → → → →   ↓  ↓
+↑     ↑     ↑             ↓  ↓  ↓
+↑     ↑     ↑      dil    ↓  ↓  ↓
+↑     ↑     ↑     → → →   ↓  ↓  ↓
+↑     ↑     ↑    ↑     ↓  ↓  ↓  ↓
+[ rdi [ edi [ di [ dil ]  ]  ]  ]
+</code></pre><p>Théoriquement chaque registre peut prendre n&rsquo;importe quelle valeur. Néanmoins, plusieurs conventions existent dans le langage assembleur et il est conseillé de les respecter.</p>
+<p>Voici donc les fonctions implicites de chaque registre :</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Registre</th>
+<th style="text-align:left">Fonctionnalité</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">rax</td>
+<td style="text-align:left">Utilisé pour les opérations arithmétiques ainsi que pour stocker le numéro des appels systèmes et la valeur de retour de ces derniers</td>
+</tr>
+<tr>
+<td style="text-align:center">rbx</td>
+<td style="text-align:left">Utilisé comme pointeur de données</td>
+</tr>
+<tr>
+<td style="text-align:center">rcx</td>
+<td style="text-align:left">Utilisé comme compteur notamment dans des boucles (for/while/do while)</td>
+</tr>
+<tr>
+<td style="text-align:center">rdx</td>
+<td style="text-align:left">Utilisé pour les opérations arithmétiques, les opérations d&rsquo;entrée/sortie et pour stocker le troisième argument d&rsquo;un appel système</td>
+</tr>
+<tr>
+<td style="text-align:center">rdi</td>
+<td style="text-align:left">Utilisé pour pointer vers l&rsquo;adresse d&rsquo;une zone mémoire à copier et pour stocker le premier argument d&rsquo;un appel système</td>
+</tr>
+<tr>
+<td style="text-align:center">rsi</td>
+<td style="text-align:left">Utilisé pour pointer vers l&rsquo;adresse de où copier une zone mémoire et pour stocker le deuxième argument d&rsquo;un appel système</td>
+</tr>
+<tr>
+<td style="text-align:center">rbp</td>
+<td style="text-align:left">Utilisé pour pointer à la base de la pile</td>
+</tr>
+<tr>
+<td style="text-align:center">rsp</td>
+<td style="text-align:left">Utilisé pour pointer au sommet de la pile</td>
+</tr>
+<tr>
+<td style="text-align:center">r8</td>
+<td style="text-align:left">Utilisé pour tout et pour stocker le cinquième argument d&rsquo;un appel système</td>
+</tr>
+<tr>
+<td style="text-align:center">r9</td>
+<td style="text-align:left">Utilisé pour tout et pour stocker le sixième argument d&rsquo;un appel système</td>
+</tr>
+<tr>
+<td style="text-align:center">r10</td>
+<td style="text-align:left">Utilisé pour tout et pour stocker le quatrième argument d&rsquo;un appel système</td>
+</tr>
+<tr>
+<td style="text-align:center">r11</td>
+<td style="text-align:left">Utilisé pour tout</td>
+</tr>
+<tr>
+<td style="text-align:center">r12</td>
+<td style="text-align:left">Utilisé pour tout</td>
+</tr>
+<tr>
+<td style="text-align:center">r13</td>
+<td style="text-align:left">Utilisé pour tout</td>
+</tr>
+<tr>
+<td style="text-align:center">r14</td>
+<td style="text-align:left">Utilisé pour tout</td>
+</tr>
+<tr>
+<td style="text-align:center">r15</td>
+<td style="text-align:left">Utilisé pour tout</td>
+</tr>
+</tbody>
+</table>
+<p>Un autre registre existe et a une fonctionnalité toute particulière. Il s&rsquo;agit du registre <code>rip</code> qui est utilisé pour pointer vers l&rsquo;adresse de la prochaine instruction à exécuter. Ce registre est donc modifié implicitement par le processeur à chaque instruction exécutée.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Registre 64 bits</th>
+<th style="text-align:center">Registre 32 bits</th>
+<th style="text-align:center">Registre 16 bits</th>
+<th style="text-align:center">Registre 8 bits (high)</th>
+<th style="text-align:center">Registre 8 bits (low)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">rip<br>(Re-extented Instruction Pointer)</td>
+<td style="text-align:center">eip<br>(Extended Instruction eXtended)</td>
+<td style="text-align:center">ip<br>(Accumulator eXtended)</td>
+<td style="text-align:center">∅</td>
+<td style="text-align:center">∅</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Registre</th>
+<th style="text-align:left">Fonctionnalité</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">rip</td>
+<td style="text-align:left">Utilisé pour pointer vers l&rsquo;adresse de la prochaine instruction à exécuter</td>
+</tr>
+</tbody>
+</table>
+<h2 id="les-flags">Les flags</h2>
+<p>Un registre un peu spécial nommé <code>RFLAGS</code> indique l&rsquo;état des processeurs à un instant T. Il permet ainsi de connaître l&rsquo;état résultant de la dernière instruction exécutée par le processeur. Ainsi, les flags sont définis de manière implicite par les processeurs même si certains peuvent être définis via des instructions bien précises.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Registre 64 bits</th>
+<th style="text-align:center">Registre 32 bits</th>
+<th style="text-align:center">Registre 16 bits</th>
+<th style="text-align:center">Registre 8 bits (high)</th>
+<th style="text-align:center">Registre 8 bits (low)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">rflags<br>(Re-extented Flags)</td>
+<td style="text-align:center">eflags<br>(Extended flags)</td>
+<td style="text-align:center">flags<br>(flags)</td>
+<td style="text-align:center">∅</td>
+<td style="text-align:center">∅</td>
+</tr>
+</tbody>
+</table>
+<p>Voici la liste de tous les flags existants ainsi que leur fonctionnalité :</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Bit</th>
+<th style="text-align:center">Flag</th>
+<th style="text-align:left">Fonctionnalité</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">CF<br>(Carry Flag)</td>
+<td style="text-align:left">Indique si la dernière opération a générée une retenue sur le bit de poids fort</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">PF<br>(Parity Flag)</td>
+<td style="text-align:left">Indique si la dernière opération a générée un nombre pair de bits à 1 sur l&rsquo;octet de poids faible</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">AF<br>(Adjust Flag)</td>
+<td style="text-align:left">Indique si la dernière opération a générée une retenue sur le troisième bit</td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:center">ZF<br>(Zero Flag)</td>
+<td style="text-align:left">Indique si le résultat de la dernière opération est 0</td>
+</tr>
+<tr>
+<td style="text-align:center">7</td>
+<td style="text-align:center">SF<br>(Sign Flag)</td>
+<td style="text-align:left">Indique si le bit de poids fort est à 1 après la dernière opération effectuée</td>
+</tr>
+<tr>
+<td style="text-align:center">8</td>
+<td style="text-align:center">TF<br>(Trap Flag)</td>
+<td style="text-align:left">Indique si le débogage en mode pas à pas est activé</td>
+</tr>
+<tr>
+<td style="text-align:center">9</td>
+<td style="text-align:center">IF<br>(Interrupt Flag)</td>
+<td style="text-align:left">Indique si les processeurs peuvent répondre à toutes les requêtes d&rsquo;interruptions ou seulement à celles qui ne peuvent pas être ignorées</td>
+</tr>
+<tr>
+<td style="text-align:center">10</td>
+<td style="text-align:center">DF<br>(Direction Flag)</td>
+<td style="text-align:left">Indique si les adresses des chaînes de caractères doivent être incrémentées ou décrémentées</td>
+</tr>
+<tr>
+<td style="text-align:center">11</td>
+<td style="text-align:center">OF<br>(Overflow Flag)</td>
+<td style="text-align:left">Indique si le résultat de la dernière opération est trop grand pour être stocker dans l&rsquo;opérande de destination</td>
+</tr>
+<tr>
+<td style="text-align:center">12/13</td>
+<td style="text-align:center">IOPL<br>(Input/Output Privilege Level field)</td>
+<td style="text-align:left">Indique le niveau de privilège en I/O de la tâche courante</td>
+</tr>
+<tr>
+<td style="text-align:center">14</td>
+<td style="text-align:center">NT<br>(Nested task Flag)</td>
+<td style="text-align:left">Indique si la tâche courante résulte d&rsquo;une tâche parente</td>
+</tr>
+<tr>
+<td style="text-align:center">16</td>
+<td style="text-align:center">RF<br>(Resume Flag)</td>
+<td style="text-align:left">Controle que le débogage en mode pas à pas n&rsquo;intervienne qu&rsquo;une seule fois par instruction</td>
+</tr>
+<tr>
+<td style="text-align:center">17</td>
+<td style="text-align:center">VM<br>(Virtual-8086 mode Flag)</td>
+<td style="text-align:left">Indique si le processeur est en mode 8086 ou en mode protégé</td>
+</tr>
+<tr>
+<td style="text-align:center">18</td>
+<td style="text-align:center">AC<br>(Alignment Check Flag)</td>
+<td style="text-align:left">Indique si l&rsquo;alignement des références mémoires doit être verifié</td>
+</tr>
+<tr>
+<td style="text-align:center">19</td>
+<td style="text-align:center">VIF<br>(Virtual Interrupt Flag)</td>
+<td style="text-align:left">Image virtuelle de IF</td>
+</tr>
+<tr>
+<td style="text-align:center">20</td>
+<td style="text-align:center">VIP<br>(Virtual Interrupt Pending flag)</td>
+<td style="text-align:left">Indique si une interruption est en attente</td>
+</tr>
+<tr>
+<td style="text-align:center">21</td>
+<td style="text-align:center">ID<br>(Identification Flag)</td>
+<td style="text-align:left">Indique si la tâche en cours peut utiliser l&rsquo;instruction CPUID</td>
+</tr>
+</tbody>
+</table>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Les bits 1, 3, 5, 15 et de 22 à 63 ne sont pas définis, car ils sont réservés. Leur utilisation et fonctionnement sont inconnus.</div>
+        </div>
+    </div>
+<h2 id="la-stack">La stack</h2>
+<p>La stack est une zone de mémoire. Au moment du lancement d&rsquo;une tâche, le système d&rsquo;exploitation définit la taille de la stack. Cette taille ne pourra pas varier durant toute l&rsquo;exécution de la tâche. A la fin de cette dernière la stack est supprimée.</p>
+<p>La stack permet de stocker plusieurs valeurs et notamment les petites données necéssaires à la bonne exécution des fonctions. Cette dernière est également utilisée pour savoir ou aller une fois que la fonction courante est terminée.</p>
+<p>De plus, la stack à une structure de type Last In First Out (LIFO). Cela signifie que la dernière valeur ajoutée à la stack sera la première à être retirée :</p>
+<pre><code>             ajoute une valeur    retire une valeur
+                    → → → ------------ → → →
+ajoute une valeur  ↑      | valeur 3 |      ↓  retire une valeur
+       → → → ------------ ------------ ------------ → → →
+      ↑      | valeur 2 | | valeur 2 | | valeur 2 |      ↓
+------------ ------------ ------------ ------------ ------------
+| valeur 1 | | valeur 1 | | valeur 1 | | valeur 1 | | valeur 1 |
+------------ ------------ ------------ ------------ ------------
+</code></pre><p>Chaque case de mémoire de la stack a une adresse. Les adresses de la stack sont un peu particulières puisque les éléments sont d&rsquo;abord sauvegarder dans les adresses les plus hautes de la stack puis les adresses diminuent au fur et à mesure.</p>
+<p>Nous pouvons reprendre le schéma ci-dessus pour illustrer cela :</p>
+<pre><code>----------------------
+| adresses           |                ajoute une valeur    retire une valeur
+----------------------                       → → → ------------ → → →
+| 0x0000000000000000 |   ajoute une valeur  ↑      | valeur 3 |      ↓  retire une valeur
+----------------------          → → → ------------ ------------ ------------ → → →
+| 0x7777777777777777 |         ↑      | valeur 2 | | valeur 2 | | valeur 2 |      ↓
+----------------------   ------------ ------------ ------------ ------------ ------------
+| 0xffffffffffffffff |   | valeur 1 | | valeur 1 | | valeur 1 | | valeur 1 | | valeur 1 |
+----------------------   ------------ ------------ ------------ ------------ ------------
+</code></pre><p>Bien sûr, pour l&rsquo;exemple, les adresses sont fictives. En réalité, certaines zones sont réservées ou déjà utilisées par le kernel par exemple. Néanmoins, cela nous montre que l&rsquo;on peut comparer la stack à un compte à rebours pour l&rsquo;utilisation de ses adresses.</p>
+<h2 id="les-instructions-assembleur">Les instructions assembleur</h2>
+<p>Le langage assembleur consiste en un enchaînement d&rsquo;instructions qui permettent notamment d&rsquo;effectuer des opérations mathématiques ou logiques, des déplacements de contenu d&rsquo;une case mémoire à une autre ou encore de vérifier l&rsquo;état de la pile (rappelez-vous du registre <code>RFLAGS</code>).</p>
+<p>Voici une liste de quelques instructions assembleur :</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Instruction</th>
+<th style="text-align:left">Fonctionnalité</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">add rax, 0x07</td>
+<td style="text-align:left">ajoute 7 à rax</td>
+</tr>
+<tr>
+<td style="text-align:center">sub rax, 0x07</td>
+<td style="text-align:left">soustrait 7 à rax</td>
+</tr>
+<tr>
+<td style="text-align:center">push rax</td>
+<td style="text-align:left">met le contenu de rax au sommet de la stack</td>
+</tr>
+<tr>
+<td style="text-align:center">pop rax</td>
+<td style="text-align:left">met le contenu du sommet de la stack dans rax</td>
+</tr>
+<tr>
+<td style="text-align:center">mov rax, 0x07</td>
+<td style="text-align:left">met 7 dans rax</td>
+</tr>
+<tr>
+<td style="text-align:center">lea rax, [rbx]</td>
+<td style="text-align:left">met l&rsquo;adresse de rbx dans rax</td>
+</tr>
+<tr>
+<td style="text-align:center">inc rax</td>
+<td style="text-align:left">incrémente rax</td>
+</tr>
+<tr>
+<td style="text-align:center">dec rax</td>
+<td style="text-align:left">décrémente rax</td>
+</tr>
+<tr>
+<td style="text-align:center">xor rax, rbx</td>
+<td style="text-align:left">effectue un xor entre rax et rbx et stocke le résultat dans rax</td>
+</tr>
+<tr>
+<td style="text-align:center">and rax, rbx</td>
+<td style="text-align:left">effectue un ET logique entre rax et rbx et stocke le résultat dans rax</td>
+</tr>
+<tr>
+<td style="text-align:center">ror rax, 0x07</td>
+<td style="text-align:left">effectue un décalage logique de bit de 7 vers la droite, sur le contenu de rax</td>
+</tr>
+<tr>
+<td style="text-align:center">rol rax, 0x07</td>
+<td style="text-align:left">effectue un décalage logique de bit de 7 vers la gauche, sur le contenu de rax</td>
+</tr>
+<tr>
+<td style="text-align:center">cmp rax, rbx</td>
+<td style="text-align:left">vérifie si rax et rbx sont égaux</td>
+</tr>
+<tr>
+<td style="text-align:center">jmp [rax]</td>
+<td style="text-align:left">va à l&rsquo;adresse contenue dans rax</td>
+</tr>
+<tr>
+<td style="text-align:center">call [rax]</td>
+<td style="text-align:left">effectue l&rsquo;instruction &ldquo;push rip&rdquo; suivi de l&rsquo;instruction &ldquo;jmp [rax]&rdquo;</td>
+</tr>
+<tr>
+<td style="text-align:center">ret</td>
+<td style="text-align:left">effectue l&rsquo;instruction &ldquo;pop rip&rdquo;</td>
+</tr>
+<tr>
+<td style="text-align:center">je [rax]</td>
+<td style="text-align:left">va à l&rsquo;adresse contenue dans rax si les deux valeurs comparées précédemment sont égales</td>
+</tr>
+<tr>
+<td style="text-align:center">jne [rax]</td>
+<td style="text-align:left">va à l&rsquo;adresse contenue dans rax si les deux valeurs comparées précédemment ne sont pas égales</td>
+</tr>
+<tr>
+<td style="text-align:center">jz [rax]</td>
+<td style="text-align:left">va à l&rsquo;adresse contenue dans rax si l&rsquo;opération effectuée précédemment est égale à 0</td>
+</tr>
+<tr>
+<td style="text-align:center">jnz [rax]</td>
+<td style="text-align:left">va à l&rsquo;adresse contenue dans rax si l&rsquo;opération effectuée précédemment n&rsquo;est pas égale à 0</td>
+</tr>
+</tbody>
+</table>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Les instructions commençant par <code>j</code> sont dépendantes de l&rsquo;instruction précédente excepté l&rsquo;instruction <code>jmp</code>. Il existe énormément d&rsquo;instructions de ce type, mais ici, seuls quelques exemples ont été donnés.</div>
+        </div>
+    </div>
+<h2 id="les-syscalls">Les syscalls</h2>
+<p>Les syscalls sont des appels systèmes. A travers ces derniers, un programme peut demander au système d&rsquo;exploitation d&rsquo;effectuer une tâche.</p>
+<p>Une liste des syscalls pour un Linux 64 bits est disponible sur <a href="https://syscalls.w3challs.com/?arch=x86_64" target="_blank" rel="noopener noreffer">https://syscalls.w3challs.com/?arch=x86_64</a>.</p>
+<div class="details admonition tips open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i><i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Le mot clé <code>syscall</code> permet de lancer l&rsquo;exécution d&rsquo;un syscall une fois que tous les paramètres ont été indiqués dans les registres appropriés.</div>
+        </div>
+    </div>
+<h2 id="les-termes-little-endian-et-big-endian">Les termes little-endian et big-endian</h2>
+<p>Les architectures des processeurs définissent si ce dernier utilise le little-endian ou le big-endian. Ces termes définissent l&rsquo;ordre dans lequel les bits sont stockés au sein d&rsquo;un octet. Ainsi, en little-endian les bits de poids faible sont stockés en premier tandis qu&rsquo;en big-endian ce sont les bits de poids fort qui sont d&rsquo;abord stockés.</p>
+<p>De cette manière, la chaîne <code>example</code> s&rsquo;écrira différemment entre une architecture en little-endian ou une architecture en big-endian :</p>
+<pre><code>Little endian : 0x656c706d617865 (elpmaxe)
+Big endian : 0x6578616d706c65 (example)
+</code></pre><p>La plupart des architectures sont de type little-endian.</p>
+<h2 id="les-sections-dun-programme-assembleur">Les sections d&rsquo;un programme assembleur</h2>
+<p>Un programme assembleur est découpé en plusieurs sections. La section <code>.text</code> contient le code, la section <code>.data</code> contient les données et enfin la section <code>.bss</code> contient les variables.</p>
+<p>La différence entre la section <code>.data</code> et <code>.bss</code> est fine. La section <code>.bss</code> sera virtuellement remplis de 0. Ainsi, toutes les variables déclarées sans être initialisées doivent être dans la section <code>.bss</code> tandis que toutes les autres doivent être dans la section <code>.data</code>.</p>
+<h2 id="hello-world">Hello world!</h2>
+<p>Avec toutes ces informations, nous pouvons maintenant comprendre un programme <code>Hello world!</code> en assembleur :</p>
+<div class="highlight"><pre class="chroma"><code class="language-nasm" data-lang="nasm"><span class="ln"> 1</span><span class="k">section</span> <span class="nv">.data</span>
+<span class="ln"> 2</span>    <span class="nf">helloMsg</span> <span class="nv">db</span> <span class="s">&#34;Hello, world!&#34;</span><span class="p">,</span> <span class="mi">10</span> <span class="c1">;on déclare et on initialise notre chaîne de caractères suivi d&#39;un retour à la ligne</span>
+<span class="ln"> 3</span>    <span class="no">helloSize</span><span class="kd"> equ</span> <span class="kc">$</span><span class="o">-</span><span class="nv">helloMsg</span>        <span class="c1">;on déclare et on initialise dynamiquement la longueur de notre chaîne de caractères</span>
+<span class="ln"> 4</span>
+<span class="ln"> 5</span><span class="k">section</span> <span class="nv">.text</span>
+<span class="ln"> 6</span>    <span class="k">global</span> <span class="nv">_start</span>                   <span class="c1">;on indique le point d&#39;entrée du programme qui est &#34;_start&#34; par défaut</span>
+<span class="ln"> 7</span>
+<span class="ln"> 8</span><span class="nl">_start:</span>
+<span class="ln"> 9</span>    <span class="nf">mov</span> <span class="nb">rax</span><span class="p">,</span> <span class="mh">0x01</span>                   <span class="c1">;on indique à rax le numéro du syscall que l&#39;on veut (ici, celui de &#34;write&#34;)</span>
+<span class="ln">10</span>    <span class="nf">mov</span> <span class="nb">rdi</span><span class="p">,</span> <span class="mh">0x01</span>                   <span class="c1">;on indique à rdi le premier argument de &#34;write&#34; qui est le numéro du file descriptor (ici, STDOUT)</span>
+<span class="ln">11</span>    <span class="nf">mov</span> <span class="nb">rsi</span><span class="p">,</span> <span class="nv">helloMsg</span>               <span class="c1">;on indique à rsi le deuxième argument de &#34;write&#34; qui est l&#39;adresse de la chaîne à afficher</span>
+<span class="ln">12</span>    <span class="nf">mov</span> <span class="nb">rdx</span><span class="p">,</span> <span class="nv">helloSize</span>              <span class="c1">;on indique à rdx le troisième argument de &#34;write&#34; qui est la taille de la chaîne à afficher</span>
+<span class="ln">13</span>    <span class="nf">syscall</span>                         <span class="c1">;on exécute le syscall &#34;write(1, helloMsg, helloSize)&#34;</span>
+<span class="ln">14</span>    <span class="nf">mov</span> <span class="nb">rax</span><span class="p">,</span> <span class="mh">0x3c</span>                   <span class="c1">;on indique à rax le numéro du syscall que l&#39;on veut (ici, celui de &#34;exit&#34;)</span>
+<span class="ln">15</span>    <span class="nf">mov</span> <span class="nb">rdi</span><span class="p">,</span> <span class="mh">0x00</span>                   <span class="c1">;on indique à rdi le premier argument de &#34;exit&#34; qui est le code de retour</span>
+<span class="ln">16</span>    <span class="nf">syscall</span>                         <span class="c1">;on exécute le syscall &#34;exit(0)&#34;</span>
+</code></pre></div><p>Afin d&rsquo;exécuter ce programme, il faut mettre le code ci-dessus dans un fichier <code>.asm</code> puis, exécuter les commandes suivantes :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>nasm -f elf64 &lt;nomDuFichier&gt;.asm
+<span class="ln">2</span>ld &lt;nomDuFichier&gt;.o -o &lt;nomDuFichier&gt;
+<span class="ln">3</span>./&lt;nomDuFichier&gt;
+</code></pre></div><p>Le programme affiche simplement <code>Hello, world!</code> dans un terminal.</p>
+<p>Merci à <a href="https://govanify.com/" target="_blank" rel="noopener noreffer">GovanifY</a> pour la relecture et la correction sur certaines parties techniques.</p></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 01-05-2020</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://nyxott.github.io/posts/asm/" data-title="L&#39;assembleur" data-hashtags="Miscellaneous"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://nyxott.github.io/posts/asm/" data-hashtag="Miscellaneous"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on Linkedin" data-sharer="linkedin" data-url="https://nyxott.github.io/posts/asm/"><i class="fab fa-linkedin fa-fw"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://nyxott.github.io/posts/asm/" data-title="L&#39;assembleur"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="Share on Reddit" data-sharer="reddit" data-url="https://nyxott.github.io/posts/asm/"><i class="fab fa-reddit fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/miscellaneous/">Miscellaneous</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+            <a href="/posts/shellcode-polymorphique/" class="next" rel="next" title="Shellcode Polymorphique">Shellcode Polymorphique<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Nyxott</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"data":{"id-1":"Nyxott's blog","id-2":"Nyxott's blog"},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

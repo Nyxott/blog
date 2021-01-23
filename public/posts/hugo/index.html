@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Hugo - Nyxott&#39;s blog</title><meta name="Description" content="Créer son blog avec Hugo et le mettre en ligne via GitHub Pages"><meta property="og:title" content="Hugo" />
+<meta property="og:description" content="Créer son blog avec Hugo et le mettre en ligne via GitHub Pages" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://nyxott.github.io/posts/hugo/" />
+<meta property="og:image" content="https://nyxott.github.io/posts/hugo/featured-image.png"/>
+<meta property="article:published_time" content="2021-01-01T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-01-01T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://nyxott.github.io/posts/hugo/featured-image.png"/>
+<meta name="twitter:title" content="Hugo"/>
+<meta name="twitter:description" content="Créer son blog avec Hugo et le mettre en ligne via GitHub Pages"/>
+<meta name="application-name" content="Nyxott&#39;s blog">
+<meta name="apple-mobile-web-app-title" content="Nyxott&#39;s blog"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://nyxott.github.io/posts/hugo/" /><link rel="prev" href="https://nyxott.github.io/posts/arch-linux-installation/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Hugo",
+        "inLanguage": "fr",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/nyxott.github.io\/posts\/hugo\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/nyxott.github.io\/posts\/hugo\/featured-image.png",
+                            "width":  1200 ,
+                            "height":  480 
+                        }],"genre": "posts","keywords": "Miscellaneous","wordcount":  1152 ,
+        "url": "https:\/\/nyxott.github.io\/posts\/hugo\/","datePublished": "2021-01-01T00:00:00+00:00","dateModified": "2021-01-01T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "Nyxott"},"author": {
+                "@type": "Person",
+                "name": "Nyxott"
+            },"description": "Créer son blog avec Hugo et le mettre en ligne via GitHub Pages"
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Nyxott&#39;s blog"><span class="header-title-pre"><i class='fas fa-dollar-sign'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"><i class='fas fa-file-alt'></i> Posts </a><a class="menu-item" href="/categories/"><i class='fa fa-folder-open'></i> Categories </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Nyxott&#39;s blog"><span class="header-title-pre"><i class='fas fa-dollar-sign'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title=""><i class='fas fa-file-alt'></i>Posts</a><a class="menu-item" href="/categories/" title=""><i class='fa fa-folder-open'></i>Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Hugo</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Nyxott</a></span>&nbsp;<span class="post-category">included in <a href="/categories/miscellaneous/"><i class="far fa-folder fa-fw"></i>Miscellaneous</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="01-01-2021">01-01-2021</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1152 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;6 minutes&nbsp;</div>
+        </div><div class="featured-image"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/posts/hugo/featured-image.png"
+        data-srcset="/posts/hugo/featured-image.png, /posts/hugo/featured-image.png 1.5x, /posts/hugo/featured-image.png 2x"
+        data-sizes="auto"
+        alt="/posts/hugo/featured-image.png"
+        title="Créer son blog avec Hugo et le mettre en ligne via GitHub Pages" /></div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#création-des-repositories-sur-github">Création des repositories sur GitHub</a></li>
+    <li><a href="#installation-dhugo">Installation d&rsquo;Hugo</a></li>
+    <li><a href="#création-du-blog">Création du blog</a></li>
+    <li><a href="#installation-du-thème">Installation du thème</a></li>
+    <li><a href="#liason-entre-les-deux-repositories">Liason entre les deux repositories</a></li>
+    <li><a href="#création-de-contenu">Création de contenu</a></li>
+    <li><a href="#visualisation-du-blog-en-localhost">Visualisation du blog en localhost</a></li>
+    <li><a href="#build">Build</a></li>
+    <li><a href="#déploiement">Déploiement</a></li>
+    <li><a href="#déploiement-automatique">Déploiement automatique</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Cet article explique comment créer son blog avec Hugo et le publier via GitHub Pages.</p>
+<h2 id="introduction">Introduction</h2>
+<p><a href="https://gohugo.io/" target="_blank" rel="noopener noreffer">Hugo</a> est un logiciel écrit en Go permettant de générer facilement des sites Web statiques. Ce site lui-même a été généré via Hugo.</p>
+<p>La force d&rsquo;Hugo réside dans les nombreux thèmes développés par la communauté. De plus, Hugo est parfait pour les blogs puisqu&rsquo;il permet de se focaliser sur la rédaction des articles (en <a href="https://www.markdownguide.org/" target="_blank" rel="noopener noreffer">Markdown</a>) au lieu du design du site ou de son architecture à proprement parler.</p>
+<p>Si vous voulez également créer votre blog et le publier gratuitement sur Internet via <a href="https://pages.github.com/" target="_blank" rel="noopener noreffer">GitHub Pages</a>, la procédure à suivre est assez simple.</p>
+<h2 id="création-des-repositories-sur-github">Création des repositories sur GitHub</h2>
+<p>Tout d&rsquo;abord, on crée sur GitHub un repository nommé <code>blog</code> et un autre nommé <code>&lt;USERNAME&gt;.github.io</code>.</p>
+<p>Bien sûr, il faudra remplacer <code>&lt;USERNAME&gt;</code> par votre nom d&rsquo;utilisateur GitHub.</p>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Je pars du principe qu&rsquo;aucun <code>README.md</code>, ni autre fichier, n&rsquo;ai été créé au moment de l&rsquo;initialisation du repository.</div>
+        </div>
+    </div>
+<h2 id="installation-dhugo">Installation d&rsquo;Hugo</h2>
+<p>On installe Hugo :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>sudo apt install hugo
+</code></pre></div><h2 id="création-du-blog">Création du blog</h2>
+<p>Nous pouvons alors générer localement la base de notre site Hugo :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>hugo new site blog
+</code></pre></div><div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw"></i>Tip<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Je conseille de supprimer les dossiers <code>archetypes</code> et <code>layouts</code> pour qu&rsquo;ils ne priment pas sur ceux du thème que nous allons utiliser. Par la suite, vous pourrez les recréer si vous souhaitez ajouter de nouveaux archetypes/layouts ou override ceux déjà présents dans le thème choisi.</div>
+        </div>
+    </div>
+<h2 id="installation-du-thème">Installation du thème</h2>
+<p>Nous pouvons ensuite <a href="https://themes.gohugo.io/" target="_blank" rel="noopener noreffer">sélectionner un thème</a> parmi de nombreux disponibles.</p>
+<p>Personnellement, j&rsquo;ai choisi le thème <code>LoveIt</code>.</p>
+<p>Une fois notre thème choisi, nous allons l&rsquo;installer :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>sudo apt install git
+<span class="ln">2</span><span class="nb">cd</span> blog
+<span class="ln">3</span>git init
+<span class="ln">4</span>git remote add origin https://github.com/&lt;USERNAME&gt;/blog.git
+<span class="ln">5</span>git submodule add https://github.com/dillonzq/LoveIt.git themes/LoveIt
+</code></pre></div><p>Bien sûr, vous devrait adapter ces lignes en fonction du thème que vous aurez choisi.</p>
+<p>Dans la documentation de LoveIt, il est indiqué que le contenu par défaut du fichier <code>config.toml</code>, qui est le fichier de configuration de notre site, doit être le suivant :</p>
+<div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="ln"> 1</span><span class="nx">baseURL</span> <span class="p">=</span> <span class="s2">&#34;http://example.org/&#34;</span>
+<span class="ln"> 2</span><span class="c"># [en, zh-cn, fr, ...] determines default content language</span>
+<span class="ln"> 3</span><span class="nx">defaultContentLanguage</span> <span class="p">=</span> <span class="s2">&#34;en&#34;</span>
+<span class="ln"> 4</span><span class="c"># language code</span>
+<span class="ln"> 5</span><span class="nx">languageCode</span> <span class="p">=</span> <span class="s2">&#34;en&#34;</span>
+<span class="ln"> 6</span><span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;My New Hugo Site&#34;</span>
+<span class="ln"> 7</span>
+<span class="ln"> 8</span><span class="c"># Change the default theme to be use when building the site with Hugo</span>
+<span class="ln"> 9</span><span class="nx">theme</span> <span class="p">=</span> <span class="s2">&#34;LoveIt&#34;</span>
+<span class="ln">10</span>
+<span class="ln">11</span><span class="p">[</span><span class="nx">params</span><span class="p">]</span>
+<span class="ln">12</span>  <span class="c"># LoveIt theme version</span>
+<span class="ln">13</span>  <span class="nx">version</span> <span class="p">=</span> <span class="s2">&#34;0.2.X&#34;</span>
+<span class="ln">14</span>
+<span class="ln">15</span><span class="p">[</span><span class="nx">menu</span><span class="p">]</span>
+<span class="ln">16</span>  <span class="p">[[</span><span class="nx">menu</span><span class="p">.</span><span class="nx">main</span><span class="p">]]</span>
+<span class="ln">17</span>    <span class="nx">identifier</span> <span class="p">=</span> <span class="s2">&#34;posts&#34;</span>
+<span class="ln">18</span>    <span class="c"># you can add extra information before the name (HTML format is supported), such as icons</span>
+<span class="ln">19</span>    <span class="nx">pre</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+<span class="ln">20</span>    <span class="c"># you can add extra information after the name (HTML format is supported), such as icons</span>
+<span class="ln">21</span>    <span class="nx">post</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+<span class="ln">22</span>    <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;Posts&#34;</span>
+<span class="ln">23</span>    <span class="nx">url</span> <span class="p">=</span> <span class="s2">&#34;/posts/&#34;</span>
+<span class="ln">24</span>    <span class="c"># title will be shown when you hover on this menu link</span>
+<span class="ln">25</span>    <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+<span class="ln">26</span>    <span class="nx">weight</span> <span class="p">=</span> <span class="mi">1</span>
+<span class="ln">27</span>  <span class="p">[[</span><span class="nx">menu</span><span class="p">.</span><span class="nx">main</span><span class="p">]]</span>
+<span class="ln">28</span>    <span class="nx">identifier</span> <span class="p">=</span> <span class="s2">&#34;tags&#34;</span>
+<span class="ln">29</span>    <span class="nx">pre</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+<span class="ln">30</span>    <span class="nx">post</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+<span class="ln">31</span>    <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;Tags&#34;</span>
+<span class="ln">32</span>    <span class="nx">url</span> <span class="p">=</span> <span class="s2">&#34;/tags/&#34;</span>
+<span class="ln">33</span>    <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+<span class="ln">34</span>    <span class="nx">weight</span> <span class="p">=</span> <span class="mi">2</span>
+<span class="ln">35</span>  <span class="p">[[</span><span class="nx">menu</span><span class="p">.</span><span class="nx">main</span><span class="p">]]</span>
+<span class="ln">36</span>    <span class="nx">identifier</span> <span class="p">=</span> <span class="s2">&#34;categories&#34;</span>
+<span class="ln">37</span>    <span class="nx">pre</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+<span class="ln">38</span>    <span class="nx">post</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+<span class="ln">39</span>    <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;Categories&#34;</span>
+<span class="ln">40</span>    <span class="nx">url</span> <span class="p">=</span> <span class="s2">&#34;/categories/&#34;</span>
+<span class="ln">41</span>    <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+<span class="ln">42</span>    <span class="nx">weight</span> <span class="p">=</span> <span class="mi">3</span>
+<span class="ln">43</span>
+<span class="ln">44</span><span class="c"># Markup related configuration in Hugo</span>
+<span class="ln">45</span><span class="p">[</span><span class="nx">markup</span><span class="p">]</span>
+<span class="ln">46</span>  <span class="c"># Syntax Highlighting (https://gohugo.io/content-management/syntax-highlighting)</span>
+<span class="ln">47</span>  <span class="p">[</span><span class="nx">markup</span><span class="p">.</span><span class="nx">highlight</span><span class="p">]</span>
+<span class="ln">48</span>    <span class="c"># false is a necessary configuration (https://github.com/dillonzq/LoveIt/issues/158)</span>
+<span class="ln">49</span>    <span class="nx">noClasses</span> <span class="p">=</span> <span class="kc">false</span>
+</code></pre></div><p>A vous de vous adapter au thème que vous avez choisi. Bien souvent, un fichier par défaut est proposé ou il suffit de copier celui présent dans le dossier <code>exampleSite</code> du thème en question.</p>
+<div class="details admonition warning open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-exclamation-triangle fa-fw"></i>Warning<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">La variable <code>baseURL</code> doit impérativement être modifiée pour contenir la valeur <code>https://&lt;USERNAME&gt;.github.io/</code> où <code>&lt;USERNAME&gt;</code> est à remplacer par votre nom d&rsquo;utilisateur GitHub.</div>
+        </div>
+    </div>
+<h2 id="liason-entre-les-deux-repositories">Liason entre les deux repositories</h2>
+<p>Le repository <code>blog</code> peut être assimilé au backend de notre site. En effet, c&rsquo;est dans ce dossier que sont regroupés, entre autres, nos fichiers markdown, nos images/videos et quelques snippets.</p>
+<p>Le dossier <code>public</code> du repository <code>blog</code> peut être assimilé au frontend de notre site. En effet, lorsque nous allons build le site, le theme choisi sera utilisé pour créer les fichiers HTML/CSS nécessaires et  nos fichiers markdown seront également transformés en fichiers HTML. L&rsquo;ensemble de ces fichiers sera stocké au sein du dossier <code>public</code> en formant une arborescence particulière qui créera notre site statique. C&rsquo;est pourquoi nous allons relier ce dossier au repository <code>&lt;USERNAME&gt;.github.io</code> :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>git submodule add -b main https://github.com/&lt;USERNAME&gt;/&lt;USERNAME&gt;.github.io.git public
+</code></pre></div><h2 id="création-de-contenu">Création de contenu</h2>
+<p>Dans un site Hugo, il y a le dossier <code>content</code>. Au sein de ce dossier, il y a d&rsquo;autres dossiers qui représentent des catégories. Ces catégories constitueront généralement le menu du site. Les fichiers Markdown sont placés dans ces dossiers et sont ainsi triés par catégories.</p>
+<p>Vous pouvez créer des dossiers/fichiers manuellement dans le dossier <code>content</code> ou bien utiliser la commande Hugo dédié à cela :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>hugo new &lt;DIRECTORY_NAME&gt;/&lt;FILE_NAME&gt;.md
+</code></pre></div><p>Une fois cette commande effectuée vous aurait, dans le dossier <code>content</code>, un dossier nommé <code>&lt;DIRECTORY_NAME&gt;</code> et dans ce dossier un fichier nommé <code>&lt;FILE_NAME&gt;.md</code>.</p>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Suivant le thème sélectionner, il est possible que l&rsquo;arborescence du dossier <code>content</code> change.</div>
+        </div>
+    </div>
+<p>Par défaut, le fichier contiendra plusieurs variables comprises entre deux <code>---</code> qui représentent l&rsquo;en-tête du fichier.</p>
+<p>La variable <code>draft</code>, si elle est à <code>true</code>, empêche le post d&rsquo;être publié. Il faudra donc changer cette valeur à <code>false</code> une fois le post prêt à être mis en ligne.</p>
+<p>A des fins de test, vous pouvez donc passer à <code>false</code> la variable <code>draft</code> afin d&rsquo;avoir au moins un post de visible.</p>
+<h2 id="visualisation-du-blog-en-localhost">Visualisation du blog en localhost</h2>
+<p>Avant de build le site, il est possible de vérifier localement le rendu de ce dernier :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>hugo server --disableFastRender
+</code></pre></div><p>Vous pouvez visualiser votre site en vous rendant à l&rsquo;adresse <a href="http://localhost:1313" target="_blank" rel="noopener noreffer">http://localhost:1313</a>.</p>
+<h2 id="build">Build</h2>
+<p>Comme indiqué précédemment, build le site mettra à jour le site statique dans le dossier <code>public</code> :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>hugo
+</code></pre></div><h2 id="déploiement">Déploiement</h2>
+<p>Une fois le site build et les dernières modifications prisent ainsi en compte, nous pouvons effectuer un commit pour chacun de nos repositories sur GitHub :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>git add .
+<span class="ln">2</span>git commit -m <span class="s2">&#34;&lt;COMMIT_MESSAGE&gt;&#34;</span>
+<span class="ln">3</span>git push origin master
+<span class="ln">4</span><span class="nb">cd</span> public
+<span class="ln">5</span>git add .
+<span class="ln">6</span>git commit -m <span class="s2">&#34;&lt;COMMIT_MESSAGE&gt;&#34;</span>
+<span class="ln">7</span>git push origin master
+</code></pre></div><p>GitHub se charge du reste et vous pouvez vous rendre sur <a href="#" rel="">https://<USERNAME>.github.io/</a> pour visualiser votre blog en ligne.</p>
+<p>N.B. : Il faut parfois attendre quelques minutes pour que les modifications soient visibles.</p>
+<h2 id="déploiement-automatique">Déploiement automatique</h2>
+<p>Déployer son blog en ligne n&rsquo;est pas long, mais très repétitif.</p>
+<p>C&rsquo;est pourquoi nous pouvons créer un script afin d&rsquo;automatiser ce processus :</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="ln"> 1</span><span class="cp">#!/bin/bash
+</span><span class="ln"> 2</span><span class="cp"></span>
+<span class="ln"> 3</span><span class="nv">NOW</span><span class="o">=</span><span class="k">$(</span>date +<span class="s2">&#34;%d-%m-%Y %T&#34;</span><span class="k">)</span>
+<span class="ln"> 4</span>
+<span class="ln"> 5</span><span class="nb">echo</span> -e <span class="s2">&#34;\e[1;35mBuild site\e[0m&#34;</span>
+<span class="ln"> 6</span><span class="nb">cd</span> blog
+<span class="ln"> 7</span>hugo &gt; /dev/null 2&gt;<span class="p">&amp;</span><span class="m">1</span>
+<span class="ln"> 8</span>
+<span class="ln"> 9</span><span class="nb">echo</span> -e <span class="s2">&#34;\e[1;35mCommit to the blog repository...\e[0m&#34;</span>
+<span class="ln">10</span>
+<span class="ln">11</span>git add .
+<span class="ln">12</span>git commit -m <span class="s2">&#34;Update : </span><span class="nv">$NOW</span><span class="s2">&#34;</span> &gt; /dev/null 2&gt;<span class="p">&amp;</span><span class="m">1</span>
+<span class="ln">13</span>git push origin master &gt; /dev/null 2&gt;<span class="p">&amp;</span><span class="m">1</span>
+<span class="ln">14</span>
+<span class="ln">15</span><span class="nb">echo</span> -e <span class="s2">&#34;\e[1;35mCommit to the github.io repository...\e[0m&#34;</span>
+<span class="ln">16</span>
+<span class="ln">17</span><span class="nb">cd</span> public
+<span class="ln">18</span>git add .
+<span class="ln">19</span>git commit -m <span class="s2">&#34;Update : </span><span class="nv">$NOW</span><span class="s2">&#34;</span> &gt; /dev/null 2&gt;<span class="p">&amp;</span><span class="m">1</span>
+<span class="ln">20</span>git push origin master &gt; /dev/null 2&gt;<span class="p">&amp;</span><span class="m">1</span>
+<span class="ln">21</span>
+<span class="ln">22</span><span class="nb">echo</span> -e <span class="s2">&#34;\e[1;35mSuccessfully committed\e[0m&#34;</span>
+</code></pre></div><div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Ce script est à lancer dans le dossier parent au dossier <code>blog</code>.</div>
+        </div>
+    </div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 01-01-2021</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://nyxott.github.io/posts/hugo/" data-title="Hugo" data-hashtags="Miscellaneous"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://nyxott.github.io/posts/hugo/" data-hashtag="Miscellaneous"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on Linkedin" data-sharer="linkedin" data-url="https://nyxott.github.io/posts/hugo/"><i class="fab fa-linkedin fa-fw"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://nyxott.github.io/posts/hugo/" data-title="Hugo"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="Share on Reddit" data-sharer="reddit" data-url="https://nyxott.github.io/posts/hugo/"><i class="fab fa-reddit fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/miscellaneous/">Miscellaneous</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/arch-linux-installation/" class="prev" rel="prev" title="Installation d&#39;Arch Linux"><i class="fas fa-angle-left fa-fw"></i>Installation d&#39;Arch Linux</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Nyxott</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"data":{"id-1":"Nyxott's blog","id-2":"Nyxott's blog"},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
