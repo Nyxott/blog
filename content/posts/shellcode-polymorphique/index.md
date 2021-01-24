@@ -19,7 +19,7 @@ Cet article explique comment créer un shellcode polymorphique permettant d'obte
 
 <!--more-->
 
-## Définitions et explications
+## Introduction
 
 Un shellcode est une suite de caractères hexadécimaux représentant un binaire.
 

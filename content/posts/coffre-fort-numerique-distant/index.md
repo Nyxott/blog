@@ -19,7 +19,7 @@ Cet article explique comment créer un coffre-fort numérique chiffré et access
 
 <!--more-->
 
-## Explications
+## Introduction
 
 Lorsque nous avons besoin d'installer ou de réinstaller une machine Linux pour une raison x ou y (machine personnelle, serveur Web, etc.), nous devons recommencer, la plupart du temps, les mêmes procédures et effectuer les mêmes configurations.
 

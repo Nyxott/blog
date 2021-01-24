@@ -33,7 +33,7 @@
                             "url": "https:\/\/nyxott.github.io\/posts\/shellcode-polymorphique\/featured-image.png",
                             "width":  1600 ,
                             "height":  720 
-                        }],"genre": "posts","keywords": "Projects","wordcount":  3476 ,
+                        }],"genre": "posts","keywords": "Projects","wordcount":  3474 ,
         "url": "https:\/\/nyxott.github.io\/posts\/shellcode-polymorphique\/","datePublished": "2020-07-01T00:00:00+00:00","dateModified": "2020-07-01T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "Nyxott"},"author": {
@@ -83,7 +83,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Shellcode Polymorphique</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Nyxott</a></span>&nbsp;<span class="post-category">included in <a href="/categories/projects/"><i class="far fa-folder fa-fw"></i>Projects</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="01-07-2020">01-07-2020</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;3476 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="01-07-2020">01-07-2020</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;3474 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;17 minutes&nbsp;</div>
         </div><div class="featured-image"><img
         class="lazyload"
@@ -99,7 +99,7 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#définitions-et-explications">Définitions et explications</a></li>
+    <li><a href="#introduction">Introduction</a></li>
     <li><a href="#notions-dassembleur">Notions d&rsquo;assembleur</a></li>
     <li><a href="#projet">Projet</a>
       <ul>
@@ -112,7 +112,7 @@
   </ul>
 </nav></div>
             </div><div class="content" id="content"><p>Cet article explique comment créer un shellcode polymorphique permettant d&rsquo;obtenir un reverse shell.</p>
-<h2 id="définitions-et-explications">Définitions et explications</h2>
+<h2 id="introduction">Introduction</h2>
 <p>Un shellcode est une suite de caractères hexadécimaux représentant un binaire.</p>
 <p>Voici par exemple un shellcode permettant d&rsquo;effectuer la commande <code>execve(&quot;/bin/sh&quot;);</code> sur un Linux 64 bits :</p>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span><span class="se">\x</span>48<span class="se">\x</span>31<span class="se">\x</span>d2<span class="se">\x</span>48<span class="se">\x</span>bb<span class="se">\x</span>2f<span class="se">\x</span>2f<span class="se">\x</span>62<span class="se">\x</span>69<span class="se">\x</span>6e<span class="se">\x</span>2f<span class="se">\x</span>73<span class="se">\x</span>68<span class="se">\x</span>48<span class="se">\x</span>c1<span class="se">\x</span>eb<span class="se">\x</span>08<span class="se">\x</span>53<span class="se">\x</span>48<span class="se">\x</span>89<span class="se">\x</span>e7<span class="se">\x</span>50<span class="se">\x</span>57<span class="se">\x</span>48<span class="se">\x</span>89<span class="se">\x</span>e6<span class="se">\x</span>b0<span class="se">\x</span>3b<span class="se">\x</span>0f<span class="se">\x</span><span class="m">05</span>
