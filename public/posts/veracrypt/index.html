@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>VeraCrypt - Nyxott&#39;s blog</title><meta name="Description" content="Utiliser VeraCrypt afin d&#39;intéragir avec un volume chiffré"><meta property="og:title" content="VeraCrypt" />
+<meta property="og:description" content="Utiliser VeraCrypt afin d&#39;intéragir avec un volume chiffré" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://nyxott.github.io/posts/veracrypt/" />
+<meta property="og:image" content="https://nyxott.github.io/posts/veracrypt/featured-image.png"/>
+<meta property="article:published_time" content="2021-01-15T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-01-15T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://nyxott.github.io/posts/veracrypt/featured-image.png"/>
+<meta name="twitter:title" content="VeraCrypt"/>
+<meta name="twitter:description" content="Utiliser VeraCrypt afin d&#39;intéragir avec un volume chiffré"/>
+<meta name="application-name" content="Nyxott&#39;s blog">
+<meta name="apple-mobile-web-app-title" content="Nyxott&#39;s blog"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://nyxott.github.io/posts/veracrypt/" /><link rel="prev" href="https://nyxott.github.io/posts/hugo/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "VeraCrypt",
+        "inLanguage": "fr",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/nyxott.github.io\/posts\/veracrypt\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/nyxott.github.io\/posts\/veracrypt\/featured-image.png",
+                            "width":  280 ,
+                            "height":  210 
+                        }],"genre": "posts","keywords": "Miscellaneous","wordcount":  578 ,
+        "url": "https:\/\/nyxott.github.io\/posts\/veracrypt\/","datePublished": "2021-01-15T00:00:00+00:00","dateModified": "2021-01-15T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "Nyxott"},"author": {
+                "@type": "Person",
+                "name": "Nyxott"
+            },"description": "Utiliser VeraCrypt afin d'intéragir avec un volume chiffré"
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Nyxott&#39;s blog"><span class="header-title-pre"><i class='fas fa-dollar-sign'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"><i class='fas fa-file-alt'></i> Posts </a><a class="menu-item" href="/categories/"><i class='fa fa-folder-open'></i> Categories </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Nyxott&#39;s blog"><span class="header-title-pre"><i class='fas fa-dollar-sign'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title=""><i class='fas fa-file-alt'></i>Posts</a><a class="menu-item" href="/categories/" title=""><i class='fa fa-folder-open'></i>Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">VeraCrypt</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Nyxott</a></span>&nbsp;<span class="post-category">included in <a href="/categories/miscellaneous/"><i class="far fa-folder fa-fw"></i>Miscellaneous</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="15-01-2021">15-01-2021</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;578 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+        </div><div class="featured-image"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/posts/veracrypt/featured-image.png"
+        data-srcset="/posts/veracrypt/featured-image.png, /posts/veracrypt/featured-image.png 1.5x, /posts/veracrypt/featured-image.png 2x"
+        data-sizes="auto"
+        alt="/posts/veracrypt/featured-image.png"
+        title="Utiliser VeraCrypt afin d&#39;intéragir avec un volume chiffré" /></div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#installation-de-veracrypt">Installation de VeraCrypt</a></li>
+    <li><a href="#utilisation-simple">Utilisation simple</a>
+      <ul>
+        <li><a href="#créer-un-volume-chiffré">Créer un volume chiffré</a></li>
+        <li><a href="#monter-le-volume-chiffré">Monter le volume chiffré</a></li>
+        <li><a href="#démonter-le-volume-chiffré">Démonter le volume chiffré</a></li>
+      </ul>
+    </li>
+    <li><a href="#utilisation-avancée">Utilisation avancée</a>
+      <ul>
+        <li><a href="#déni-plausible">Déni plausible</a></li>
+        <li><a href="#créer-le-volume-chiffré">Créer le volume chiffré</a></li>
+        <li><a href="#créer-le-volume-chiffré-caché">Créer le volume chiffré caché</a></li>
+        <li><a href="#monter-le-volume-chiffré-1">Monter le volume chiffré</a></li>
+        <li><a href="#démonter-le-volume-chiffré-1">Démonter le volume chiffré</a></li>
+      </ul>
+    </li>
+    <li><a href="#bonus">Bonus</a>
+      <ul>
+        <li><a href="#lister-les-volumes-chiffrés-montés">Lister les volumes chiffrés montés</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Cet article explique comment utiliser VeraCrypt afin d&rsquo;intéragir avec un volume chiffré.</p>
+<h2 id="introduction">Introduction</h2>
+<p><a href="https://www.veracrypt.fr/en/Home.html" target="_blank" rel="noopener noreffer">VeraCrypt</a> est un fork du projet abandonné <a href="https://truecrypt.fr/" target="_blank" rel="noopener noreffer">TrueCrypt</a>.</p>
+<p>Cet outil possède de nombreuses fonctionnalités dont celle permettant de créer des volumes chiffrés.</p>
+<h2 id="installation-de-veracrypt">Installation de VeraCrypt</h2>
+<p>Les fichiers d&rsquo;installation de VeraCrypt sont disponibles sur <a href="https://www.veracrypt.fr/en/Downloads.html" target="_blank" rel="noopener noreffer">https://www.veracrypt.fr/en/Downloads.html</a>.</p>
+<p>Une fois téléchargé nous pouvons l&rsquo;installer :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>sudo dpkg -i &lt;PATH_TO_VERACRYPT.deb&gt;
+</code></pre></div><h2 id="utilisation-simple">Utilisation simple</h2>
+<h3 id="créer-un-volume-chiffré">Créer un volume chiffré</h3>
+<p>Nous pouvons créer un volume chiffré avec la commande suivante :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>veracrypt -t -c --volume-type<span class="o">=</span>normal --size<span class="o">=</span>1G --encryption<span class="o">=</span>aes-twofish-serpent --hash<span class="o">=</span>whirlpool --filesystem<span class="o">=</span>ext4 --pim<span class="o">=</span><span class="m">0</span> -k <span class="s2">&#34;&#34;</span> --random-source<span class="o">=</span>/dev/urandom /home/nyxott/Documents/SecretDocuments
+</code></pre></div><div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Les arguments qui ne sont pas fournis directement dans la ligne de commande seront demandés dans un environnement interactif.</div>
+        </div>
+    </div>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw"></i>Tip<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Si vous souhaitez utiliser un PIN et/ou une clef, vous pouvez retirer les arguments &ndash;pim et/ou -k afin de les renseigner de manière interactive et empêcher ainsi l&rsquo;enregistrement de ces informations dans l&rsquo;history de votre utilisateur.</div>
+        </div>
+    </div>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">A noter que le choix de l&rsquo;algorithme de chiffrement <code>AES(Twofish(Serpent))</code> ainsi que de l&rsquo;algorithme de hachage <code>Whirlpool</code> est purement personnel. Le plus important sera la longueur et la complexité du mot de passe qui vous permettra d&rsquo;accéder à votre volume.</div>
+        </div>
+    </div>
+<h3 id="monter-le-volume-chiffré">Monter le volume chiffré</h3>
+<p>Nous pouvons monter le volume chiffré via la commande suivante :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>veracrypt -t -k <span class="s2">&#34;&#34;</span> --pim<span class="o">=</span><span class="m">0</span> --protect-hidden<span class="o">=</span>no /home/nyxott/Documents/SecretDocuments /mnt/SecretDocuments/
+</code></pre></div><div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Assurez-vous d&rsquo;avoir créé le dossier <code>/mnt/SecretDocuments</code> au préalable.</div>
+        </div>
+    </div>
+<p>Désormais, le volume est accessible en lecture et en écriture.</p>
+<h3 id="démonter-le-volume-chiffré">Démonter le volume chiffré</h3>
+<p>Nous pouvons démonter le volume chiffré via la commande suivante :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>veracrypt -d /mnt/SecretDocuments/
+</code></pre></div><div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw"></i>Tip<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p>Si vous avez plusieurs volumes montés vous pouvez tous les démonter simultanément via la commande suivante :</p>
+<pre><code>veracrypt -d
+</code></pre></div>
+        </div>
+    </div>
+<h2 id="utilisation-avancée">Utilisation avancée</h2>
+<h3 id="déni-plausible">Déni plausible</h3>
+<p>Si vous le désirez, il est possible de créer un volume chiffré puis, de recréer un second volume chiffré au sein du premier.</p>
+<p>Cela peut sembler inutile, mais le fait est que VeraCrypt remplit le contenu des volumes chiffrés avec des données aléatoires. De cette manière, il est impossible de distinguer qu&rsquo;un second volume chiffré est caché dans le premier puisqu&rsquo;il se confondra avec ces données aléatoires.</p>
+<p>Cela permet de mettre en oeuvre <a href="https://fr.wikipedia.org/wiki/D%C3%A9ni_plausible_%28cryptologie%29" target="_blank" rel="noopener noreffer">le déni plausible</a>.</p>
+<p>Ainsi, il est possible de déchiffrer le premier volume pour accéder à des données que l&rsquo;on fait croire importantes alors qu&rsquo;elles n&rsquo;ont aucune valeur, puis, de nier l&rsquo;existence d&rsquo;un second volume chiffré.</p>
+<h3 id="créer-le-volume-chiffré">Créer le volume chiffré</h3>
+<p>Nous pouvons créer un volume chiffré avec la commande suivante :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>veracrypt -t -c --volume-type<span class="o">=</span>normal --size<span class="o">=</span>1G --encryption<span class="o">=</span>aes-twofish-serpent --hash<span class="o">=</span>whirlpool --filesystem<span class="o">=</span>ext4 --pim<span class="o">=</span><span class="m">0</span> -k <span class="s2">&#34;&#34;</span> --random-source<span class="o">=</span>/dev/urandom /home/nyxott/Documents/SecretDocuments
+</code></pre></div><h3 id="créer-le-volume-chiffré-caché">Créer le volume chiffré caché</h3>
+<p>Nous pouvons créer un volume chiffré caché avec la commande suivante :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>veracrypt -t -c --volume-type<span class="o">=</span>hidden --size<span class="o">=</span>950M --encryption<span class="o">=</span>aes-twofish-serpent --hash<span class="o">=</span>whirlpool --filesystem<span class="o">=</span>ext4 --pim<span class="o">=</span><span class="m">0</span> -k <span class="s2">&#34;&#34;</span> --random-source<span class="o">=</span>/dev/urandom /home/nyxott/Documents/SecretDocuments
+</code></pre></div><div class="details admonition warning open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-exclamation-triangle fa-fw"></i>Warning<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p>Le trio mot de passe/PIN/clef doit obligatoirement différé entre le volume parent et le volume caché.</p>
+<p>Si ce n&rsquo;est pas le cas, VeraCrypt ne pourra pas distinguer le volume parent du volume caché et montera toujours le même par la suite.</p>
+</div>
+        </div>
+    </div>
+<h3 id="monter-le-volume-chiffré-1">Monter le volume chiffré</h3>
+<p>Nous pouvons monter le volume chiffré via la commande suivante :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>veracrypt -t -k <span class="s2">&#34;&#34;</span> --pim<span class="o">=</span><span class="m">0</span> --protect-hidden<span class="o">=</span>no /home/nyxott/Documents/SecretDocuments /mnt/SecretDocuments
+</code></pre></div><div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p>Si vous entrez le trio mot de passe/PIN/clef faisant référence au volume parent, ce dernier sera monté.</p>
+<p>A l&rsquo;inverse si le trio d&rsquo;informations renseigné est celui du volume caché, ce sera celui si qui sera monté.</p>
+</div>
+        </div>
+    </div>
+<h3 id="démonter-le-volume-chiffré-1">Démonter le volume chiffré</h3>
+<p>Nous pouvons démonter le volume chiffré via la commande suivante :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>veracrypt -d /mnt/SecretDocuments/
+</code></pre></div><h2 id="bonus">Bonus</h2>
+<h3 id="lister-les-volumes-chiffrés-montés">Lister les volumes chiffrés montés</h3>
+<p>Il est possible de lister les volumes chiffrés montés via la commande suivante :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>veracrypt -l
+</code></pre></div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 15-01-2021</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://nyxott.github.io/posts/veracrypt/" data-title="VeraCrypt" data-hashtags="Miscellaneous"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://nyxott.github.io/posts/veracrypt/" data-hashtag="Miscellaneous"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on Linkedin" data-sharer="linkedin" data-url="https://nyxott.github.io/posts/veracrypt/"><i class="fab fa-linkedin fa-fw"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://nyxott.github.io/posts/veracrypt/" data-title="VeraCrypt"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="Share on Reddit" data-sharer="reddit" data-url="https://nyxott.github.io/posts/veracrypt/"><i class="fab fa-reddit fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/miscellaneous/">Miscellaneous</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/hugo/" class="prev" rel="prev" title="Hugo"><i class="fas fa-angle-left fa-fw"></i>Hugo</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Nyxott</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"data":{"id-1":"Nyxott's blog","id-2":"Nyxott's blog"},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
