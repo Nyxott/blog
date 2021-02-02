@@ -192,7 +192,9 @@ git push origin master
 
 GitHub se charge du reste et vous pouvez vous rendre sur [https://<USERNAME>.github.io/](#) pour visualiser votre blog en ligne.
 
-N.B. : Il faut parfois attendre quelques minutes pour que les modifications soient visibles.
+{{< admonition >}}
+Il faut parfois attendre quelques minutes pour que les modifications soient visibles.
+{{< /admonition >}}
 
 ## Déploiement automatique
 
