@@ -114,6 +114,13 @@ theme = "LoveIt"
     url = "/categories/"
     weight = 2
 
+  [[menu.main]]
+    identifier = "about"
+    pre = "<i class='fas fa-address-card'></i>"
+    name = "A Propos"
+    url = "/about/"
+    weight = 3
+
 [markup]
   [markup.highlight]
     codeFences = true
