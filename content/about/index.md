@@ -1,17 +1,17 @@
 ---
 weight: 4
 title: "A propos"
-date: 2020-07-01T00:00:00+00:00
+date: 2020-05-01T00:00:00+00:00
 draft: false
 author: "Nyxott"
-description: "Créer un shellcode polymorphique"
+description: "A propos"
 ---
 
 ## Présentation
 
 Bienvenue à tous et bienvenue sur ce blog.
 
-Je suis `Nyxott`, passioné de sécurité informatique.
+Je suis `Nyxott`, passionné de sécurité informatique.
 
 Ce blog rassemble mes notes sur divers sujets liés à la sécurité informatique.
 
@@ -27,7 +27,7 @@ Ce « Disclaimer » (Avis de non-responsabilité) tient lieu pour tout le conten
 En visitant ce site, en participant et/ou en appliquant ce qui est présenté, vous comprenez et acceptez sans réserves que :
 * Ce site est à titre **éducatif** et **préventif UNIQUEMENT**, en aucun cas il n’incite à transgresser les lois.
 * Aucune réponse ne sera donnée aux demandes enfreignant les lois françaises. En tant que visiteur, vous serez le ou la seul(e) responsable de vos actes et de vos utilisations de ce qui est montré sur ce site. Ni l’auteur ni son hébergeur ne pourront être tenus responsables de vos agissements frauduleux.
-* L’éditeur du site ou son hébergeur ne peuvent être tenus responsable de la non exactitude des données d’origine externe au site.
+* L’éditeur du site ou son hébergeur ne peuvent être tenus responsables de la non exactitude des données d’origine externe au site.
 {{< /admonition >}}
 
 ## Plateformes
