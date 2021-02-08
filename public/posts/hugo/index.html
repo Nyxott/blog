@@ -33,7 +33,7 @@
                             "url": "https:\/\/nyxott.github.io\/posts\/hugo\/featured-image.png",
                             "width":  1200 ,
                             "height":  480 
-                        }],"genre": "posts","keywords": "Miscellaneous","wordcount":  1151 ,
+                        }],"genre": "posts","keywords": "Miscellaneous","wordcount":  1152 ,
         "url": "https:\/\/nyxott.github.io\/posts\/hugo\/","datePublished": "2021-01-01T00:00:00+00:00","dateModified": "2021-01-01T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "Nyxott"},"author": {
@@ -83,7 +83,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Hugo</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Nyxott</a></span>&nbsp;<span class="post-category">included in <a href="/categories/miscellaneous/"><i class="far fa-folder fa-fw"></i>Miscellaneous</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="01-01-2021">01-01-2021</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1151 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="01-01-2021">01-01-2021</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1152 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;6 minutes&nbsp;</div>
         </div><div class="featured-image"><img
         class="lazyload"
@@ -125,7 +125,7 @@
             <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
         </div>
         <div class="details-content">
-            <div class="admonition-content">Je pars du principe qu&rsquo;aucun <code>README.md</code>, ni autre fichier, n&rsquo;ai été créé au moment de l&rsquo;initialisation du repository.</div>
+            <div class="admonition-content">Je pars du principe qu&rsquo;aucun <code>README.md</code>, ni autre fichier, n&rsquo;a été créé au moment de l&rsquo;initialisation du repository.</div>
         </div>
     </div>
 <h2 id="installation-dhugo">Installation d&rsquo;Hugo</h2>
@@ -151,7 +151,7 @@
 <span class="ln">3</span>git init
 <span class="ln">4</span>git remote add origin https://github.com/&lt;USERNAME&gt;/blog.git
 <span class="ln">5</span>git submodule add https://github.com/dillonzq/LoveIt.git themes/LoveIt
-</code></pre></div><p>Bien sûr, vous devrait adapter ces lignes en fonction du thème que vous aurez choisi.</p>
+</code></pre></div><p>Bien sûr, vous devrez adapter ces lignes en fonction du thème que vous aurez choisi.</p>
 <p>Dans la documentation de LoveIt, il est indiqué que le contenu par défaut du fichier <code>config.toml</code>, qui est le fichier de configuration de notre site, doit être le suivant :</p>
 <div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="ln"> 1</span><span class="nx">baseURL</span> <span class="p">=</span> <span class="s2">&#34;http://example.org/&#34;</span>
 <span class="ln"> 2</span><span class="c"># [en, zh-cn, fr, ...] determines default content language</span>
@@ -219,13 +219,13 @@
 <p>Dans un site Hugo, il y a le dossier <code>content</code>. Au sein de ce dossier, il y a d&rsquo;autres dossiers qui représentent des catégories. Ces catégories constitueront généralement le menu du site. Les fichiers Markdown sont placés dans ces dossiers et sont ainsi triés par catégories.</p>
 <p>Vous pouvez créer des dossiers/fichiers manuellement dans le dossier <code>content</code> ou bien utiliser la commande Hugo dédié à cela :</p>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>hugo new &lt;DIRECTORY_NAME&gt;/&lt;FILE_NAME&gt;.md
-</code></pre></div><p>Une fois cette commande effectuée vous aurait, dans le dossier <code>content</code>, un dossier nommé <code>&lt;DIRECTORY_NAME&gt;</code> et dans ce dossier un fichier nommé <code>&lt;FILE_NAME&gt;.md</code>.</p>
+</code></pre></div><p>Une fois cette commande effectuée vous aurez, dans le dossier <code>content</code>, un dossier nommé <code>&lt;DIRECTORY_NAME&gt;</code> et dans ce dossier un fichier nommé <code>&lt;FILE_NAME&gt;.md</code>.</p>
 <div class="details admonition note open">
         <div class="details-summary admonition-title">
             <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
         </div>
         <div class="details-content">
-            <div class="admonition-content">Suivant le thème sélectionner, il est possible que l&rsquo;arborescence du dossier <code>content</code> change.</div>
+            <div class="admonition-content">Suivant le thème sélectionné, il est possible que l&rsquo;arborescence du dossier <code>content</code> change.</div>
         </div>
     </div>
 <p>Par défaut, le fichier contiendra plusieurs variables comprises entre deux <code>---</code> qui représentent l&rsquo;en-tête du fichier.</p>
@@ -248,16 +248,9 @@
 <span class="ln">6</span>git commit -m <span class="s2">&#34;&lt;COMMIT_MESSAGE&gt;&#34;</span>
 <span class="ln">7</span>git push origin master
 </code></pre></div><p>GitHub se charge du reste et vous pouvez vous rendre sur <a href="#" rel="">https://<USERNAME>.github.io/</a> pour visualiser votre blog en ligne.</p>
-<div class="details admonition note open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content">Il faut parfois attendre quelques minutes pour que les modifications soient visibles.</div>
-        </div>
-    </div>
+<p>N.B. : Il faut parfois attendre quelques minutes pour que les modifications soient visibles.</p>
 <h2 id="déploiement-automatique">Déploiement automatique</h2>
-<p>Déployer son blog en ligne n&rsquo;est pas long, mais très repétitif.</p>
+<p>Déployer son blog en ligne n&rsquo;est pas long, mais très répétitif.</p>
 <p>C&rsquo;est pourquoi nous pouvons créer un script afin d&rsquo;automatiser ce processus :</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="ln"> 1</span><span class="cp">#!/bin/bash
 </span><span class="ln"> 2</span><span class="cp"></span>

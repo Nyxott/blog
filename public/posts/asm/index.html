@@ -123,7 +123,7 @@
         </div>
     </div>
 <h2 id="les-registres">Les registres</h2>
-<p>De la même manière que nous utilisons des variables pour programmer en C ou en Python, par exemple, nous utilisons les registres des processeurs afin d&rsquo;y stocker des informations. En effet, les instructions assembleurs, que nous verrons plus loin, manipulent directement les regitres. De plus, ces derniers sont un peu plus rapides d&rsquo;accès que les caches et surtout beaucoup plus rapides d&rsquo;accès que la RAM et c&rsquo;est pourquoi nous devons les utiliser au maximum.</p>
+<p>De la même manière que nous utilisons des variables pour programmer en C ou en Python, par exemple, nous utilisons les registres des processeurs afin d&rsquo;y stocker des informations. En effet, les instructions assembleurs, que nous verrons plus loin, manipulent directement les registres. De plus, ces derniers sont un peu plus rapides d&rsquo;accès que les caches et surtout beaucoup plus rapides d&rsquo;accès que la RAM et c&rsquo;est pourquoi nous devons les utiliser au maximum.</p>
 <p>Un registre a au moins trois tailles différentes. A savoir, 8 bits (1 octet/byte), 16 bits (2 octets/word) et 32 bits (4 octets/double word).<br>
 Les architectures 64 bits ont une taille de registre supplémentaire de 64 bits (8 octets/quad word).</p>
 <div class="details admonition note open">
@@ -291,7 +291,7 @@ Les architectures 64 bits ont une taille de registre supplémentaire de 64 bits 
             <i class="icon fas fa-exclamation-triangle fa-fw"></i>Warning<i class="details-icon fas fa-angle-right fa-fw"></i>
         </div>
         <div class="details-content">
-            <div class="admonition-content">Seuls les registres <code>rax</code>, <code>rbx</code>, <code>rcx</code> et <code>rdx</code> possèdent deux registres de 8 bits. Tous les autres n&rsquo;en possède qu&rsquo;un.</div>
+            <div class="admonition-content">Seuls les registres <code>rax</code>, <code>rbx</code>, <code>rcx</code> et <code>rdx</code> possèdent deux registres de 8 bits. Tous les autres n&rsquo;en possèdent qu&rsquo;un.</div>
         </div>
     </div>
 <p>Néanmoins, cela ne change pratiquement rien à notre schéma de <code>rax</code> si nous l&rsquo;adaptons pour <code>rdi</code> par exemple :</p>
@@ -509,7 +509,7 @@ Les architectures 64 bits ont une taille de registre supplémentaire de 64 bits 
 <tr>
 <td style="text-align:center">16</td>
 <td style="text-align:center">RF<br>(Resume Flag)</td>
-<td style="text-align:left">Controle que le débogage en mode pas à pas n&rsquo;intervienne qu&rsquo;une seule fois par instruction</td>
+<td style="text-align:left">Contrôle que le débogage en mode pas à pas n&rsquo;intervienne qu&rsquo;une seule fois par instruction</td>
 </tr>
 <tr>
 <td style="text-align:center">17</td>
@@ -548,7 +548,7 @@ Les architectures 64 bits ont une taille de registre supplémentaire de 64 bits 
     </div>
 <h2 id="la-stack">La stack</h2>
 <p>La stack est une zone de mémoire. Au moment du lancement d&rsquo;une tâche, le système d&rsquo;exploitation définit la taille de la stack. Cette taille ne pourra pas varier durant toute l&rsquo;exécution de la tâche. A la fin de cette dernière la stack est supprimée.</p>
-<p>La stack permet de stocker plusieurs valeurs et notamment les petites données necéssaires à la bonne exécution des fonctions. Cette dernière est également utilisée pour savoir ou aller une fois que la fonction courante est terminée.</p>
+<p>La stack permet de stocker plusieurs valeurs et notamment les petites données nécessaires à la bonne exécution des fonctions. Cette dernière est également utilisée pour savoir où aller une fois que la fonction courante est terminée.</p>
 <p>De plus, la stack à une structure de type Last In First Out (LIFO). Cela signifie que la dernière valeur ajoutée à la stack sera la première à être retirée :</p>
 <pre><code>             ajoute une valeur    retire une valeur
                     → → → ------------ → → →
@@ -558,7 +558,7 @@ ajoute une valeur  ↑      | valeur 3 |      ↓  retire une valeur
 ------------ ------------ ------------ ------------ ------------
 | valeur 1 | | valeur 1 | | valeur 1 | | valeur 1 | | valeur 1 |
 ------------ ------------ ------------ ------------ ------------
-</code></pre><p>Chaque case de mémoire de la stack a une adresse. Les adresses de la stack sont un peu particulières puisque les éléments sont d&rsquo;abord sauvegarder dans les adresses les plus hautes de la stack puis les adresses diminuent au fur et à mesure.</p>
+</code></pre><p>Chaque case de mémoire de la stack a une adresse. Les adresses de la stack sont un peu particulières puisque les éléments sont d&rsquo;abord sauvegardés dans les adresses les plus hautes de la stack puis les adresses diminuent au fur et à mesure.</p>
 <p>Nous pouvons reprendre le schéma ci-dessus pour illustrer cela :</p>
 <pre><code>----------------------
 | adresses           |                ajoute une valeur    retire une valeur
@@ -690,7 +690,7 @@ Big endian : 0x6578616d706c65 (example)
 </code></pre><p>La plupart des architectures sont de type little-endian.</p>
 <h2 id="les-sections-dun-programme-assembleur">Les sections d&rsquo;un programme assembleur</h2>
 <p>Un programme assembleur est découpé en plusieurs sections. La section <code>.text</code> contient le code, la section <code>.data</code> contient les données et enfin la section <code>.bss</code> contient les variables.</p>
-<p>La différence entre la section <code>.data</code> et <code>.bss</code> est fine. La section <code>.bss</code> sera virtuellement remplis de 0. Ainsi, toutes les variables déclarées sans être initialisées doivent être dans la section <code>.bss</code> tandis que toutes les autres doivent être dans la section <code>.data</code>.</p>
+<p>La différence entre la section <code>.data</code> et <code>.bss</code> est fine. La section <code>.bss</code> sera virtuellement remplie de 0. Ainsi, toutes les variables déclarées sans être initialisées doivent être dans la section <code>.bss</code> tandis que toutes les autres doivent être dans la section <code>.data</code>.</p>
 <h2 id="hello-world">Hello world!</h2>
 <p>Avec toutes ces informations, nous pouvons maintenant comprendre un programme <code>Hello world!</code> en assembleur :</p>
 <div class="highlight"><pre class="chroma"><code class="language-nasm" data-lang="nasm"><span class="ln"> 1</span><span class="k">section</span> <span class="nv">.data</span>

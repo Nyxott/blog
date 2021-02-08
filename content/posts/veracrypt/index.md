@@ -4,7 +4,7 @@ title: "VeraCrypt"
 date: 2021-01-15T00:00:00+00:00
 draft: false
 author: "Nyxott"
-description: "Utiliser VeraCrypt afin d'intéragir avec un volume chiffré"
+description: "Utiliser VeraCrypt afin d'interagir avec un volume chiffré"
 resources:
 - name: "featured-image"
   src: "featured-image.png"
@@ -15,7 +15,7 @@ categories: ["Miscellaneous"]
 lightgallery: true
 ---
 
-Cet article explique comment utiliser VeraCrypt afin d'intéragir avec un volume chiffré.
+Cet article explique comment utiliser VeraCrypt afin d'interagir avec un volume chiffré.
 
 <!--more-->
 
@@ -109,7 +109,7 @@ veracrypt -t -c --volume-type=hidden --size=950M --encryption=aes-twofish-serpen
 ```
 
 {{< admonition warning >}}
-Le trio mot de passe/PIN/clef doit obligatoirement différé entre le volume parent et le volume caché.
+Le trio mot de passe/PIN/clef doit obligatoirement différer entre le volume parent et le volume caché.
 
 Si ce n'est pas le cas, VeraCrypt ne pourra pas distinguer le volume parent du volume caché et montera toujours le même par la suite.
 {{< /admonition >}}
@@ -124,7 +124,7 @@ veracrypt -t -k "" --pim=0 --protect-hidden=no /home/nyxott/Documents/SecretDocu
 {{< admonition >}}
 Si vous entrez le trio mot de passe/PIN/clef faisant référence au volume parent, ce dernier sera monté.
 
-A l'inverse si le trio d'informations renseigné est celui du volume caché, ce sera celui si qui sera monté.
+A l'inverse si le trio d'informations renseigné est celui du volume caché, ce sera celui ci qui sera monté.
 {{< /admonition >}}
 
 ### Démonter le volume chiffré

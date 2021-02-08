@@ -110,7 +110,7 @@
         <li><a href="#gestion-par-volumes-logiques">Gestion par volumes logiques</a></li>
         <li><a href="#formatage-des-partitions">Formatage des partitions</a></li>
         <li><a href="#montage-des-partitions">Montage des partitions</a></li>
-        <li><a href="#sélection-des-mirroirs">Sélection des mirroirs</a></li>
+        <li><a href="#sélection-des-miroirs">Sélection des miroirs</a></li>
         <li><a href="#installation-1">Installation</a></li>
         <li><a href="#génération-du-fichier-fstab">Génération du fichier fstab</a></li>
         <li><a href="#optimisation-ssd">Optimisation SSD</a></li>
@@ -211,8 +211,8 @@
 <span class="ln">2</span>mount /dev/sda1 /mnt/boot/EFI
 </code></pre></div><p>On active la swap :</p>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>swapon /dev/mapper/VG_CRYPT-lv_swap
-</code></pre></div><h3 id="sélection-des-mirroirs">Sélection des mirroirs</h3>
-<p>On sélectionne les mirroirs qui ont les meilleurs délais de réponses en fonction de notre zone géographique :</p>
+</code></pre></div><h3 id="sélection-des-miroirs">Sélection des miroirs</h3>
+<p>On sélectionne les miroirs qui ont les meilleurs délais de réponses en fonction de notre zone géographique :</p>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>pacman -Sy
 <span class="ln">2</span>pacman -S reflector
 <span class="ln">3</span>cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak

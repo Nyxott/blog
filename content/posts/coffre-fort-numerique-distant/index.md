@@ -379,7 +379,7 @@ wget https://raw.githubusercontent.com/Nyxott/CoffreDistantChiffre/master/00-inf
 chmod +x /etc/update-mot.d/00-infosys
 ```
 
-Ce script sera exécuté lorsque nous nous connecterons à la machine et nous permettra d'avoir rapidemment quelques informations utiles concernant cette dernière.
+Ce script sera exécuté lorsque nous nous connecterons à la machine et nous permettra d'avoir rapidement quelques informations utiles concernant cette dernière.
 
 Sur le client (la machine avec laquelle nous souhaitons nous connecter au serveur en SSH), nous allons générer une clef SSH :
 ```shell
@@ -405,16 +405,16 @@ Host <THE_NAME_YOU_WANT>
     IdentityFile <PATH_TO_PRIVATE_KEY>
 ```
 
-Puis nous pouvons nous connecté :
+Puis nous pouvons nous connecter :
 ```
 ssh <THE_NAME_YOU_WANT>
 ```
 
-Si tout fonctionne correctement nous devrions avoir le contenu du fichier `/etc/issue.net` qui s'affiche, suivi de la demande de saisie de la passphrase. Une fois la passphrase validée nous devrion voir le script contenu dans `/etc/update-mot.d/00-infosys` s'exécuter et nous devrions être connecté avec l'utilisateur présent sur le serveur.
+Si tout fonctionne correctement nous devrions avoir le contenu du fichier `/etc/issue.net` qui s'affiche, suivi de la demande de saisie de la passphrase. Une fois la passphrase validée nous devrions voir le script contenu dans `/etc/update-mot.d/00-infosys` s'exécuter et nous devrions être connecté avec l'utilisateur présent sur le serveur.
 
 ### Dropbear
 
-Nous avons un disque chiffré et nous pouvons nous connecter en SSH à notre serveur. Mais, si nous devons redémarrer le serveur a distance pour une raison x ou y, nous ne pouvons pas entrer le mot de passe demandé au démarrage afin de déchiffrer le disque dur. C'est pourquoi nous allons mettre en place l'outil Dropbear. Dropbear est un équivalent de OpenSSH, mais est beaucoup plus léger.
+Nous avons un disque chiffré et nous pouvons nous connecter en SSH à notre serveur. Mais, si nous devons redémarrer le serveur à distance pour une raison x ou y, nous ne pouvons pas entrer le mot de passe demandé au démarrage afin de déchiffrer le disque dur. C'est pourquoi nous allons mettre en place l'outil Dropbear. Dropbear est un équivalent de OpenSSH, mais est beaucoup plus léger.
 
 Nous installons donc Dropbear sur notre serveur :
 ```shell
@@ -446,7 +446,7 @@ ssh-keygen -t rsa -b 4096
 Nous copions ensuite le contenu du fichier `/home/<CLIENT_USER>/.ssh/id_rsa.pub` de notre client dans le fichier `/etc/dropbear-initramfs/authorized_keys` de notre serveur.
 
 {{< admonition warning >}}
-Attention, seul les toutes dernières version de Dropbear supportent des clefs ed25519 il est donc préférable pour le moment d'utiliser des clefs RSA.
+Attention, seul les toutes dernières versions de Dropbear supportent des clefs ed25519 il est donc préférable pour le moment d'utiliser des clefs RSA.
 {{< /admonition >}}
 
 Dans le fichier `/etc/default/dropbear` :
@@ -640,7 +640,7 @@ Enfin, vous devrez simplement modifier le fichier `~/.ssh/config` sur votre clie
 Si a un certain moment vous n'avez plus de place dans votre coffre, vous pouvez passer root et l'agrandir en diminuant la taille de la swap :
 ```shell
 swapoff -a
-lvreduce -L -500M /dev/VGCRYPT/lv_swap (réduis la swap de 500Mb)
+lvreduce -L -500M /dev/VGCRYPT/lv_swap (réduit la swap de 500Mb)
 mkswap /dev/mapper/VGCRYPT-lv_swap
 swapon -a
 

@@ -332,7 +332,7 @@
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span><span class="nb">cd</span> /etc/update-mot.d/
 <span class="ln">2</span>wget https://raw.githubusercontent.com/Nyxott/CoffreDistantChiffre/master/00-infosys
 <span class="ln">3</span>chmod +x /etc/update-mot.d/00-infosys
-</code></pre></div><p>Ce script sera exécuté lorsque nous nous connecterons à la machine et nous permettra d&rsquo;avoir rapidemment quelques informations utiles concernant cette dernière.</p>
+</code></pre></div><p>Ce script sera exécuté lorsque nous nous connecterons à la machine et nous permettra d&rsquo;avoir rapidement quelques informations utiles concernant cette dernière.</p>
 <p>Sur le client (la machine avec laquelle nous souhaitons nous connecter au serveur en SSH), nous allons générer une clef SSH :</p>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>ssh-keygen -t ed25519 <span class="o">(</span>il ne faut pas mettre de passphrase<span class="o">)</span>
 </code></pre></div><p>Nous devons ensuite copier le contenu du fichier <code>/home/&lt;CLIENT_USER&gt;/.ssh/id_ed25519.pub</code> de notre client dans le fichier <code>/etc/ssh/keys/&lt;SERVER_USER&gt;/authorized_keys</code> de notre serveur.</p>
@@ -352,11 +352,11 @@
 <span class="ln">3</span>    User &lt;USER_SERVER&gt;
 <span class="ln">4</span>    Port &lt;SERVER_SSH_PORT&gt;
 <span class="ln">5</span>    IdentityFile &lt;PATH_TO_PRIVATE_KEY&gt;
-</code></pre></div><p>Puis nous pouvons nous connecté :</p>
+</code></pre></div><p>Puis nous pouvons nous connecter :</p>
 <pre><code>ssh &lt;THE_NAME_YOU_WANT&gt;
-</code></pre><p>Si tout fonctionne correctement nous devrions avoir le contenu du fichier <code>/etc/issue.net</code> qui s&rsquo;affiche, suivi de la demande de saisie de la passphrase. Une fois la passphrase validée nous devrion voir le script contenu dans <code>/etc/update-mot.d/00-infosys</code> s&rsquo;exécuter et nous devrions être connecté avec l&rsquo;utilisateur présent sur le serveur.</p>
+</code></pre><p>Si tout fonctionne correctement nous devrions avoir le contenu du fichier <code>/etc/issue.net</code> qui s&rsquo;affiche, suivi de la demande de saisie de la passphrase. Une fois la passphrase validée nous devrions voir le script contenu dans <code>/etc/update-mot.d/00-infosys</code> s&rsquo;exécuter et nous devrions être connecté avec l&rsquo;utilisateur présent sur le serveur.</p>
 <h3 id="dropbear">Dropbear</h3>
-<p>Nous avons un disque chiffré et nous pouvons nous connecter en SSH à notre serveur. Mais, si nous devons redémarrer le serveur a distance pour une raison x ou y, nous ne pouvons pas entrer le mot de passe demandé au démarrage afin de déchiffrer le disque dur. C&rsquo;est pourquoi nous allons mettre en place l&rsquo;outil Dropbear. Dropbear est un équivalent de OpenSSH, mais est beaucoup plus léger.</p>
+<p>Nous avons un disque chiffré et nous pouvons nous connecter en SSH à notre serveur. Mais, si nous devons redémarrer le serveur à distance pour une raison x ou y, nous ne pouvons pas entrer le mot de passe demandé au démarrage afin de déchiffrer le disque dur. C&rsquo;est pourquoi nous allons mettre en place l&rsquo;outil Dropbear. Dropbear est un équivalent de OpenSSH, mais est beaucoup plus léger.</p>
 <p>Nous installons donc Dropbear sur notre serveur :</p>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>apt install dropbear busybox
 </code></pre></div><p>Dans le fichier <code>/etc/initramfs-tools/initramfs.conf</code> :</p>
@@ -375,7 +375,7 @@
             <i class="icon fas fa-exclamation-triangle fa-fw"></i>Warning<i class="details-icon fas fa-angle-right fa-fw"></i>
         </div>
         <div class="details-content">
-            <div class="admonition-content">Attention, seul les toutes dernières version de Dropbear supportent des clefs ed25519 il est donc préférable pour le moment d&rsquo;utiliser des clefs RSA.</div>
+            <div class="admonition-content">Attention, seul les toutes dernières versions de Dropbear supportent des clefs ed25519 il est donc préférable pour le moment d&rsquo;utiliser des clefs RSA.</div>
         </div>
     </div>
 <p>Dans le fichier <code>/etc/default/dropbear</code> :</p>
@@ -490,7 +490,7 @@ De même, si nous choisissons le port 7001 pour Dropbear nous devrons ouvrir ver
 <h4 id="augmenter-la-taille-du-coffre">Augmenter la taille du coffre</h4>
 <p>Si a un certain moment vous n&rsquo;avez plus de place dans votre coffre, vous pouvez passer root et l&rsquo;agrandir en diminuant la taille de la swap :</p>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>swapoff -a
-<span class="ln">2</span>lvreduce -L -500M /dev/VGCRYPT/lv_swap <span class="o">(</span>réduis la swap de 500Mb<span class="o">)</span>
+<span class="ln">2</span>lvreduce -L -500M /dev/VGCRYPT/lv_swap <span class="o">(</span>réduit la swap de 500Mb<span class="o">)</span>
 <span class="ln">3</span>mkswap /dev/mapper/VGCRYPT-lv_swap
 <span class="ln">4</span>swapon -a
 <span class="ln">5</span>

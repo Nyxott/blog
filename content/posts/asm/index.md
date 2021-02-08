@@ -31,7 +31,7 @@ Il est à noter qu'entre un code assembleur en 32 bits et en 64 bits, quelques c
 
 ## Les registres
 
-De la même manière que nous utilisons des variables pour programmer en C ou en Python, par exemple, nous utilisons les registres des processeurs afin d'y stocker des informations. En effet, les instructions assembleurs, que nous verrons plus loin, manipulent directement les regitres. De plus, ces derniers sont un peu plus rapides d'accès que les caches et surtout beaucoup plus rapides d'accès que la RAM et c'est pourquoi nous devons les utiliser au maximum.
+De la même manière que nous utilisons des variables pour programmer en C ou en Python, par exemple, nous utilisons les registres des processeurs afin d'y stocker des informations. En effet, les instructions assembleurs, que nous verrons plus loin, manipulent directement les registres. De plus, ces derniers sont un peu plus rapides d'accès que les caches et surtout beaucoup plus rapides d'accès que la RAM et c'est pourquoi nous devons les utiliser au maximum.
 
 Un registre a au moins trois tailles différentes. A savoir, 8 bits (1 octet/byte), 16 bits (2 octets/word) et 32 bits (4 octets/double word).  
 Les architectures 64 bits ont une taille de registre supplémentaire de 64 bits (8 octets/quad word).
@@ -92,7 +92,7 @@ Voici la liste de tous les registres existants :
 | r15<br>(Register 15)                      | r15d<br>(Register 15 Double word)      | r15w<br>(Register 15 Word)   | ∅                        | r15b<br>(Register 15 Byte)     |
 
 {{< admonition warning >}}
-Seuls les registres `rax`, `rbx`, `rcx` et `rdx` possèdent deux registres de 8 bits. Tous les autres n'en possède qu'un.
+Seuls les registres `rax`, `rbx`, `rcx` et `rdx` possèdent deux registres de 8 bits. Tous les autres n'en possèdent qu'un.
 {{< /admonition >}}
 
 Néanmoins, cela ne change pratiquement rien à notre schéma de `rax` si nous l'adaptons pour `rdi` par exemple :
@@ -168,7 +168,7 @@ Voici la liste de tous les flags existants ainsi que leur fonctionnalité :
 | 11    | OF<br>(Overflow Flag)                        | Indique si le résultat de la dernière opération est trop grand pour être stocker dans l'opérande de destination                          |
 | 12/13 | IOPL<br>(Input/Output Privilege Level field) | Indique le niveau de privilège en I/O de la tâche courante                                                                               |
 | 14    | NT<br>(Nested task Flag)                     | Indique si la tâche courante résulte d'une tâche parente                                                                                 |
-| 16    | RF<br>(Resume Flag)                          | Controle que le débogage en mode pas à pas n'intervienne qu'une seule fois par instruction                                               |
+| 16    | RF<br>(Resume Flag)                          | Contrôle que le débogage en mode pas à pas n'intervienne qu'une seule fois par instruction                                               |
 | 17    | VM<br>(Virtual-8086 mode Flag)               | Indique si le processeur est en mode 8086 ou en mode protégé                                                                             |
 | 18    | AC<br>(Alignment Check Flag)                 | Indique si l'alignement des références mémoires doit être verifié                                                                        |
 | 19    | VIF<br>(Virtual Interrupt Flag)              | Image virtuelle de IF                                                                                                                    |
@@ -183,7 +183,7 @@ Les bits 1, 3, 5, 15 et de 22 à 63 ne sont pas définis, car ils sont réservé
 
 La stack est une zone de mémoire. Au moment du lancement d'une tâche, le système d'exploitation définit la taille de la stack. Cette taille ne pourra pas varier durant toute l'exécution de la tâche. A la fin de cette dernière la stack est supprimée.
 
-La stack permet de stocker plusieurs valeurs et notamment les petites données necéssaires à la bonne exécution des fonctions. Cette dernière est également utilisée pour savoir ou aller une fois que la fonction courante est terminée.
+La stack permet de stocker plusieurs valeurs et notamment les petites données nécessaires à la bonne exécution des fonctions. Cette dernière est également utilisée pour savoir où aller une fois que la fonction courante est terminée.
 
 De plus, la stack à une structure de type Last In First Out (LIFO). Cela signifie que la dernière valeur ajoutée à la stack sera la première à être retirée :
 
@@ -198,7 +198,7 @@ ajoute une valeur  ↑      | valeur 3 |      ↓  retire une valeur
 ------------ ------------ ------------ ------------ ------------
 ```
 
-Chaque case de mémoire de la stack a une adresse. Les adresses de la stack sont un peu particulières puisque les éléments sont d'abord sauvegarder dans les adresses les plus hautes de la stack puis les adresses diminuent au fur et à mesure.
+Chaque case de mémoire de la stack a une adresse. Les adresses de la stack sont un peu particulières puisque les éléments sont d'abord sauvegardés dans les adresses les plus hautes de la stack puis les adresses diminuent au fur et à mesure.
 
 Nous pouvons reprendre le schéma ci-dessus pour illustrer cela :
 
@@ -275,7 +275,7 @@ La plupart des architectures sont de type little-endian.
 
 Un programme assembleur est découpé en plusieurs sections. La section `.text` contient le code, la section `.data` contient les données et enfin la section `.bss` contient les variables.
 
-La différence entre la section `.data` et `.bss` est fine. La section `.bss` sera virtuellement remplis de 0. Ainsi, toutes les variables déclarées sans être initialisées doivent être dans la section `.bss` tandis que toutes les autres doivent être dans la section `.data`.
+La différence entre la section `.data` et `.bss` est fine. La section `.bss` sera virtuellement remplie de 0. Ainsi, toutes les variables déclarées sans être initialisées doivent être dans la section `.bss` tandis que toutes les autres doivent être dans la section `.data`.
 
 ## Hello world!
 

@@ -25,13 +25,13 @@ Une attaque de désauthentification Wi-Fi est une forme de déni de service cibl
 
 Cette attaque consiste à ce qu'un attaquant envoie des demandes de désauthentification à un accès Wi-Fi en se faisant passer pour un de ces clients. Cela a pour effet de déconnecter le client en question du point d'accès Wi-Fi.
 
-Elle est, la plupart du temps, utilisé conjointement avec d'autres attaques.
+Elle est, la plupart du temps, utilisée conjointement avec d'autres attaques.
 
 Ainsi, un attaquant peut mettre en place un point d'accès Wi-Fi malveillant dans le cadre d'une attaque `Evil Twin`. Dans ce cas, l'attaquant pourra utiliser une attaque de désauthentification afin de déconnecter le client de son point d'accès Wi-Fi légitime pour le reconnecter sur le point d'accès malveillant.
 
 Dans un autre contexte, un attaquant tentant de découvrir le mot de passe d'un point d'accès Wi-Fi peut utiliser cette méthode afin de déconnecter un client et récupérer le 4-Way Handshake pour ensuite effectuer une attaque brute-force.
 
-Enfin, cette attaque de désauthentification peut tout simplement permettre de connaitre le SSID d'un point d'accès Wi-Fi caché.
+Enfin, cette attaque de désauthentification peut tout simplement permettre de connaître le SSID d'un point d'accès Wi-Fi caché.
 
 ## Installation des outils
 
@@ -87,7 +87,7 @@ sudo airodump-ng -d <BSSID> -c <CH> wlp2s0mon
 ```
 
 {{< admonition tip >}}
-Il est possible d'effectuer immédiatement un `ctrl + c` puisque l'aligmenent sur le bon canal est instantané.
+Il est possible d'effectuer immédiatement un `ctrl + c` puisque l'alignement sur le bon canal est instantané.
 {{< /admonition >}}
 
 ### Désauthentification
@@ -139,7 +139,7 @@ echo -e "\e[1;92mOK\e[0m\n"
 echo -e "\e[97mScanning access points...\e[0m"
 sudo airodump-ng -w airodump --output-format csv wlp2s0mon > /dev/null 2>&1 &
 sleep 20
-sudo killall -15 airodump-ng > /dev/null 2>&1
+sudo killall -15 airodump-ng
 echo -e "\e[1;92mOK\e[0m\n"
 
 echo -e "\e[97mSearching target...\e[0m"
@@ -154,7 +154,7 @@ if [ $AP_TARGET ]; then
 	NAME_AP_TARGET=`echo $TEMP | cut -d "," -f 14 | xargs` > /dev/null 2>&1
 	sudo airodump-ng -d $AP_TARGET -c $CHANNEL_TARGET wlp2s0mon > /dev/null 2>&1 &
 	sleep 1
-	sudo killall -15 airodump-ng > /dev/null 2>&1
+	sudo killall -15 airodump-ng
 	echo -e "\e[1;92mOK\e[0m\n"
 
 	echo -e "\e[1;97m$TARGET\e[0m\e[97m detected on \e[0m\e[1;97m$NAME_AP_TARGET\e[0m\e[97m (\e[0m\e[1;97m$AP_TARGET\e[0m\e[97m)\e[0m\n"

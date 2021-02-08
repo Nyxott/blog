@@ -28,7 +28,7 @@ Voici par exemple un shellcode permettant d'effectuer la commande `execve("/bin/
 \x48\x31\xd2\x48\xbb\x2f\x2f\x62\x69\x6e\x2f\x73\x68\x48\xc1\xeb\x08\x53\x48\x89\xe7\x50\x57\x48\x89\xe6\xb0\x3b\x0f\x05
 ```
 
-Ce shellcode a été tiré du site [http://shell-storm.org/shellcode/](http://shell-storm.org/shellcode/) où se trouve de nombreux shellcodes pour tous types d'architectures.
+Ce shellcode a été tiré du site [http://shell-storm.org/shellcode/](http://shell-storm.org/shellcode/) où se trouvent de nombreux shellcodes pour tous types d'architectures.
 
 Un shellcode peut être utilisé durant l'exploitation d'un buffer overflow.
 
@@ -55,7 +55,7 @@ Nous le chiffrons en incrémentant chaque valeur hexadécimale :
 Notre shellcode est désormais chiffré puisque nous avons ajouté 0x01 à chaque valeur hexadécimale. Nous pouvons alors remarquer que le pattern `\x2f\x62\x69\x6e\x2f\x73\x68` n'est plus présent.
 
 {{< admonition warning >}}
-Il est important de préciser ici que certaines valeurs hexadécimales sont à proscrire. Ce sont les badchars. Ils peuvent varier, mais la plupart du temps ce sont `\x00` et `\x0a` qui doivent être évités puisque le premier représente un null byte (indiquant une fin de chaîne de caractères) et le second un saut de ligne. Ils créent des comportements inattendu et empêche la bonne exécution du shellcode. Il faut donc veiller à ce que ces valeurs ne soient présentes nulle part.
+Il est important de préciser ici que certaines valeurs hexadécimales sont à proscrire. Ce sont les badchars. Ils peuvent varier, mais la plupart du temps ce sont `\x00` et `\x0a` qui doivent être évités puisque le premier représente un null byte (indiquant une fin de chaîne de caractères) et le second un saut de ligne. Ils créent des comportements inattendus et empêchent la bonne exécution du shellcode. Il faut donc veiller à ce que ces valeurs ne soient présentes nulle part.
 {{< /admonition >}}
 
 Notre shellcode étant désormais chiffré, il n'est plus exécutable et il est donc nécessaire d'y ajouter un décodeur.
@@ -144,7 +144,7 @@ Ce bout de code est équivalent au code C suivant :
 socket(AF_INET, SOCK_STREAM, 0);
 ```
 
-Puis, viens la fonction `connect` qui va donc connecter notre socket à la machine cible via les informations misent sur la stack auparavant.
+Puis, vient la fonction `connect` qui va donc connecter notre socket à la machine cible via les informations misent sur la stack auparavant.
 
 Ce bout de code est équivalent au code C suivant :
 ```c
@@ -207,7 +207,7 @@ dfhzifjH1�H1�@�H1�@�H1��)H1ҲH�4$H��H1��*H1��!@�ư
 
 C'est que votre shell interprète l'hexadécimal. Cela peut arriver si votre shell est `zsh` par exemple.
 
-Dans ce cas ouvrez un shell bash puis ré-exécuté la commande :
+Dans ce cas ouvrez un shell bash puis réexécutez la commande :
 ```shell
 /bin/bash
 for i in `objdump -D reverseShell | tr '\t' ' ' | tr ' ' '\n' | egrep '^[0-9a-f]{2}$' ` ; do echo -n "\x$i" ; done ; echo
@@ -386,7 +386,7 @@ _start:
         call init                  ;call init
 ```
 
-Tout d'abord, nous sautons à la fonction `uselessButEssential` dans laquelle l'on appelle la fonction `init`. Cette technique peut s'avérer quelque peu incompréhensible. Souvenez-vous de la forme finale de notre shellcode. Nous avons d'abord le décodeur suivi du shellcode chiffré. En faisant ce saut à cette fonction (qui doit être placé tout à la fin du code) le registre `rip` va contenir l'adresse de la prochaine instruction à exécuter qui n'est autre que le début de notre shellcode chiffré. L'instruction `call` va effectuer un `push rip` ce qui mettra sur la stack l'adresse du début de notre shellcode chiffré avant de sauter vers la fonction `init`.
+Tout d'abord, nous sautons à la fonction `uselessButEssential` dans laquelle l'on appelle la fonction `init`. Cette technique peut s'avérer quelque peu incompréhensible. Souvenez-vous de la forme finale de notre shellcode. Nous avons d'abord le décodeur suivi du shellcode chiffré. En faisant ce saut à cette fonction (qui doit être placée tout à la fin du code) le registre `rip` va contenir l'adresse de la prochaine instruction à exécuter qui n'est autre que le début de notre shellcode chiffré. L'instruction `call` va effectuer un `push rip` ce qui mettra sur la stack l'adresse du début de notre shellcode chiffré avant de sauter vers la fonction `init`.
 
 La fonction `init` nous permet d'initialiser quelques variables et de récupérer l'adresse du shellcode chiffré qui a été mise sur la stack précédemment. 
 
@@ -394,9 +394,9 @@ Viens ensuite la fonction `router1`. Souvenez-vous, nous avions chiffré un cara
 
 Les fonctions `decipherROR1` et `decipherROR2` vont se charger d'effectuer un ROR avec la clef correspondante.
 
-La fonction `manager1` va quant à elle se charger d'incrémenter nos compteurs et de détecter si l'on a atteint la fin de notre shellcode. Si tel est le cas le programme passera à la fonction `reset`, sinon, le programme retournera dans `router1` pour un nouveau tour.
+La fonction `manager1` va quant à elle se charger d'incrémenter nos compteurs et de détecter si l'on a atteint la fin de notre shellcode. Si tel est le cas, le programme passera à la fonction `reset`, sinon, le programme retournera dans `router1` pour un nouveau tour.
 
-La fonction `reset` ré-initialise toutes les variables à l'instar de la fonction `init`.
+La fonction `reset` réinitialise toutes les variables à l'instar de la fonction `init`.
 
 La fonction `router2` fonctionne comme `router1`. En effet, nous avions chiffré un caractère sur trois avec un cesar et une clef, le second caractère avait été chiffré avec un XOR et une clef différente et enfin le troisième caractère avait été chiffré avec un cesar allant dans le sens opposé du premier et encore avec une nouvelle clef. Cette fonction permet donc de détecter si l'on est sur le premier, deuxième ou troisième caractère et de diriger le programme vers la bonne fonction de déchiffrement.
 

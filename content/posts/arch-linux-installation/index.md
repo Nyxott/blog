@@ -149,9 +149,9 @@ On active la swap :
 swapon /dev/mapper/VG_CRYPT-lv_swap
 ```
 
-### Sélection des mirroirs
+### Sélection des miroirs
 
-On sélectionne les mirroirs qui ont les meilleurs délais de réponses en fonction de notre zone géographique :
+On sélectionne les miroirs qui ont les meilleurs délais de réponses en fonction de notre zone géographique :
 ```shell
 pacman -Sy
 pacman -S reflector

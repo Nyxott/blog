@@ -34,7 +34,7 @@ Tout d'abord, on crée sur GitHub un repository nommé `blog` et un autre nommé
 Bien sûr, il faudra remplacer `<USERNAME>` par votre nom d'utilisateur GitHub.
 
 {{< admonition >}}
-Je pars du principe qu'aucun `README.md`, ni autre fichier, n'ai été créé au moment de l'initialisation du repository.
+Je pars du principe qu'aucun `README.md`, ni autre fichier, n'a été créé au moment de l'initialisation du repository.
 {{< /admonition >}}
 
 ## Installation d'Hugo
@@ -70,7 +70,7 @@ git remote add origin https://github.com/<USERNAME>/blog.git
 git submodule add https://github.com/dillonzq/LoveIt.git themes/LoveIt
 ```
 
-Bien sûr, vous devrait adapter ces lignes en fonction du thème que vous aurez choisi.
+Bien sûr, vous devrez adapter ces lignes en fonction du thème que vous aurez choisi.
 
 Dans la documentation de LoveIt, il est indiqué que le contenu par défaut du fichier `config.toml`, qui est le fichier de configuration de notre site, doit être le suivant :
 ```toml
@@ -149,10 +149,10 @@ Vous pouvez créer des dossiers/fichiers manuellement dans le dossier `content` 
 hugo new <DIRECTORY_NAME>/<FILE_NAME>.md
 ```
 
-Une fois cette commande effectuée vous aurait, dans le dossier `content`, un dossier nommé `<DIRECTORY_NAME>` et dans ce dossier un fichier nommé `<FILE_NAME>.md`.
+Une fois cette commande effectuée vous aurez, dans le dossier `content`, un dossier nommé `<DIRECTORY_NAME>` et dans ce dossier un fichier nommé `<FILE_NAME>.md`.
 
 {{< admonition >}}
-Suivant le thème sélectionner, il est possible que l'arborescence du dossier `content` change.
+Suivant le thème sélectionné, il est possible que l'arborescence du dossier `content` change.
 {{< /admonition >}}
 
 Par défaut, le fichier contiendra plusieurs variables comprises entre deux `---` qui représentent l'en-tête du fichier.
@@ -192,13 +192,11 @@ git push origin master
 
 GitHub se charge du reste et vous pouvez vous rendre sur [https://<USERNAME>.github.io/](#) pour visualiser votre blog en ligne.
 
-{{< admonition >}}
-Il faut parfois attendre quelques minutes pour que les modifications soient visibles.
-{{< /admonition >}}
+N.B. : Il faut parfois attendre quelques minutes pour que les modifications soient visibles.
 
 ## Déploiement automatique
 
-Déployer son blog en ligne n'est pas long, mais très repétitif.
+Déployer son blog en ligne n'est pas long, mais très répétitif.
 
 C'est pourquoi nous pouvons créer un script afin d'automatiser ce processus :
 ```bash
