@@ -131,7 +131,7 @@ A vous de vous adapter au thème que vous avez choisi. Bien souvent, un fichier 
 La variable `baseURL` doit impérativement être modifiée pour contenir la valeur `https://<USERNAME>.github.io/` où `<USERNAME>` est à remplacer par votre nom d'utilisateur GitHub.
 {{< /admonition >}}
 
-## Liason entre les deux repositories
+## Liaison entre les deux repositories
 
 Le repository `blog` peut être assimilé au backend de notre site. En effet, c'est dans ce dossier que sont regroupés, entre autres, nos fichiers markdown, nos images/videos et quelques snippets.
 

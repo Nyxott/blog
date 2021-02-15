@@ -104,7 +104,7 @@
     <li><a href="#installation-dhugo">Installation d&rsquo;Hugo</a></li>
     <li><a href="#création-du-blog">Création du blog</a></li>
     <li><a href="#installation-du-thème">Installation du thème</a></li>
-    <li><a href="#liason-entre-les-deux-repositories">Liason entre les deux repositories</a></li>
+    <li><a href="#liaison-entre-les-deux-repositories">Liaison entre les deux repositories</a></li>
     <li><a href="#création-de-contenu">Création de contenu</a></li>
     <li><a href="#visualisation-du-blog-en-localhost">Visualisation du blog en localhost</a></li>
     <li><a href="#build">Build</a></li>
@@ -211,7 +211,7 @@
             <div class="admonition-content">La variable <code>baseURL</code> doit impérativement être modifiée pour contenir la valeur <code>https://&lt;USERNAME&gt;.github.io/</code> où <code>&lt;USERNAME&gt;</code> est à remplacer par votre nom d&rsquo;utilisateur GitHub.</div>
         </div>
     </div>
-<h2 id="liason-entre-les-deux-repositories">Liason entre les deux repositories</h2>
+<h2 id="liaison-entre-les-deux-repositories">Liaison entre les deux repositories</h2>
 <p>Le repository <code>blog</code> peut être assimilé au backend de notre site. En effet, c&rsquo;est dans ce dossier que sont regroupés, entre autres, nos fichiers markdown, nos images/videos et quelques snippets.</p>
 <p>Le dossier <code>public</code> du repository <code>blog</code> peut être assimilé au frontend de notre site. En effet, lorsque nous allons build le site, le theme choisi sera utilisé pour créer les fichiers HTML/CSS nécessaires et  nos fichiers markdown seront également transformés en fichiers HTML. L&rsquo;ensemble de ces fichiers sera stocké au sein du dossier <code>public</code> en formant une arborescence particulière qui créera notre site statique. C&rsquo;est pourquoi nous allons relier ce dossier au repository <code>&lt;USERNAME&gt;.github.io</code> :</p>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>git submodule add -b main https://github.com/&lt;USERNAME&gt;/&lt;USERNAME&gt;.github.io.git public
