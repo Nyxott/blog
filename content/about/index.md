@@ -9,7 +9,7 @@ description: "A propos"
 
 ## Présentation
 
-Bienvenue à tous et bienvenue sur ce blog.
+Bienvenue à tous sur ce blog !
 
 Je suis `Nyxott`, passionné de sécurité informatique.
 
@@ -17,7 +17,7 @@ Ce blog rassemble mes notes sur divers sujets liés à la sécurité informatiqu
 
 Plutôt que de garder mes notes pour moi (et parfois les perdre) j'ai décidé de les centraliser en ligne et de les partager.
 
-J'ai également décidé de proposer ce blog uniquement en français car il y a déjà énormément de ressources en anglais mais très peu en français.
+J'ai également décidé de proposer ce blog uniquement en français car il y a déjà énormément de ressources en anglais.
 
 ## Disclaimer
 

@@ -102,21 +102,21 @@ theme = "LoveIt"
 [menu]
   [[menu.main]]
     identifier = "posts"
-    pre = "<i class='fas fa-file-alt'></i>"
+    pre = "<i class='fas fa-file-alt'></i> "
     name = "Posts"
     url = "/posts/"
     weight = 1
   
   [[menu.main]]
     identifier = "categories"
-    pre = "<i class='fa fa-folder-open'></i>"
+    pre = "<i class='fa fa-folder-open'></i> "
     name = "Categories"
     url = "/categories/"
     weight = 2
 
   [[menu.main]]
     identifier = "about"
-    pre = "<i class='fas fa-address-card'></i>"
+    pre = "<i class='fas fa-address-card'></i> "
     name = "A Propos"
     url = "/about/"
     weight = 3
