@@ -25,6 +25,7 @@ theme = "LoveIt"
     enable = true
     hugo = true
     copyright = true
+    since=2020
   
   [params.section]
     paginate = 20
