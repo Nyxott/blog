@@ -2,9 +2,10 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>https://nyxott.github.io/posts/pentest-web-02-scan-ports/</loc><lastmod>2021-03-01T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://nyxott.github.io/posts/pentest-web-01-environnement-entrainement/</loc><lastmod>2021-02-15T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://nyxott.github.io/posts/attaque-desauthentification/</loc><lastmod>2021-02-01T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>https://nyxott.github.io/posts/pentest-web-03-tls-configuration/</loc><lastmod>2021-03-15T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://nyxott.github.io/posts/pentest-web-02-scan-ports/</loc><lastmod>2021-03-01T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
+            <loc>https://nyxott.github.io/posts/pentest-web-01-environnement-entrainement/</loc><lastmod>2021-02-15T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>https://nyxott.github.io/posts/attaque-desauthentification/</loc><lastmod>2021-02-01T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://nyxott.github.io/posts/veracrypt/</loc><lastmod>2021-01-15T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://nyxott.github.io/posts/hugo/</loc><lastmod>2021-01-01T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://nyxott.github.io/posts/arch-linux-installation/</loc><lastmod>2020-11-01T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
@@ -12,14 +13,14 @@
             <loc>https://nyxott.github.io/posts/shellcode-polymorphique/</loc><lastmod>2020-07-01T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://nyxott.github.io/about/</loc><lastmod>2020-05-01T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://nyxott.github.io/posts/asm/</loc><lastmod>2020-05-01T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://nyxott.github.io/categories/</loc><lastmod>2021-03-01T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://nyxott.github.io/</loc><lastmod>2021-03-01T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://nyxott.github.io/tags/pentest-web/</loc><lastmod>2021-03-01T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://nyxott.github.io/categories/pentest-web/</loc><lastmod>2021-03-01T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://nyxott.github.io/posts/</loc><lastmod>2021-03-01T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://nyxott.github.io/tags/</loc><lastmod>2021-03-01T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://nyxott.github.io/tags/wi-fi/</loc><lastmod>2021-02-01T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
-            <loc>https://nyxott.github.io/categories/wi-fi/</loc><lastmod>2021-02-01T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>https://nyxott.github.io/categories/</loc><lastmod>2021-03-15T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://nyxott.github.io/</loc><lastmod>2021-03-15T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://nyxott.github.io/tags/pentest-web/</loc><lastmod>2021-03-15T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://nyxott.github.io/categories/pentest-web/</loc><lastmod>2021-03-15T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://nyxott.github.io/posts/</loc><lastmod>2021-03-15T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://nyxott.github.io/tags/</loc><lastmod>2021-03-15T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://nyxott.github.io/tags/wi-fi/</loc><lastmod>2021-02-01T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://nyxott.github.io/categories/wi-fi/</loc><lastmod>2021-02-01T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://nyxott.github.io/tags/miscellaneous/</loc><lastmod>2021-01-15T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://nyxott.github.io/categories/miscellaneous/</loc><lastmod>2021-01-15T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://nyxott.github.io/tags/projects/</loc><lastmod>2020-09-01T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
