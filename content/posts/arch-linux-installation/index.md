@@ -399,7 +399,7 @@ On installe le terminal kitty :
 ```shell
 sudo pacman -S kitty
 wget "https://raw.githubusercontent.com/dexpota/kitty-themes/master/themes/Monokai_Pro_(Filter_Spectrum).conf" -P ~/.config/kitty/kitty-themes/themes
-ln -s ~/.config/kitty/kitty-themes/themes/Monokai_Pro_(Filter_Spectrum).conf ~/.config/kitty/theme.conf
+ln -s "~/.config/kitty/kitty-themes/themes/Monokai_Pro_(Filter_Spectrum).conf" ~/.config/kitty/theme.conf
 wget https://raw.githubusercontent.com/Nyxott/ArchLinuxConfiguration/main/kitty.conf -O ~/.config/kitty/kitty.conf
 ```
 
@@ -537,7 +537,7 @@ yay -S lightdm-webkit-theme-aether
 On installe le thème GRUB :
 ```shell
 git clone https://github.com/vinceliuice/grub2-themes.git /tmp/grub2-themes.git
-sudo /tmp/grub2-themes.git/install.sh -b -v
+sudo /tmp/grub2-themes.git/install.sh -b -t vimix
 ```
 
 ### Redémarrage

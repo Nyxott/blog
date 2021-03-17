@@ -33,7 +33,7 @@
                             "url": "https:\/\/nyxott.github.io\/posts\/arch-linux-installation\/featured-image.png",
                             "width":  1920 ,
                             "height":  936 
-                        }],"genre": "posts","keywords": "Miscellaneous","wordcount":  1524 ,
+                        }],"genre": "posts","keywords": "Miscellaneous","wordcount":  1525 ,
         "url": "https:\/\/nyxott.github.io\/posts\/arch-linux-installation\/","datePublished": "2020-11-01T00:00:00+00:00","dateModified": "2020-11-01T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "Nyxott"},"author": {
@@ -83,7 +83,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Installation d&#39;Arch Linux</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Nyxott</a></span>&nbsp;<span class="post-category">included in <a href="/categories/miscellaneous/"><i class="far fa-folder fa-fw"></i>Miscellaneous</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="01-11-2020">01-11-2020</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1524 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="01-11-2020">01-11-2020</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1525 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;8 minutes&nbsp;</div>
         </div><div class="featured-image"><img
         class="lazyload"
@@ -333,7 +333,7 @@ export LANG=en_US.UTF-8
 <p>On installe le terminal kitty :</p>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>sudo pacman -S kitty
 <span class="ln">2</span>wget <span class="s2">&#34;https://raw.githubusercontent.com/dexpota/kitty-themes/master/themes/Monokai_Pro_(Filter_Spectrum).conf&#34;</span> -P ~/.config/kitty/kitty-themes/themes
-<span class="ln">3</span>ln -s ~/.config/kitty/kitty-themes/themes/Monokai_Pro_<span class="o">(</span>Filter_Spectrum<span class="o">)</span>.conf ~/.config/kitty/theme.conf
+<span class="ln">3</span>ln -s <span class="s2">&#34;~/.config/kitty/kitty-themes/themes/Monokai_Pro_(Filter_Spectrum).conf&#34;</span> ~/.config/kitty/theme.conf
 <span class="ln">4</span>wget https://raw.githubusercontent.com/Nyxott/ArchLinuxConfiguration/main/kitty.conf -O ~/.config/kitty/kitty.conf
 </code></pre></div><h3 id="installation-du-shell">Installation du shell</h3>
 <p>On installe le shell zsh :</p>
@@ -397,7 +397,7 @@ L&rsquo;image que l&rsquo;on veut comme fond d&rsquo;écran de verrouillage doit
 </code></pre></div><h3 id="installation-du-thème-grub-">Installation du thème GRUB :</h3>
 <p>On installe le thème GRUB :</p>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>git clone https://github.com/vinceliuice/grub2-themes.git /tmp/grub2-themes.git
-<span class="ln">2</span>sudo /tmp/grub2-themes.git/install.sh -b -v
+<span class="ln">2</span>sudo /tmp/grub2-themes.git/install.sh -b -t vimix
 </code></pre></div><h3 id="redémarrage-1">Redémarrage</h3>
 <p>Nous pouvons désormais redémarrer la machine et constater que tout fonctionne correctement :</p>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>sudo reboot
