@@ -552,7 +552,23 @@ sudo reboot
 On installe tous les paquets utiles :
 ```shell
 sudo pacman -Sy
-sudo pacman -S curl discord flameshot htop libreoffice-still unzip zip
+sudo pacman -S code curl discord evince firefox flameshot gimp htop libreoffice-still signal-desktop unzip zip
 yay -Sua
-yay -S spotify visual-studio-code-bin
+yay -S spotify teams
+```
+
+## Bonus
+
+### Barre de progression globale pour pacman
+
+Par défaut, pacman affiche un pourcentage de progression individuel à chaque paquet. Afin d'avoir un pourcentage global concernant l'avancée de l'ensemble des paquets en cours d'installation, il suffit de décommenter la ligne suivante dans le fichier `/etc/pacman.conf` :
+```shell
+TotalDownload
+```
+
+### Gestion totale des paquets via yay
+
+Il est possible de mettre à jour la totalité des paquets (officiels + AUR) via la commande suivante :
+```shell
+yay
 ```
