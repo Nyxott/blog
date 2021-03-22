@@ -33,7 +33,7 @@
                             "url": "https:\/\/nyxott.github.io\/posts\/arch-linux-installation\/featured-image.png",
                             "width":  1920 ,
                             "height":  936 
-                        }],"genre": "posts","keywords": "Miscellaneous","wordcount":  1602 ,
+                        }],"genre": "posts","keywords": "Miscellaneous","wordcount":  1641 ,
         "url": "https:\/\/nyxott.github.io\/posts\/arch-linux-installation\/","datePublished": "2020-11-01T00:00:00+00:00","dateModified": "2020-11-01T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "Nyxott"},"author": {
@@ -83,7 +83,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Installation d&#39;Arch Linux</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Nyxott</a></span>&nbsp;<span class="post-category">included in <a href="/categories/miscellaneous/"><i class="far fa-folder fa-fw"></i>Miscellaneous</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="01-11-2020">01-11-2020</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1602 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="01-11-2020">01-11-2020</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1641 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;8 minutes&nbsp;</div>
         </div><div class="featured-image"><img
         class="lazyload"
@@ -418,7 +418,11 @@ L&rsquo;image que l&rsquo;on veut comme fond d&rsquo;écran de verrouillage doit
 <p>Par défaut, pacman affiche un pourcentage de progression individuel à chaque paquet. Afin d&rsquo;avoir un pourcentage global concernant l&rsquo;avancée de l&rsquo;ensemble des paquets en cours d&rsquo;installation, il suffit de décommenter la ligne suivante dans le fichier <code>/etc/pacman.conf</code> :</p>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>TotalDownload
 </code></pre></div><h3 id="gestion-totale-des-paquets-via-yay">Gestion totale des paquets via yay</h3>
-<p>Il est possible de mettre à jour la totalité des paquets (officiels + AUR) via la commande suivante :</p>
+<p>Il est possible de mettre à jour la liste des paquets (officiels + AUR) via la commande suivante :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>yay -Sy
+</code></pre></div><p>Il est possible d&rsquo;installer un paquet (officiel + AUR) via la commande suivante :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>yay -S &lt;PACKAGE&gt;
+</code></pre></div><p>Il est possible de mettre à jour la totalité des paquets installés (officiels + AUR) via la commande suivante :</p>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>yay
 </code></pre></div></div><div class="post-footer" id="post-footer">
     <div class="post-info">

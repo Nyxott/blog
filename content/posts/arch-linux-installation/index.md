@@ -568,7 +568,17 @@ TotalDownload
 
 ### Gestion totale des paquets via yay
 
-Il est possible de mettre à jour la totalité des paquets (officiels + AUR) via la commande suivante :
+Il est possible de mettre à jour la liste des paquets (officiels + AUR) via la commande suivante :
+```shell
+yay -Sy
+```
+
+Il est possible d'installer un paquet (officiel + AUR) via la commande suivante :
+```shell
+yay -S <PACKAGE>
+```
+
+Il est possible de mettre à jour la totalité des paquets installés (officiels + AUR) via la commande suivante :
 ```shell
 yay
 ```
