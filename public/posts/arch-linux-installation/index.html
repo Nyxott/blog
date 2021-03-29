@@ -33,7 +33,7 @@
                             "url": "https:\/\/nyxott.github.io\/posts\/arch-linux-installation\/featured-image.png",
                             "width":  1920 ,
                             "height":  936 
-                        }],"genre": "posts","keywords": "Miscellaneous","wordcount":  1641 ,
+                        }],"genre": "posts","keywords": "Miscellaneous","wordcount":  1686 ,
         "url": "https:\/\/nyxott.github.io\/posts\/arch-linux-installation\/","datePublished": "2020-11-01T00:00:00+00:00","dateModified": "2020-11-01T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "Nyxott"},"author": {
@@ -83,7 +83,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Installation d&#39;Arch Linux</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Nyxott</a></span>&nbsp;<span class="post-category">included in <a href="/categories/miscellaneous/"><i class="far fa-folder fa-fw"></i>Miscellaneous</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="01-11-2020">01-11-2020</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1641 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="01-11-2020">01-11-2020</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1686 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;8 minutes&nbsp;</div>
         </div><div class="featured-image"><img
         class="lazyload"
@@ -410,9 +410,11 @@ L&rsquo;image que l&rsquo;on veut comme fond d&rsquo;écran de verrouillage doit
 </code></pre></div><h3 id="paquets">Paquets</h3>
 <p>On installe tous les paquets utiles :</p>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>sudo pacman -Sy
-<span class="ln">2</span>sudo pacman -S code curl discord evince firefox flameshot gimp htop libreoffice-still signal-desktop unzip zip
+<span class="ln">2</span>sudo pacman -S android-tools code curl discord evince firefox flameshot ghidra gimp htop hugo impacket john libreoffice-still metasploit miniterm network-manager-applet nmap openvpn pulseview rsync screen signal-desktop squashfs-tools sqlmap testssl.sh traceroute tree unzip veracrypt virtualbox wireshark-qt zip
 <span class="ln">3</span>yay -Sua
-<span class="ln">4</span>yay -S spotify teams
+<span class="ln">4</span>yay -S bluez-utils-compat dirbuster dirbuster-wordlists ffuf-bin gdb-multiarch gef-git genymotion qtfm spotify teams
+</code></pre></div><p>Pour GEF il faut compléter l&rsquo;installation avec la ligne suivante :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span><span class="nb">echo</span> <span class="nb">source</span> /usr/share/gef/gef.py &gt;&gt; ~/.gdbinit
 </code></pre></div><h2 id="bonus">Bonus</h2>
 <h3 id="barre-de-progression-globale-pour-pacman">Barre de progression globale pour pacman</h3>
 <p>Par défaut, pacman affiche un pourcentage de progression individuel à chaque paquet. Afin d&rsquo;avoir un pourcentage global concernant l&rsquo;avancée de l&rsquo;ensemble des paquets en cours d&rsquo;installation, il suffit de décommenter la ligne suivante dans le fichier <code>/etc/pacman.conf</code> :</p>

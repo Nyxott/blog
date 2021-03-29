@@ -552,9 +552,14 @@ sudo reboot
 On installe tous les paquets utiles :
 ```shell
 sudo pacman -Sy
-sudo pacman -S code curl discord evince firefox flameshot gimp htop libreoffice-still signal-desktop unzip zip
+sudo pacman -S android-tools code curl discord evince firefox flameshot ghidra gimp htop hugo impacket john libreoffice-still metasploit miniterm network-manager-applet nmap openvpn pulseview rsync screen signal-desktop squashfs-tools sqlmap testssl.sh traceroute tree unzip veracrypt virtualbox wireshark-qt zip
 yay -Sua
-yay -S spotify teams
+yay -S bluez-utils-compat dirbuster dirbuster-wordlists ffuf-bin gdb-multiarch gef-git genymotion qtfm spotify teams
+```
+
+Pour GEF il faut compléter l'installation avec la ligne suivante :
+```shell
+echo source /usr/share/gef/gef.py >> ~/.gdbinit
 ```
 
 ## Bonus
